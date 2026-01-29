@@ -3,37 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Portfólio</title>
+    <title>Thiago Seiki Kato - Portfólio Profissional</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header>
-        <h1>Bem-vindo ao meu Portfólio</h1>
         <nav>
-            <ul>
-                <li><a href="#curriculo">Currículo</a></li>
-                <li><a href="#artigos">Artigos</a></li>
-            </ul>
+            <div class="container">
+                <a href="#" class="logo">Thiago Seiki Kato</a>
+                <ul>
+                    <li><a href="#about">Sobre</a></li>
+                    <li><a href="#projects">Projetos</a></li>
+                    <li><a href="#articles">Artigos</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+            </div>
         </nav>
     </header>
-    <div class="container">
-        <section id="curriculo">
-            <h2>Currículo</h2>
-            <iframe src="Currículo/Thiago_Seiki_Kato_CV_SC.pdf" width="100%" height="600px"></iframe>
+
+    <main>
+        <section id="hero" class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <img src="Currículo/Foto.jpg" alt="Thiago Seiki Kato" class="profile-pic">
+                    <h1>Thiago Seiki Kato</h1>
+                    <p class="tagline">Especialista em Supply Chain & AI Solutions</p>
+                </div>
+            </div>
         </section>
-        <section id="artigos">
-            <h2>Artigos</h2>
-            <ul>
-                <li><a href="Artigos/a_produtividade_do_vibe_coding_e_o_rigor_da_engenharia.html">A Produtividade do Vibe Coding e o Rigor da Engenharia</a></li>
-                <li><a href="Artigos/a_revolucao_silenciosa.html">A Revolução Silenciosa</a></li>
-                <li><a href="Artigos/analise_de_outlier.html">Análise de Outlier</a></li>
-                <li><a href="Artigos/o_paradoxo_cognitivo_da_ia.html">O Paradoxo Cognitivo da IA</a></li>
-            </ul>
+
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2>Sobre Mim</h2>
+                <p>Profissional com sólida base em Consultoria Estratégica (EY, Webb) e expertise na liderança de projetos complexos de Otimização Operacional, Supply Chain e Compras. Especialista em unir visão de negócio à tecnologia de ponta, com foco atual no desenvolvimento de ferramentas de Resiliência e Inteligência Analítica. Desenvolvedor da plataforma autoral Supply Chain Pipeline Builder, um ecossistema de "Cérebro Digital" que utiliza IA Generativa (LLMs) e Simulação de Monte Carlo para otimização de capital de giro e gestão de riscos globais. A ferramenta atua como uma "Agility Layer" para sistemas Tier 1 (SAP, o9), permitindo simulações de cenários (Stress Testing), análise de sensibilidade e insights proativos em linguagem natural. Minha trajetória inclui a liderança de projetos estratégicos na América do Sul e, recentemente na Supply4Med, a implementação de agentes de IA para automação de pedidos e padronização de itens. Domínio técnico avançado em Python (Pandas, FastAPI, Polars), SQL (BigQuery), Next.js e orquestração de LLMs (LangChain). Comprometido com a vanguarda tecnológica, utilizo a Ciência de Dados para transformar cadeias de suprimentos tradicionais em operações resilientes, orientadas por dados e prontas para a volatilidade do mercado atual.</p>
+                <a href="Currículo/Thiago_Seiki_Kato_CV_SC.pdf" target="_blank" class="btn">Baixar Currículo Completo (PDF)</a>
+            </div>
         </section>
-    </div>
-    <footer>
-        <p>© 2026 Meu Portfólio</p>
+
+        <section id="projects" class="projects-section">
+            <div class="container">
+                <h2>Projetos de Destaque</h2>
+                <div class="project-grid">
+                    <div class="project-card">
+                        <h3>Supply Chain Pipeline Builder</h3>
+                        <p>Plataforma de arquitetura "No-Code" e "Cérebro Digital" desenvolvida para otimizar a resiliência e o capital de giro em cadeias de suprimentos globais. A ferramenta funciona como uma camada de agilidade (Agility Layer) que complementa sistemas como SAP IBP e o9 Solutions.</p>
+                        <a href="Projetos/SC_PipelineBuilder_ScreenShots.pdf" target="_blank" class="btn">Ver Detalhes</a>
+                    </div>
+                    <div class="project-card">
+                        <h3>AI Talent Simulation</h3>
+                        <p>Projeto de IA para gestão empresarial que integra Google Gemini, Microsoft Teams e Outlook, Odoo ERP, Paradigma e WebJobs, permitindo aos usuários interagir com dados de diversas fontes usando Linguagem Natural (NLP).</p>
+                        <a href="Projetos/AI_Talent_Simulation.pdf" target="_blank" class="btn">Ver Detalhes</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="articles" class="articles-section">
+            <div class="container">
+                <h2>Artigos</h2>
+                <div class="article-grid">
+                    <div class="article-card">
+                        <h3>A Produtividade do Vibe Coding e o Rigor da Engenharia</h3>
+                        <a href="Artigos/a_produtividade_do_vibe_coding_e_o_rigor_da_engenharia.html" target="_blank" class="btn">Ler Artigo</a>
+                    </div>
+                    <div class="article-card">
+                        <h3>A Revolução Silenciosa</h3>
+                        <a href="Artigos/a_revolucao_silenciosa.html" target="_blank" class="btn">Ler Artigo</a>
+                    </div>
+                    <div class="article-card">
+                        <h3>Análise de Outlier</h3>
+                        <a href="Artigos/analise_de_outlier.html" target="_blank" class="btn">Ler Artigo</a>
+                    </div>
+                    <div class="article-card">
+                        <h3>O Paradoxo Cognitivo da IA</h3>
+                        <a href="Artigos/o_paradoxo_cognitivo_da_ia.html" target="_blank" class="btn">Ler Artigo</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="container">
+            <h2>Contato</h2>
+            <p>Entre em contato para oportunidades e colaborações!</p>
+            <div class="contact-links">
+                <a href="https://www.linkedin.com/in/Thiago-kato-934128/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://github.com/thiagokato80" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                <a href="mailto:thiagokato@gmail.com"><i class="fas fa-envelope"></i> thiagokato@gmail.com</a>
+                <a href="tel:+5511981039985"><i class="fas fa-phone"></i> +55 (11) 98103-9985</a>
+            </div>
+            <p class="footer-text">© 2026 Thiago Seiki Kato - Todos os direitos reservados.</p>
+        </div>
     </footer>
+
     <script src="script.js"></script>
+    <script>
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
