@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,12 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
+
 <body>
     <!-- Animated Background -->
     <div class="bg-grid"></div>
@@ -23,18 +27,31 @@
                 <a href="#" class="logo">
                     <span class="logo-bracket">[</span>TSK<span class="logo-bracket">]</span>
                 </a>
-                <button class="mobile-toggle" aria-label="Menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <ul class="nav-links">
-                    <li><a href="#about" data-text="Sobre">Sobre</a></li>
-                    <li><a href="#skills" data-text="Skills">Skills</a></li>
-                    <li><a href="#projects" data-text="Projetos">Projetos</a></li>
-                    <li><a href="#articles" data-text="Artigos">Artigos</a></li>
-                    <li><a href="#contact" data-text="Contato">Contato</a></li>
-                </ul>
+                <div class="nav-end">
+                    <ul class="nav-links">
+                        <li><a href="#about" data-i18n="nav-about">Sobre</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#projects" data-i18n="nav-projects">Projetos</a></li>
+                        <li><a href="#articles" data-i18n="nav-articles">Artigos</a></li>
+                        <li><a href="#contact" data-i18n="nav-contact">Contato</a></li>
+                    </ul>
+                    <div class="nav-controls">
+                        <button class="lang-toggle" id="langToggle" aria-label="Toggle language">
+                            <span class="lang-opt lang-active" data-lang="pt">PT</span>
+                            <span class="lang-sep">|</span>
+                            <span class="lang-opt" data-lang="en">EN</span>
+                        </button>
+                        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                            <i class="fas fa-moon theme-icon-dark"></i>
+                            <i class="fas fa-sun theme-icon-light"></i>
+                        </button>
+                    </div>
+                    <button class="mobile-toggle" aria-label="Menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
             </div>
         </nav>
     </header>
@@ -49,11 +66,11 @@
                     <img src="Curr%C3%ADculo/Foto.jpg" alt="Thiago Seiki Kato" class="hero-image">
                     <div class="hero-status">
                         <span class="status-dot"></span>
-                        Disponível para oportunidades
+                        <span data-i18n="hero-status">Disponível para oportunidades</span>
                     </div>
                 </div>
                 <div class="hero-content">
-                    <p class="hero-greeting">Olá, eu sou</p>
+                    <p class="hero-greeting" data-i18n="hero-greeting">Olá, eu sou</p>
                     <h1 class="hero-name">
                         <span class="name-line">Thiago Seiki</span>
                         <span class="name-line name-highlight">Kato</span>
@@ -63,14 +80,14 @@
                         <span class="typing-text"></span>
                         <span class="typing-cursor">|</span>
                     </div>
-                    <p class="hero-description">
+                    <p class="hero-description" data-i18n-html="hero-description">
                         Transformando cadeias de suprimentos em operações resilientes através de
                         <span class="text-accent">Inteligência Artificial</span> e
                         <span class="text-accent">Data Science</span>
                     </p>
                     <div class="hero-cta">
                         <a href="#projects" class="btn btn-primary">
-                            <span>Ver Projetos</span>
+                            <span data-i18n="btn-projects">Ver Projetos</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
                         <a href="Curr%C3%ADculo/Thiago_Seiki_Kato_CV_SC.pdf" target="_blank" class="btn btn-outline">
@@ -95,24 +112,30 @@
             <div class="container">
                 <div class="section-header">
                     <span class="section-tag">01</span>
-                    <h2>Sobre Mim</h2>
+                    <h2 data-i18n="about-title">Sobre Mim</h2>
                     <div class="section-line"></div>
                 </div>
                 <div class="about-content">
                     <div class="about-text">
-                        <p class="about-lead">
-                            Profissional com sólida base em <strong>Consultoria Estratégica</strong> (EY, Webb) e expertise na liderança de projetos complexos de Otimização Operacional, Supply Chain e Compras.
+                        <p class="about-lead" data-i18n-html="about-lead">
+                            Profissional com sólida base em <strong>Consultoria Estratégica</strong> (EY, Webb) e
+                            expertise na liderança de projetos complexos de Otimização Operacional, Supply Chain e
+                            Compras.
                         </p>
-                        <p>
-                            Especialista em unir visão de negócio à tecnologia de ponta, com foco atual no desenvolvimento de ferramentas de <span class="text-accent">Resiliência</span> e <span class="text-accent">Inteligência Analítica</span>.
+                        <p data-i18n-html="about-p1">
+                            Especialista em unir visão de negócio à tecnologia de ponta, com foco atual no
+                            desenvolvimento de ferramentas de <span class="text-accent">Resiliência</span> e <span
+                                class="text-accent">Inteligência Analítica</span>.
                         </p>
-                        <p>
-                            Desenvolvedor da plataforma autoral <strong>Supply Chain Pipeline Builder</strong>, um ecossistema de "Cérebro Digital" que utiliza IA Generativa (LLMs) e Simulação de Monte Carlo para otimização de capital de giro e gestão de riscos globais.
+                        <p data-i18n-html="about-p2">
+                            Desenvolvedor da plataforma autoral <strong>Supply Chain Pipeline Builder</strong>, um
+                            ecossistema de "Cérebro Digital" que utiliza IA Generativa (LLMs) e Simulação de Monte Carlo
+                            para otimização de capital de giro e gestão de riscos globais.
                         </p>
                         <div class="about-highlights">
                             <div class="highlight-item">
                                 <span class="highlight-number">10+</span>
-                                <span class="highlight-label">Anos de Experiência</span>
+                                <span class="highlight-label" data-i18n="highlight-exp">Anos de Experiência</span>
                             </div>
                             <div class="highlight-item">
                                 <span class="highlight-number">EY</span>
@@ -120,7 +143,7 @@
                             </div>
                             <div class="highlight-item">
                                 <span class="highlight-number">LatAm</span>
-                                <span class="highlight-label">Projetos Regionais</span>
+                                <span class="highlight-label" data-i18n="highlight-regional">Projetos Regionais</span>
                             </div>
                         </div>
                     </div>
@@ -129,7 +152,7 @@
                             <i class="fas fa-terminal"></i>
                             <span>profile.json</span>
                         </div>
-                        <pre class="card-code"><code>{
+                        <pre class="card-code"><code data-i18n-html="profile-card">{
   <span class="code-key">"nome"</span>: <span class="code-string">"Thiago Seiki Kato"</span>,
   <span class="code-key">"role"</span>: <span class="code-string">"Supply Chain & AI Specialist"</span>,
   <span class="code-key">"location"</span>: <span class="code-string">"São Paulo, Brasil"</span>,
@@ -176,7 +199,8 @@
                         <h3><i class="fas fa-cubes"></i> Supply Chain</h3>
                         <div class="skill-items">
                             <div class="skill-item"><i class="fas fa-cogs"></i><span>SAP IBP</span></div>
-                            <div class="skill-item"><i class="fas fa-project-diagram"></i><span>o9 Solutions</span></div>
+                            <div class="skill-item"><i class="fas fa-project-diagram"></i><span>o9 Solutions</span>
+                            </div>
                             <div class="skill-item"><i class="fas fa-chart-bar"></i><span>Monte Carlo</span></div>
                             <div class="skill-item"><i class="fas fa-random"></i><span>Stress Testing</span></div>
                         </div>
@@ -199,7 +223,7 @@
             <div class="container">
                 <div class="section-header">
                     <span class="section-tag">03</span>
-                    <h2>Projetos de Destaque</h2>
+                    <h2 data-i18n="projects-title">Projetos de Destaque</h2>
                     <div class="section-line"></div>
                 </div>
                 <div class="projects-grid">
@@ -215,17 +239,20 @@
                                 <span class="tag">Digital Simulation</span>
                                 <span class="tag">No-Code</span>
                             </div>
-                            <h3>De Simulador Técnico a Inteligência de Decisão: A Evolução do OmniTwin </h3>
-                            <p>
-                                O OmniTwin é uma plataforma de <strong>Inteligência de Decisão para Supply Chain</strong> que integra simulação de eventos discretos (Gêmeos Digitais), análise financeira em tempo real (P&L) e insights gerados por IA para transformar operações técnicas em resultados de negócio
+                            <h3 data-i18n="omnitwin-title">De Simulador Técnico a Inteligência de Decisão: A Evolução do OmniTwin</h3>
+                            <p data-i18n-html="omnitwin-desc">
+                                O OmniTwin é uma plataforma de <strong>Inteligência de Decisão para Supply
+                                    Chain</strong> que integra simulação de eventos discretos (Gêmeos Digitais), análise
+                                financeira em tempo real (P&L) e insights gerados por IA para transformar operações
+                                técnicas em resultados de negócio
                             </p>
                             <ul class="project-features">
-                                <li><i class="fas fa-check"></i> IA Generativa (LLMs)</li>
-                                <li><i class="fas fa-check"></i> Operação Simulada</li>
-                                <li><i class="fas fa-check"></i> Supply Chain</li>
+                                <li><i class="fas fa-check"></i> <span data-i18n="omnitwin-f1">IA Generativa (LLMs)</span></li>
+                                <li><i class="fas fa-check"></i> <span data-i18n="omnitwin-f2">Operação Simulada</span></li>
+                                <li><i class="fas fa-check"></i> <span data-i18n="omnitwin-f3">Supply Chain</span></li>
                             </ul>
                             <a href="Projetos/OmniTwin_Operational_Strategy.pdf" target="_blank" class="project-link">
-                                <span>Ver Detalhes</span>
+                                <span data-i18n="omnitwin-link">Ver Detalhes</span>
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
                         </div>
@@ -243,16 +270,23 @@
                                 <span class="tag">No-Code</span>
                             </div>
                             <h3>Supply Chain Pipeline Builder</h3>
-                            <p>
-                                Plataforma de arquitetura "No-Code" e "Cérebro Digital" desenvolvida para otimizar a resiliência e o capital de giro em cadeias de suprimentos globais. Funciona como uma <strong>Agility Layer</strong> que complementa sistemas como SAP IBP e o9 Solutions.
+                            <p data-i18n-html="scpb-desc">
+                                Plataforma de arquitetura "No-Code" e "Cérebro Digital" desenvolvida para otimizar a
+                                resiliência e o capital de giro em cadeias de suprimentos globais. Funciona como uma
+                                <strong>Agility Layer</strong> que complementa sistemas como SAP IBP e o9 Solutions.
                             </p>
                             <ul class="project-features">
-                                <li><i class="fas fa-check"></i> IA Generativa (LLMs)</li>
-                                <li><i class="fas fa-check"></i> Simulação de Monte Carlo</li>
-                                <li><i class="fas fa-check"></i> Análise de Sensibilidade</li>
+                                <li><i class="fas fa-check"></i> <span data-i18n="scpb-f1">IA Generativa (LLMs)</span></li>
+                                <li><i class="fas fa-check"></i> <span data-i18n="scpb-f2">Simulação de Monte Carlo</span></li>
+                                <li><i class="fas fa-check"></i> <span data-i18n="scpb-f3">Análise de Sensibilidade</span></li>
                             </ul>
                             <a href="Projetos/SC_PipelineBuilder_ScreenShots.pdf" target="_blank" class="project-link">
-                                <span>Ver Detalhes</span>
+                                <span data-i18n="scpb-link">Ver Detalhes</span>
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                            <a href="Projetos/LogiChain_AI_Implementation_Roadmap.pdf" target="_blank"
+                                class="project-link">
+                                <span data-i18n="scpb-link2">Ver Novas Funcionalidades</span>
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
                         </div>
@@ -270,16 +304,17 @@
                                 <span class="tag">Integration</span>
                             </div>
                             <h3>AI Talent Simulation</h3>
-                            <p>
-                                Plataforma gamificada para seleção de talentos em lógica, pensamento crítico e engenharia de prompts. <strong>Linguagem Natural</strong>.
+                            <p data-i18n-html="ats-desc">
+                                Plataforma gamificada para seleção de talentos em lógica, pensamento crítico e
+                                engenharia de prompts. <strong>Linguagem Natural</strong>.
                             </p>
                             <ul class="project-features">
-                                <li><i class="fas fa-check"></i> Google Gemini</li>
-                                <li><i class="fas fa-check"></i> AI Chatbot</li>
-                                <li><i class="fas fa-check"></i> NLP Interface</li>
+                                <li><i class="fas fa-check"></i> <span data-i18n="ats-f1">Google Gemini</span></li>
+                                <li><i class="fas fa-check"></i> <span data-i18n="ats-f2">AI Chatbot</span></li>
+                                <li><i class="fas fa-check"></i> <span data-i18n="ats-f3">NLP Interface</span></li>
                             </ul>
                             <a href="Projetos/AI_Talent_Simulation.pdf" target="_blank" class="project-link">
-                                <span>Ver Detalhes</span>
+                                <span data-i18n="ats-link">Ver Detalhes</span>
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
                         </div>
@@ -297,16 +332,19 @@
                                 <span class="tag">RAG</span>
                             </div>
                             <h3>Multi-Agent Assistant</h3>
-                            <p>
-                                Assistente virtual integrada ao Odoo ERP e ao Microsoft Teams, projetada para facilitar a gestão empresarial por meio de comandos em linguagem natural <strong>Linguagem Natural</strong>.
+                            <p data-i18n-html="maa-desc">
+                                Assistente virtual integrada ao Odoo ERP e ao Microsoft Teams, projetada para facilitar
+                                a gestão empresarial por meio de comandos em linguagem natural <strong>Linguagem
+                                    Natural</strong>.
                             </p>
                             <ul class="project-features">
-                                <li><i class="fas fa-check"></i> Retrievel Augmented Generation (RAG)</li>
-                                <li><i class="fas fa-check"></i> AI Chatbot</li>
-                                <li><i class="fas fa-check"></i> NLP Interface</li>
+                                <li><i class="fas fa-check"></i> <span data-i18n="maa-f1">Retrievel Augmented Generation (RAG)</span></li>
+                                <li><i class="fas fa-check"></i> <span data-i18n="maa-f2">AI Chatbot</span></li>
+                                <li><i class="fas fa-check"></i> <span data-i18n="maa-f3">NLP Interface</span></li>
                             </ul>
-                            <a href="Projetos/SAM_Agente_Autônomo_para_Supply4Med.pdf" target="_blank" class="project-link">
-                                <span>Ver Detalhes</span>
+                            <a href="Projetos/SAM_Agente_Autônomo_para_Supply4Med.pdf" target="_blank"
+                                class="project-link">
+                                <span data-i18n="maa-link">Ver Detalhes</span>
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
                         </div>
@@ -320,44 +358,53 @@
             <div class="container">
                 <div class="section-header">
                     <span class="section-tag">04</span>
-                    <h2>Artigos & Insights</h2>
+                    <h2 data-i18n="articles-title">Artigos & Insights</h2>
                     <div class="section-line"></div>
                 </div>
                 <div class="articles-grid">
                     <article class="article-card">
                         <div class="article-icon"><i class="fas fa-code"></i></div>
                         <span class="article-tag">AI & Engineering</span>
-                        <h3>A Produtividade do Vibe Coding e o Rigor da Engenharia</h3>
-                        <p class="article-summary">Ferramentas de IA aceleram a execução técnica e códigos repetitivos, mas falham em arquitetura e debugging complexo. O engenheiro deve manter soberania sobre o design da solução.</p>
-                        <a href="Artigos/a_produtividade_do_vibe_coding_e_o_rigor_da_engenharia.html" target="_blank" class="article-link">
-                            Ler Artigo <i class="fas fa-arrow-right"></i>
+                        <h3 data-i18n="art1-title">A Produtividade do Vibe Coding e o Rigor da Engenharia</h3>
+                        <p class="article-summary" data-i18n="art1-summary">Ferramentas de IA aceleram a execução técnica e códigos repetitivos,
+                            mas falham em arquitetura e debugging complexo. O engenheiro deve manter soberania sobre o
+                            design da solução.</p>
+                        <a href="Artigos/a_produtividade_do_vibe_coding_e_o_rigor_da_engenharia.html" target="_blank"
+                            class="article-link">
+                            <span data-i18n="art1-link">Ler Artigo</span> <i class="fas fa-arrow-right"></i>
                         </a>
                     </article>
                     <article class="article-card">
                         <div class="article-icon"><i class="fas fa-database"></i></div>
                         <span class="article-tag">Data Strategy</span>
-                        <h3>A Revolução Silenciosa</h3>
-                        <p class="article-summary">A qualidade e governança dos dados são mais críticas para o sucesso da IA do que os algoritmos. A vantagem competitiva reside na posse de ativos de dados exclusivos e bem preparados.</p>
+                        <h3 data-i18n="art2-title">A Revolução Silenciosa</h3>
+                        <p class="article-summary" data-i18n="art2-summary">A qualidade e governança dos dados são mais críticas para o sucesso
+                            da IA do que os algoritmos. A vantagem competitiva reside na posse de ativos de dados
+                            exclusivos e bem preparados.</p>
                         <a href="Artigos/a_revolucao_silenciosa.html" target="_blank" class="article-link">
-                            Ler Artigo <i class="fas fa-arrow-right"></i>
+                            <span data-i18n="art2-link">Ler Artigo</span> <i class="fas fa-arrow-right"></i>
                         </a>
                     </article>
                     <article class="article-card">
                         <div class="article-icon"><i class="fas fa-chart-line"></i></div>
                         <span class="article-tag">Data Science</span>
-                        <h3>Análise de Outlier</h3>
-                        <p class="article-summary">Outliers podem causar estimativas erradas se não tratados. Apresento métodos estatísticos como Z-score, IQR e DBSCAN para identificá-los e garantir a integridade dos modelos de ML.</p>
+                        <h3 data-i18n="art3-title">Análise de Outlier</h3>
+                        <p class="article-summary" data-i18n="art3-summary">Outliers podem causar estimativas erradas se não tratados. Apresento
+                            métodos estatísticos como Z-score, IQR e DBSCAN para identificá-los e garantir a integridade
+                            dos modelos de ML.</p>
                         <a href="Artigos/analise_de_outlier.html" target="_blank" class="article-link">
-                            Ler Artigo <i class="fas fa-arrow-right"></i>
+                            <span data-i18n="art3-link">Ler Artigo</span> <i class="fas fa-arrow-right"></i>
                         </a>
                     </article>
                     <article class="article-card">
                         <div class="article-icon"><i class="fas fa-brain"></i></div>
                         <span class="article-tag">AI & Cognition</span>
-                        <h3>O Paradoxo Cognitivo da IA</h3>
-                        <p class="article-summary">A IA generativa pode causar "atrofia cognitiva" em profissionais. Proponho o framework HAA (Análise Aumentada por Humanos) para garantir que o julgamento final permaneça humano.</p>
+                        <h3 data-i18n="art4-title">O Paradoxo Cognitivo da IA</h3>
+                        <p class="article-summary" data-i18n="art4-summary">A IA generativa pode causar "atrofia cognitiva" em profissionais.
+                            Proponho o framework HAA (Análise Aumentada por Humanos) para garantir que o julgamento
+                            final permaneça humano.</p>
                         <a href="Artigos/o_paradoxo_cognitivo_da_ia.html" target="_blank" class="article-link">
-                            Ler Artigo <i class="fas fa-arrow-right"></i>
+                            <span data-i18n="art4-link">Ler Artigo</span> <i class="fas fa-arrow-right"></i>
                         </a>
                     </article>
                 </div>
@@ -370,8 +417,8 @@
         <div class="container">
             <div class="contact-header">
                 <span class="section-tag">05</span>
-                <h2>Vamos Conversar?</h2>
-                <p>Estou disponível para oportunidades e colaborações</p>
+                <h2 data-i18n="contact-title">Vamos Conversar?</h2>
+                <p data-i18n="contact-subtitle">Estou disponível para oportunidades e colaborações</p>
             </div>
             <div class="contact-grid">
                 <a href="https://www.linkedin.com/in/thiago-seiki-kato-93a12b/" target="_blank" class="contact-card">
@@ -397,11 +444,12 @@
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2026 Thiago Seiki Kato</p>
-                <p class="footer-tagline">Construído com <span class="text-accent">&lt;/&gt;</span> e muita dedicação</p>
+                <p class="footer-tagline" data-i18n-html="footer-tagline">Construído com <span class="text-accent">&lt;/&gt;</span> e muita dedicação</p>
             </div>
         </div>
     </footer>
 
     <script src="script.js"></script>
 </body>
+
 </html>

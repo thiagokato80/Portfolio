@@ -120,9 +120,10 @@ header {
     left: 0;
     right: 0;
     z-index: 1000;
-    background: rgba(6, 8, 13, 0.8);
+    background: rgba(6, 8, 13, 0.85);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border-subtle);
+    transition: background var(--transition-smooth);
 }
 
 nav {
@@ -137,6 +138,12 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.nav-end {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .logo {
@@ -191,6 +198,79 @@ nav {
 .nav-links a:hover::after {
     transform: scaleX(1);
 }
+
+/* Nav Controls */
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.lang-toggle {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 7px 11px;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    transition: all var(--transition-fast);
+    outline: none;
+}
+
+.lang-toggle:hover {
+    border-color: var(--border-accent);
+    background: var(--accent-dim);
+}
+
+.lang-opt {
+    color: var(--text-dim);
+    transition: color var(--transition-fast);
+}
+
+.lang-opt.lang-active {
+    color: var(--accent);
+}
+
+.lang-sep {
+    color: var(--text-dim);
+    opacity: 0.4;
+    font-size: 0.7rem;
+}
+
+.theme-toggle {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.theme-toggle:hover {
+    border-color: var(--border-accent);
+    color: var(--accent);
+    background: var(--accent-dim);
+}
+
+/* Theme icon visibility */
+.theme-icon-light { display: none; }
+.theme-icon-dark  { display: inline-block; }
+
+[data-theme="light"] .theme-icon-light { display: inline-block; }
+[data-theme="light"] .theme-icon-dark  { display: none; }
 
 /* Mobile Toggle */
 .mobile-toggle {
@@ -1195,4 +1275,88 @@ section {
         background: var(--bg-card);
         border-radius: 12px;
     }
+
+    .lang-toggle {
+        padding: 6px 8px;
+        font-size: 0.72rem;
+    }
+
+    .theme-toggle {
+        width: 32px;
+        height: 32px;
+        font-size: 0.8rem;
+    }
+}
+
+/* =========================================
+   LIGHT THEME
+   ========================================= */
+[data-theme="light"] {
+    --bg-primary: #f5f7fa;
+    --bg-secondary: #eaeff5;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f0f4f8;
+
+    --accent: #0a8a73;
+    --accent-dim: rgba(10, 138, 115, 0.1);
+    --accent-glow: rgba(10, 138, 115, 0.25);
+
+    --text-primary: #0d1b2a;
+    --text-secondary: #3d5166;
+    --text-dim: #7a8fa3;
+
+    --border-subtle: rgba(0, 0, 0, 0.08);
+    --border-accent: rgba(10, 138, 115, 0.28);
+}
+
+[data-theme="light"] header {
+    background: rgba(245, 247, 250, 0.88);
+}
+
+[data-theme="light"] .bg-grid {
+    background-image:
+        linear-gradient(rgba(10, 138, 115, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(10, 138, 115, 0.04) 1px, transparent 1px);
+}
+
+[data-theme="light"] .bg-glow-1 {
+    background: radial-gradient(circle, rgba(10, 138, 115, 0.1), transparent 70%);
+    opacity: 0.7;
+}
+
+[data-theme="light"] .bg-glow-2 {
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.07), transparent 70%);
+    opacity: 0.5;
+}
+
+[data-theme="light"] .hero-image {
+    box-shadow:
+        0 0 40px rgba(10, 138, 115, 0.2),
+        0 20px 60px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .about-card {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.07);
+}
+
+[data-theme="light"] .skill-category:hover {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .project-card:hover {
+    box-shadow:
+        0 30px 60px rgba(0, 0, 0, 0.1),
+        0 0 40px var(--accent-dim);
+}
+
+[data-theme="light"] .article-card:hover {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .contact-card:hover {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .nav-links {
+    background: var(--bg-primary);
 }
