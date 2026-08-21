@@ -1618,3 +1618,309 @@ section {
         grid-template-columns: 1fr;
     }
 }
+
+/* =========================================
+   PROJETOS — GRADE COMPACTA E SUBGRUPOS
+   (gerado por scripts/gerar.mjs; ver data/projetos.json)
+   ========================================= */
+
+.grupo-header {
+    margin: 64px 0 28px;
+}
+
+.grupo-header:first-of-type {
+    margin-top: 24px;
+}
+
+.grupo-titulo {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+}
+
+.grupo-desc {
+    color: var(--text-secondary);
+    max-width: 60ch;
+}
+
+/* Sobrescreve a grade antiga de largura total */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    align-items: stretch;
+}
+
+.projects-grid .project-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 16px;
+    padding: 28px;
+    transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.projects-grid .project-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-accent);
+    background: var(--bg-card-hover);
+}
+
+.projects-grid .project-card.featured {
+    grid-column: span 2;
+}
+
+/* O painel de ícone deixa de ser uma coluna morta */
+.projects-grid .project-image {
+    all: unset;
+    display: block;
+    margin-bottom: 18px;
+}
+
+.projects-grid .project-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-size: 1.15rem;
+}
+
+.projects-grid .project-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 0;
+}
+
+.project-subtitulo {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+}
+
+.projects-grid .project-features {
+    margin-top: auto;
+    padding-top: 16px;
+}
+
+@media (max-width: 1024px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .projects-grid .project-card.featured {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    .projects-grid .project-card.featured {
+        grid-column: span 1;
+    }
+}
+
+/* Hero — hierarquia das ações */
+.hero-cta .btn-outline {
+    font-size: 0.88rem;
+    padding: 12px 20px;
+    opacity: 0.85;
+}
+
+.hero-cta .btn-outline:hover {
+    opacity: 1;
+}
+
+/* =========================================
+   PÁGINA DE CASO
+   ========================================= */
+
+.caso {
+    margin-top: 120px;
+    margin-bottom: 80px;
+    max-width: 860px;
+}
+
+.caso-hero {
+    margin-bottom: 48px;
+}
+
+.caso-hero-icone {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+}
+
+.status-badge {
+    display: inline-block;
+    margin-left: 12px;
+    padding: 5px 12px;
+    border: 1px solid var(--border-accent);
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    vertical-align: middle;
+}
+
+.caso h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.15;
+    margin: 8px 0 10px;
+}
+
+.caso-subtitulo {
+    font-family: var(--font-mono);
+    color: var(--text-dim);
+    margin-bottom: 20px;
+}
+
+.caso-numeros {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+    padding: 24px;
+    margin-bottom: 48px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 16px;
+}
+
+.caso-numero {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.caso-numero-valor {
+    font-family: var(--font-mono);
+    font-size: 1.9rem;
+    color: var(--accent);
+    line-height: 1;
+}
+
+.caso-numero-rotulo {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.caso-secao {
+    margin-bottom: 44px;
+}
+
+.caso-secao h2 {
+    font-size: 1.4rem;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.caso-secao p {
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+}
+
+.caso-secao ul:not(.caso-stack) {
+    color: var(--text-secondary);
+    padding-left: 20px;
+    margin-bottom: 16px;
+}
+
+.caso-secao ul:not(.caso-stack) li {
+    margin-bottom: 10px;
+}
+
+.caso-secao code {
+    font-family: var(--font-mono);
+    font-size: 0.86em;
+    padding: 2px 6px;
+    border-radius: 6px;
+    background: var(--bg-secondary);
+    color: var(--accent);
+}
+
+.caso-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+}
+
+.caso-stack li {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    padding: 7px 14px;
+    border: 1px solid var(--border-subtle);
+    border-radius: 999px;
+    background: var(--bg-card);
+    color: var(--text-secondary);
+}
+
+.caso-pdf {
+    width: 100%;
+    height: 820px;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+}
+
+.caso-cta {
+    padding: 36px;
+    border: 1px solid var(--border-accent);
+    border-radius: 16px;
+    background: var(--bg-card);
+    text-align: center;
+}
+
+.caso-cta h2 {
+    font-size: 1.35rem;
+    margin-bottom: 10px;
+}
+
+.caso-cta p {
+    color: var(--text-secondary);
+    margin-bottom: 22px;
+}
+
+@media (max-width: 768px) {
+    .caso {
+        margin-top: 90px;
+    }
+    .caso-pdf {
+        height: 520px;
+    }
+    .status-badge {
+        display: block;
+        margin: 12px 0 0;
+        width: fit-content;
+    }
+}
+
+.caso-hero .about-lead {
+    margin-bottom: 22px;
+}
+
+.caso-numeros + .caso-secao {
+    margin-top: 0;
+}

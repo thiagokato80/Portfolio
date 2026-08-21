@@ -167,7 +167,7 @@ ${jsonLd}
 
   <main class="container caso">
     <article>
-      <header class="caso-hero">
+      <div class="caso-hero">
         <div class="caso-hero-icone"><i class="fas ${escapar(projeto.icone)}"></i></div>
         <span class="status-badge">${status}</span>
         <h1>${titulo}</h1>
@@ -176,7 +176,7 @@ ${jsonLd}
         <div class="project-tags">
 ${tags}
         </div>
-      </header>
+      </div>
 
 ${blocoNumeros(projeto, lang)}${blocoSecoes(projeto, lang)}
 ${blocoStack(projeto)}

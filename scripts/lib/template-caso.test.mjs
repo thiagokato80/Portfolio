@@ -77,6 +77,17 @@ test('inclui JSON-LD de SoftwareApplication e BreadcrumbList', () => {
   assert.match(html, /"@type": "BreadcrumbList"/);
 });
 
+test('não usa <header> dentro do artigo — colide com o header fixo do site', () => {
+  const html = paginaCaso(projeto);
+  const artigo = html.slice(html.indexOf('<article>'));
+  assert.doesNotMatch(artigo, /<header/);
+});
+
+test('a faixa de números aparece antes da primeira seção', () => {
+  const html = paginaCaso(projeto);
+  assert.ok(html.indexOf('caso-numeros') < html.indexOf('caso-secao'));
+});
+
 test('em inglês muda lang, caminho e link do par', () => {
   const html = paginaCaso(projeto, { lang: 'en' });
   assert.match(html, /<html lang="en"/);
