@@ -283,8 +283,22 @@ conclusão.
 do `index.html` reestruturada em 3 subgrupos, `sitemap.xml` regenerado,
 `README.md` documentando o comando de build.
 
-**Fase 2.** Os artigos de `Artigos/` convertidos de iframe-sobre-PDF para HTML
-completo, reusando o mesmo gerador via `data/artigos.json`.
+**Fase 2 — concluída em 2026-08-21.** Os artigos convertidos de iframe-sobre-PDF
+para HTML completo, via `data/artigos.json` e o mesmo gerador.
+
+Entregue: 7 artigos, 174 KB de HTML indexável, sitemap com 20 URLs. As 5 páginas
+já publicadas mantiveram suas URLs originais, preservando o histórico de
+indexação. Entraram dois inéditos — "O Vale da Morte da Automação" e
+"Metodologia de Auditoria: SaaS Sprawl"; "Gestão de Supply Chain Cervejaria
+Brasil" ficou de fora por decisão do autor.
+
+Descoberta durante a execução: o site estiliza seletores de elemento nus
+(`header` fixo, `nav` com altura fixa, `section` com padding de 80-140px), que
+vazavam para todo conteúdo gerado. A neutralização está em `styles.css` e é
+guardada por `scripts/lib/estilos.test.mjs`. Isso também corrigiu vãos indevidos
+nas páginas de caso da Fase 1.
+
+Registro original do planejamento:
 
 Fonte revista em 2026-08-21: 4 dos 5 artigos existem como Google Docs na conta do
 autor, o que substitui a transcrição de 93 páginas de PDF por leitura de texto
