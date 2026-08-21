@@ -4,33 +4,33 @@
       "id": "plataformas",
       "titulo": {
         "pt": "Plataformas de Negócio",
-        "en": ""
+        "en": "Business Platforms"
       },
       "descricao": {
         "pt": "Sistemas em operação, construídos para empresas e suas equipes.",
-        "en": ""
+        "en": "Systems in operation, built for companies and their teams."
       }
     },
     {
       "id": "supplychain",
       "titulo": {
         "pt": "Supply Chain & Inteligência de Decisão",
-        "en": ""
+        "en": "Supply Chain & Decision Intelligence"
       },
       "descricao": {
         "pt": "Simulação, previsão e análise para cadeias de suprimento.",
-        "en": ""
+        "en": "Simulation, forecasting and analysis for supply chains."
       }
     },
     {
       "id": "laboratorio",
       "titulo": {
         "pt": "Laboratório de Agentes de IA",
-        "en": ""
+        "en": "AI Agent Lab"
       },
       "descricao": {
         "pt": "Onde eu testo modelos, protocolos e arquiteturas antes de levá-los para produção.",
-        "en": ""
+        "en": "Where I test models, protocols and architectures before taking them to production."
       }
     }
   ],
@@ -42,21 +42,28 @@
       "icone": "fa-hospital",
       "titulo": {
         "pt": "Match Hub",
-        "en": ""
+        "en": "Match Hub"
       },
       "subtitulo": {
         "pt": "Padronização e matching de insumos hospitalares com IA",
-        "en": ""
+        "en": "AI-driven standardisation and matching of hospital supplies"
       },
       "resumo": {
         "pt": "Plataforma SaaS multi-tenant que normaliza descrições de insumos hospitalares com LLM, gera embeddings semânticos e encontra itens equivalentes entre catálogos que nunca falaram a mesma língua.",
-        "en": ""
+        "en": "A multi-tenant SaaS platform that normalises hospital supply descriptions with an LLM, generates semantic embeddings, and finds equivalent items across catalogues that never spoke the same language."
       },
-      "tags": [
-        "Multi-tenant",
-        "Vertex AI",
-        "GCP"
-      ],
+      "tags": {
+        "pt": [
+          "Multi-tenant",
+          "Vertex AI",
+          "GCP"
+        ],
+        "en": [
+          "Multi-tenant",
+          "Vertex AI",
+          "GCP"
+        ]
+      },
       "stack": [
         "Python 3.12",
         "FastAPI",
@@ -72,21 +79,21 @@
           "valor": "193",
           "rotulo": {
             "pt": "testes automatizados",
-            "en": ""
+            "en": "automated tests"
           }
         },
         {
           "valor": "768",
           "rotulo": {
             "pt": "dimensões por embedding",
-            "en": ""
+            "en": "dimensions per embedding"
           }
         },
         {
           "valor": "2",
           "rotulo": {
             "pt": "serviços Cloud Run, mesma imagem",
-            "en": ""
+            "en": "Cloud Run services, one image"
           }
         }
       ],
@@ -95,56 +102,56 @@
           "id": "problema",
           "titulo": {
             "pt": "O problema",
-            "en": ""
+            "en": "The problem"
           },
           "corpo": {
             "pt": "<p>Cada hospital, distribuidor e fabricante descreve o mesmo item de um jeito. \"Seringa 10ml BD\", \"SER DESC 10 ML\" e \"seringa descartável 10 mL c/ agulha\" são o mesmo produto para um comprador e três produtos diferentes para um ERP.</p><p>Sem um catálogo comum não existe comparação de preço confiável, consolidação de compra nem análise de consumo. A padronização manual não escala: um catálogo de dezenas de milhares de itens consome meses de trabalho especializado e desatualiza enquanto é feito.</p>",
-            "en": ""
+            "en": "<p>Every hospital, distributor and manufacturer describes the same item differently. \"10ml BD syringe\", \"SYR DISP 10 ML\" and \"disposable syringe 10 mL w/ needle\" are one product to a buyer and three different products to an ERP.</p><p>Without a common catalogue there is no reliable price comparison, no purchase consolidation and no consumption analysis. Manual standardisation does not scale: a catalogue of tens of thousands of items consumes months of specialist work and goes stale while it is being built.</p>"
           }
         },
         {
           "id": "solucao",
           "titulo": {
             "pt": "A solução",
-            "en": ""
+            "en": "The solution"
           },
           "corpo": {
             "pt": "<p>O Match Hub normaliza a descrição com <strong>Gemini Flash</strong>, gera um embedding de 768 dimensões com <code>text-multilingual-embedding-002</code> e busca similares no <strong>Vertex AI Vector Search</strong>. Um segundo passe de LLM re-ranqueia os candidatos, e o que fica ambíguo vai para uma fila de curadoria humana em vez de virar um match errado silencioso.</p><ul><li><strong>Multi-tenant com isolamento por chave de API</strong> — cada cliente enxerga apenas a própria base.</li><li><strong>Catálogo canônico central</strong>, com fluxo de proposta e aprovação.</li><li><strong>Importação assíncrona</strong> via Cloud Tasks, em lotes de 5.000 itens, sem travar a API.</li><li><strong>Conector pull para ERP</strong> — o Hub puxa o catálogo e para em revisão, em vez de processar tudo automaticamente.</li><li><strong>Promoção de itens entre bases</strong> reaproveita descrição, embedding e categoria já processados, sem reprocessar no LLM e sem cobrar duas vezes.</li></ul><p>Em produção são dois serviços Cloud Run a partir da mesma imagem, separados pela variável <code>SERVICE_ROLE</code>: um atende requisições, o outro consome a fila.</p>",
-            "en": ""
+            "en": "<p>Match Hub normalises the description with <strong>Gemini Flash</strong>, generates a 768-dimension embedding using <code>text-multilingual-embedding-002</code>, and searches for similar items in <strong>Vertex AI Vector Search</strong>. A second LLM pass re-ranks the candidates, and anything that stays ambiguous goes to a human curation queue instead of silently becoming a wrong match.</p><ul><li><strong>Multi-tenant with API-key isolation</strong> — each client sees only its own data.</li><li><strong>Central canonical catalogue</strong>, with a proposal and approval flow.</li><li><strong>Asynchronous import</strong> via Cloud Tasks, in batches of 5,000 items, without blocking the API.</li><li><strong>Pull connector for ERPs</strong> — the Hub pulls the catalogue and stops for review, rather than processing everything automatically.</li><li><strong>Promotion of items between bases</strong> reuses the description, embedding and category already processed, without reprocessing through the LLM and without charging twice.</li></ul><p>In production it runs as two Cloud Run services from the same image, separated by the <code>SERVICE_ROLE</code> variable: one serves requests, the other consumes the queue.</p>"
           }
         },
         {
           "id": "resultado",
           "titulo": {
             "pt": "Resultado",
-            "en": ""
+            "en": "Outcome"
           },
           "corpo": {
             "pt": "<p>A padronização de um catálogo inteiro passou de projeto de meses para execução assíncrona acompanhada em tela. O trabalho humano deixou de ser digitar e passou a ser decidir os casos que a IA marcou como incertos.</p><p>A arquitetura de cache e promoção foi desenhada em torno de um detalhe de custo: processar o mesmo item duas vezes é dinheiro jogado fora quando o processamento é uma chamada de LLM.</p>",
-            "en": ""
+            "en": "<p>Standardising an entire catalogue went from a months-long project to an asynchronous run tracked on screen. Human work stopped being data entry and became deciding the cases the AI flagged as uncertain.</p><p>The caching and promotion architecture was designed around one cost detail: processing the same item twice is money thrown away when processing is an LLM call.</p>"
           }
         }
       ],
       "pdf": null,
       "status": {
         "pt": "Em produção",
-        "en": ""
+        "en": "In production"
       },
       "autoria": {
         "tipo": "autoral",
         "nota": {
           "pt": "Projeto autoral. Desenvolvido fora do contexto de trabalho, a partir de uma necessidade identificada de saneamento de base e avaliação de itens similares entre empresas; posteriormente apresentado e incorporado. Lógica, modelagem e bibliotecas de autoria própria.",
-          "en": ""
+          "en": "Original work. Developed outside the workplace, from an identified need for master-data cleanup and similarity assessment of items across companies; later presented and adopted. Logic, modelling and libraries are my own."
         }
       },
       "seo": {
         "title": {
           "pt": "Match Hub — padronização de insumos hospitalares com IA | Thiago Seiki Kato",
-          "en": ""
+          "en": "Match Hub — AI standardisation of hospital supplies | Thiago Seiki Kato"
         },
         "description": {
           "pt": "Plataforma SaaS multi-tenant que padroniza e faz matching de catálogos de insumos hospitalares usando LLM, embeddings de 768 dimensões e busca vetorial no Google Cloud.",
-          "en": ""
+          "en": "Multi-tenant SaaS platform that standardises and matches hospital supply catalogues using an LLM, 768-dimension embeddings and vector search on Google Cloud."
         }
       }
     },
@@ -155,21 +162,28 @@
       "icone": "fa-file-invoice-dollar",
       "titulo": {
         "pt": "Tax-Hub",
-        "en": ""
+        "en": "Tax-Hub"
       },
       "subtitulo": {
         "pt": "Simulação tributária para precificação interestadual",
-        "en": ""
+        "en": "Tax simulation for interstate pricing in Brazil"
       },
       "resumo": {
         "pt": "Simulador que precifica operações entre estados aplicando ICMS-ST, DIFAL, FCP, IPI e PIS/COFINS, com memória de cálculo auditável e fórmulas que o próprio analista fiscal cadastra — sem passar por deploy.",
-        "en": ""
+        "en": "A simulator that prices sales between Brazilian states applying ICMS-ST, DIFAL, FCP, IPI and PIS/COFINS, with an auditable calculation trail and formulas the tax analyst registers directly — no deploy required."
       },
-      "tags": [
-        "Fiscal",
-        "Monorepo",
-        "Supabase"
-      ],
+      "tags": {
+        "pt": [
+          "Fiscal",
+          "Monorepo",
+          "Supabase"
+        ],
+        "en": [
+          "Tax",
+          "Monorepo",
+          "Supabase"
+        ]
+      },
       "stack": [
         "TypeScript",
         "React 19",
@@ -185,21 +199,21 @@
           "valor": "171",
           "rotulo": {
             "pt": "testes automatizados",
-            "en": ""
+            "en": "automated tests"
           }
         },
         {
           "valor": "5",
           "rotulo": {
             "pt": "tributos no pipeline",
-            "en": ""
+            "en": "taxes in the pipeline"
           }
         },
         {
           "valor": "4",
           "rotulo": {
             "pt": "modos de simulação",
-            "en": ""
+            "en": "simulation modes"
           }
         }
       ],
@@ -208,56 +222,56 @@
           "id": "problema",
           "titulo": {
             "pt": "O problema",
-            "en": ""
+            "en": "The problem"
           },
           "corpo": {
             "pt": "<p>Precificar uma venda entre dois estados brasileiros não é uma conta — é uma combinação de regras que muda por rota, por NCM e por regime fiscal das partes. ICMS-ST, DIFAL, FCP, IPI e PIS/COFINS interagem, e a ordem em que entram no cálculo altera o resultado.</p><p>O agravante não é a complexidade: é a <strong>velocidade de mudança</strong>. Regra nova de um estado significa fórmula nova. Quando a fórmula vive no código, cada alteração legislativa vira uma tarefa de desenvolvimento, e o analista fiscal — que é quem sabe a regra — fica dependente de uma fila de deploy.</p>",
-            "en": ""
+            "en": "<p>Pricing a sale between two Brazilian states is not arithmetic — it is a combination of rules that changes by route, by product code and by the tax regime of each party. ICMS-ST, DIFAL, FCP, IPI and PIS/COFINS interact, and the order in which they enter the calculation changes the result.</p><p>The aggravating factor is not the complexity: it is the <strong>rate of change</strong>. A new state rule means a new formula. When the formula lives in code, every legislative change becomes a development task, and the tax analyst — the person who actually knows the rule — depends on a deploy queue.</p>"
           }
         },
         {
           "id": "solucao",
           "titulo": {
             "pt": "A solução",
-            "en": ""
+            "en": "The solution"
           },
           "corpo": {
             "pt": "<p>A decisão que moldou a arquitetura foi tirar a fórmula do código: <strong>novas fórmulas, com novas variáveis, são cadastradas dentro da aplicação</strong>. O analista registra a fórmula, testa contra <em>golden cases</em> conhecidos e publica — sem desenvolvedor no meio.</p><ul><li><strong>Motor de cálculo puro</strong> em TypeScript, sem I/O e sem dependência de framework. Matemática com precisão decimal via <code>decimal.js</code>.</li><li><strong>Linguagem de expressão própria</strong> — tokenizer, parser e avaliador escritos à mão, sem <code>eval</code>. Fórmula cadastrada por usuário nunca vira código executado às cegas.</li><li><strong>Memória de cálculo</strong> passo a passo, exportável para Excel com <em>fórmulas vivas</em> — não valores estáticos — ou impressa como documento de auditoria.</li><li><strong>Solver reverso</strong> por bisseção, para os modos de preço-alvo e margem-alvo.</li><li><strong>Resolvedor de regras fiscais</strong> por escopo, especificidade e janela de vigência.</li></ul><p>O front conversa direto com o Supabase pelo navegador, com Row Level Security no banco. Não há servidor de backend próprio — uma escolha deliberada, documentada na arquitetura.</p>",
-            "en": ""
+            "en": "<p>The decision that shaped the architecture was taking the formula out of the code: <strong>new formulas, with new variables, are registered inside the application</strong>. The analyst writes the formula, tests it against known-good golden cases, and publishes — with no developer in the loop.</p><ul><li><strong>Pure calculation engine</strong> in TypeScript, with no I/O and no framework dependency. Decimal-precision maths via <code>decimal.js</code>.</li><li><strong>Custom expression language</strong> — hand-written tokeniser, parser and evaluator, with no <code>eval</code>. A user-registered formula never becomes blindly executed code.</li><li><strong>Step-by-step calculation trail</strong>, exportable to Excel with <em>live formulas</em> rather than static values, or printed as a formal audit document.</li><li><strong>Reverse solver</strong> by bisection, for target-price and target-margin modes.</li><li><strong>Fiscal rule resolver</strong> by scope, specificity and validity window.</li></ul><p>The front end talks directly to Supabase from the browser, with Row Level Security in the database. There is no custom backend server — a deliberate choice, documented in the architecture.</p>"
           }
         },
         {
           "id": "resultado",
           "titulo": {
             "pt": "Resultado",
-            "en": ""
+            "en": "Outcome"
           },
           "corpo": {
             "pt": "<p>Mudança de regra fiscal deixou de ser demanda de engenharia. Quem entende de tributo passou a alterar o sistema diretamente, com rede de proteção: os <em>golden cases</em> falham antes da publicação se a fórmula nova quebra um caso conhecido.</p><p>Toda simulação carrega o próprio rastro de auditoria — o número nunca aparece sozinho, sempre com a conta que o produziu.</p>",
-            "en": ""
+            "en": "<p>A change in tax rules stopped being an engineering request. The people who understand tax now change the system directly, with a safety net: the golden cases fail before publication if a new formula breaks a known case.</p><p>Every simulation carries its own audit trail — the number never appears alone, always with the calculation that produced it.</p>"
           }
         }
       ],
       "pdf": null,
       "status": {
         "pt": "MVP completo",
-        "en": ""
+        "en": "MVP complete"
       },
       "autoria": {
         "tipo": "desenvolvido internamente",
         "nota": {
           "pt": "Desenvolvido internamente, como sistema de uso corporativo.",
-          "en": ""
+          "en": "Developed internally, as a corporate-use system."
         }
       },
       "seo": {
         "title": {
           "pt": "Tax-Hub — simulação de ICMS-ST, DIFAL e FCP com fórmulas configuráveis | Thiago Seiki Kato",
-          "en": ""
+          "en": "Tax-Hub — ICMS-ST, DIFAL and FCP simulation with configurable formulas | Thiago Seiki Kato"
         },
         "description": {
           "pt": "Simulador tributário para precificação interestadual: ICMS-ST, DIFAL, FCP, IPI e PIS/COFINS com memória de cálculo auditável e fórmulas cadastráveis sem deploy.",
-          "en": ""
+          "en": "Brazilian tax simulator for interstate pricing: ICMS-ST, DIFAL, FCP, IPI and PIS/COFINS with an auditable calculation trail and formulas registered without a deploy."
         }
       }
     },
@@ -268,21 +282,28 @@
       "icone": "fa-building",
       "titulo": {
         "pt": "Procurement Condominial",
-        "en": ""
+        "en": "Condominium Procurement"
       },
       "subtitulo": {
         "pt": "Da abertura da demanda ao pagamento, para administradoras de condomínios",
-        "en": ""
+        "en": "From purchase request to payment, for property management companies"
       },
       "resumo": {
         "pt": "Plataforma que digitaliza o ciclo de compras condominiais: abertura de cotação, coleta de propostas, mapa comparativo, adjudicação item a item e confirmação de pagamento — com workflow de aprovações configurável.",
-        "en": ""
+        "en": "A platform that digitises the condominium purchasing cycle: opening a quotation, collecting bids, comparison map, line-by-line award and payment confirmation — with a configurable approval workflow."
       },
-      "tags": [
-        "Procurement",
-        "Workflow",
-        "Supabase"
-      ],
+      "tags": {
+        "pt": [
+          "Procurement",
+          "Workflow",
+          "Supabase"
+        ],
+        "en": [
+          "Procurement",
+          "Workflow",
+          "Supabase"
+        ]
+      },
       "stack": [
         "Python 3.12",
         "FastAPI 0.115",
@@ -299,21 +320,21 @@
           "valor": "5",
           "rotulo": {
             "pt": "perfis de acesso",
-            "en": ""
+            "en": "access profiles"
           }
         },
         {
           "valor": "3",
           "rotulo": {
             "pt": "níveis de catálogo hierárquico",
-            "en": ""
+            "en": "levels of hierarchical catalogue"
           }
         },
         {
           "valor": "2",
           "rotulo": {
             "pt": "formatos de mapa comparativo",
-            "en": ""
+            "en": "comparison map export formats"
           }
         }
       ],
@@ -322,56 +343,56 @@
           "id": "problema",
           "titulo": {
             "pt": "O problema",
-            "en": ""
+            "en": "The problem"
           },
           "corpo": {
             "pt": "<p>Comprar para um condomínio é um processo com muitas mãos e nenhum sistema: o síndico pede, o atendimento levanta, o comprador cota por e-mail, alguém consolida as propostas numa planilha, o financeiro paga. Cada etapa mora num lugar diferente.</p><p>O resultado é previsível — não se sabe em que pé está uma compra sem perguntar para alguém, comparar fornecedores vira trabalho manual de planilha, e o histórico de quem aprovou o quê se perde na caixa de entrada.</p>",
-            "en": ""
+            "en": "<p>Buying for a condominium is a process with many hands and no system: the building manager requests, the service desk scopes it, the buyer collects quotes by email, someone consolidates the bids into a spreadsheet, and finance pays. Every step lives somewhere different.</p><p>The result is predictable — nobody knows the status of a purchase without asking someone, comparing suppliers becomes manual spreadsheet work, and the record of who approved what gets lost in an inbox.</p>"
           }
         },
         {
           "id": "solucao",
           "titulo": {
             "pt": "A solução",
-            "en": ""
+            "en": "The solution"
           },
           "corpo": {
             "pt": "<p>Um fluxo único, da abertura de cotação à confirmação de pagamento, com o estado do processo visível a qualquer momento.</p><ul><li><strong>Kanban por fase</strong>, com arraste entre estados, para enxergar todos os processos de uma vez.</li><li><strong>Mapa comparativo</strong> com uma coluna por fornecedor e células coloridas por status — melhor preço, <em>outlier</em>, desclassificado — exportável em Excel e PDF, com escala automática para muitos fornecedores.</li><li><strong>Adjudicação item a item</strong>: o vencedor de uma cotação não precisa ser o mesmo para todos os itens.</li><li><strong>Três canais de proposta</strong>: cotação de mercado, importação de marketplace via CSV/XLSX e compra online.</li><li><strong>Alertas de SLA</strong> por <code>pg_cron</code>, com deduplicação diária para não transformar o alerta em ruído.</li><li><strong>Merge de fornecedores duplicados</strong> e verificação de CNPJ no cadastro.</li></ul><p>Uma decisão de produto que vale registrar: no envio de cotação ao fornecedor, a plataforma monta o e-mail e o comprador envia do próprio endereço. O sistema <strong>não atua como remetente</strong> — a relação com o fornecedor continua sendo de quem compra.</p>",
-            "en": ""
+            "en": "<p>A single flow, from quotation opening to payment confirmation, with the state of the process visible at any moment.</p><ul><li><strong>Kanban by phase</strong>, with drag between states, to see every process at once.</li><li><strong>Comparison map</strong> with one column per supplier and cells coloured by status — best price, outlier, disqualified — exportable to Excel and PDF, with automatic scaling for many suppliers.</li><li><strong>Line-by-line award</strong>: the winner of a quotation need not be the same for every item.</li><li><strong>Three bid channels</strong>: market quotation, marketplace import via CSV/XLSX, and online purchase.</li><li><strong>SLA alerts</strong> via <code>pg_cron</code>, with daily deduplication so the alert does not become noise.</li><li><strong>Duplicate supplier merging</strong> and company-registration checks.</li></ul><p>One product decision worth recording: when sending a quotation to a supplier, the platform composes the email and the buyer sends it from their own address. The system <strong>never acts as the sender</strong> — the supplier relationship stays with the person buying.</p>"
           }
         },
         {
           "id": "resultado",
           "titulo": {
             "pt": "Resultado",
-            "en": ""
+            "en": "Outcome"
           },
           "corpo": {
             "pt": "<p>O processo de compra deixou de existir em caixas de entrada e planilhas soltas e passou a ter estado, dono e histórico. Comparar fornecedores virou uma tela, não um trabalho de consolidação manual.</p>",
-            "en": ""
+            "en": "<p>The purchasing process stopped living in inboxes and loose spreadsheets and gained state, an owner and a history. Comparing suppliers became a screen rather than a consolidation exercise.</p>"
           }
         }
       ],
       "pdf": null,
       "status": {
         "pt": "Em uso interno",
-        "en": ""
+        "en": "In internal use"
       },
       "autoria": {
         "tipo": "sob contrato",
         "nota": {
           "pt": "Desenvolvido sob contrato para uma administradora de condomínios.",
-          "en": ""
+          "en": "Developed under contract for a condominium management company."
         }
       },
       "seo": {
         "title": {
           "pt": "Procurement Condominial — cotação, mapa comparativo e adjudicação | Thiago Seiki Kato",
-          "en": ""
+          "en": "Condominium Procurement — quotation, comparison map and award | Thiago Seiki Kato"
         },
         "description": {
           "pt": "Plataforma de compras para administradoras de condomínios: abertura de cotação, propostas, mapa comparativo exportável, adjudicação item a item e workflow de aprovações.",
-          "en": ""
+          "en": "Purchasing platform for property management companies: quotation opening, bids, exportable comparison map, line-by-line award and approval workflow."
         }
       }
     },
@@ -382,21 +403,28 @@
       "icone": "fa-scale-balanced",
       "titulo": {
         "pt": "LexMind",
-        "en": ""
+        "en": "LexMind"
       },
       "subtitulo": {
         "pt": "Agentes jurídicos para licitações e contratações públicas",
-        "en": ""
+        "en": "Legal agents for public tenders and government contracting"
       },
       "resumo": {
         "pt": "Plataforma multi-tenant de agentes jurídicos que pesquisam, analisam editais e redigem peças — sempre ancorados em fonte real e vigência verificada, com a citação resolvida contra o documento no momento da resposta.",
-        "en": ""
+        "en": "A multi-tenant platform of legal agents that research, analyse tender documents and draft filings — always anchored in a real source with verified validity, and with each citation resolved against the document at answer time."
       },
-      "tags": [
-        "RAG",
-        "pgvector",
-        "Multi-tenant"
-      ],
+      "tags": {
+        "pt": [
+          "RAG",
+          "pgvector",
+          "Multi-tenant"
+        ],
+        "en": [
+          "RAG",
+          "pgvector",
+          "Multi-tenant"
+        ]
+      },
       "stack": [
         "Next.js 16",
         "Supabase",
@@ -414,21 +442,21 @@
           "valor": "768",
           "rotulo": {
             "pt": "dimensões por embedding",
-            "en": ""
+            "en": "dimensions per embedding"
           }
         },
         {
           "valor": "2",
           "rotulo": {
             "pt": "modelos, um por tarefa",
-            "en": ""
+            "en": "models, one per task"
           }
         },
         {
           "valor": "3",
           "rotulo": {
             "pt": "camadas de teste: unit, RLS e E2E",
-            "en": ""
+            "en": "test layers: unit, RLS and E2E"
           }
         }
       ],
@@ -437,56 +465,56 @@
           "id": "problema",
           "titulo": {
             "pt": "O problema",
-            "en": ""
+            "en": "The problem"
           },
           "corpo": {
             "pt": "<p>Assistente jurídico que inventa jurisprudência é pior do que assistente nenhum: o erro chega com a aparência de resposta pronta, e o custo de descobrir isso é alto. Em licitações, onde a Lei 14.133/2021 convive com normas que mudam, a checagem de vigência é parte do trabalho — não um detalhe.</p><p>Há ainda o problema do que já foi feito: peças, teses e análises de editais anteriores ficam espalhadas em pastas, e o conhecimento do escritório não é consultável.</p>",
-            "en": ""
+            "en": "<p>A legal assistant that invents case law is worse than no assistant at all: the error arrives looking like a finished answer, and finding out costs a great deal. In public tenders, where the governing statute coexists with shifting regulations, checking whether a rule is still in force is part of the work — not a detail.</p><p>There is also the problem of what has already been done: filings, arguments and previous tender analyses sit scattered in folders, and the firm's knowledge is not searchable.</p>"
           }
         },
         {
           "id": "solucao",
           "titulo": {
             "pt": "A solução",
-            "en": ""
+            "en": "The solution"
           },
           "corpo": {
             "pt": "<p>A plataforma foi desenhada em torno de três garantias explícitas, e a arquitetura existe para sustentá-las.</p><ul><li><strong>Não alucina</strong> — toda afirmação do copiloto vem com <code>[fonte:chunk_id]</code>, resolvido em tempo real contra documentos verificados. Sem fonte, não há afirmação.</li><li><strong>Não esquece</strong> — peças, teses e editais viram memória institucional consultável, isolada por escritório.</li><li><strong>Não dorme</strong> — o agente analista lê o edital inteiro e entrega diagnóstico estruturado (habilitação, prazos, cláusulas restritivas, contradições) antes de o advogado abrir o arquivo.</li></ul><p>A busca é híbrida — vetorial mais <em>full-text</em>, combinadas por RRF — porque termo jurídico exato e similaridade semântica falham em situações opostas. Dois modelos dividem o trabalho por afinidade: Claude Sonnet para redação e copiloto, Gemini 2.5 Pro para análise de edital e OCR.</p><p>O isolamento entre escritórios é testado como código: há uma camada de testes dedicada às políticas de Row Level Security.</p>",
-            "en": ""
+            "en": "<p>The platform was designed around three explicit guarantees, and the architecture exists to uphold them.</p><ul><li><strong>It never hallucinates</strong> — every statement from the copilot carries a <code>[source:chunk_id]</code>, resolved in real time against verified documents. No source, no statement.</li><li><strong>It never forgets</strong> — filings, arguments and tender documents become searchable institutional memory, isolated per firm.</li><li><strong>It never sleeps</strong> — the analyst agent reads the full tender document and delivers a structured diagnosis (qualification, deadlines, restrictive clauses, contradictions) before the lawyer opens the file.</li></ul><p>Search is hybrid — vector plus full text, combined via RRF — because exact legal terms and semantic similarity fail in opposite situations. Two models split the work by affinity: Claude Sonnet for drafting and the copilot, Gemini 2.5 Pro for tender analysis and OCR.</p><p>Isolation between firms is tested as code: there is a dedicated test layer for the Row Level Security policies.</p>"
           }
         },
         {
           "id": "resultado",
           "titulo": {
             "pt": "Resultado",
-            "en": ""
+            "en": "Outcome"
           },
           "corpo": {
             "pt": "<p>A leitura de edital deixou de ser o primeiro trabalho do advogado e passou a ser a revisão de um diagnóstico já estruturado. E cada resposta do copiloto pode ser conferida na fonte em um clique — o que muda a relação de confiança com a ferramenta.</p>",
-            "en": ""
+            "en": "<p>Reading a tender document stopped being the lawyer's first task and became the review of an already structured diagnosis. And every copilot answer can be checked against its source in one click — which changes the relationship of trust with the tool.</p>"
           }
         }
       ],
       "pdf": null,
       "status": {
         "pt": "Primeira vertical em desenvolvimento",
-        "en": ""
+        "en": "First vertical in development"
       },
       "autoria": {
         "tipo": "sob contrato",
         "nota": {
           "pt": "Desenvolvido sob contrato para um escritório de advocacia.",
-          "en": ""
+          "en": "Developed under contract for a law firm."
         }
       },
       "seo": {
         "title": {
           "pt": "LexMind — agentes jurídicos com RAG citável para licitações | Thiago Seiki Kato",
-          "en": ""
+          "en": "LexMind — legal agents with citable RAG for public tenders | Thiago Seiki Kato"
         },
         "description": {
           "pt": "Plataforma multi-tenant de agentes jurídicos para a Lei 14.133/2021: análise de edital, redação de peças e busca híbrida com citação resolvida contra a fonte.",
-          "en": ""
+          "en": "Multi-tenant platform of legal agents for Brazilian procurement law: tender analysis, drafting and hybrid search with every citation resolved against its source."
         }
       }
     },
@@ -497,21 +525,28 @@
       "icone": "fa-robot",
       "titulo": {
         "pt": "Multi-Agent Assistant",
-        "en": ""
+        "en": "Multi-Agent Assistant"
       },
       "subtitulo": {
         "pt": "Copiloto de operações sobre ERP, e-mail e Microsoft Teams",
-        "en": ""
+        "en": "Operations copilot across ERP, email and Microsoft Teams"
       },
       "resumo": {
         "pt": "Assistente multi-agente que unifica fontes de dados dispersas — ERP, armazenamento em nuvem e e-mail — e responde em linguagem natural dentro do Teams, com um ciclo de planejar e agir que resolve tarefas de múltiplos passos.",
-        "en": ""
+        "en": "A multi-agent assistant that unifies scattered data sources — ERP, cloud storage and email — and answers in natural language inside Teams, with a plan-and-act loop that resolves multi-step tasks."
       },
-      "tags": [
-        "Agentes",
-        "RAG",
-        "Integração"
-      ],
+      "tags": {
+        "pt": [
+          "Agentes",
+          "RAG",
+          "Integração"
+        ],
+        "en": [
+          "Agents",
+          "RAG",
+          "Integration"
+        ]
+      },
       "stack": [
         "Python",
         "LLM",
@@ -525,14 +560,14 @@
           "valor": "3",
           "rotulo": {
             "pt": "domínios: CRM, PMO e Help Desk",
-            "en": ""
+            "en": "domains: CRM, PMO and help desk"
           }
         },
         {
           "valor": "1",
           "rotulo": {
             "pt": "interface: linguagem natural",
-            "en": ""
+            "en": "interface: natural language"
           }
         }
       ],
@@ -541,56 +576,56 @@
           "id": "problema",
           "titulo": {
             "pt": "O problema",
-            "en": ""
+            "en": "The problem"
           },
           "corpo": {
             "pt": "<p>A informação que responde uma pergunta de gestão quase nunca mora em um sistema só. O pedido está no ERP, o anexo está no armazenamento em nuvem, o combinado está num e-mail, e a decisão precisa sair agora — no Teams, onde a equipe já está.</p><p>O custo disso não é o tempo de abrir três telas: é a quebra de raciocínio. Quem precisa trocar de sistema para completar um pensamento acaba não completando.</p>",
-            "en": ""
+            "en": "<p>The information that answers a management question almost never lives in a single system. The order is in the ERP, the attachment is in cloud storage, the agreement is in an email, and the decision has to happen now — in Teams, where the team already is.</p><p>The cost is not the time spent opening three screens: it is the broken train of thought. Someone who has to switch systems to finish a thought often does not finish it.</p>"
           }
         },
         {
           "id": "solucao",
           "titulo": {
             "pt": "A solução",
-            "en": ""
+            "en": "The solution"
           },
           "corpo": {
             "pt": "<p>Um assistente que conversa em linguagem natural dentro do Teams e busca o dado onde ele estiver, sem exigir que o usuário saiba de onde veio.</p><ul><li><strong>Agentes especialistas por domínio</strong> — CRM, projetos e suporte — cada um com o vocabulário e as regras da própria área.</li><li><strong>Ciclo de planejar e agir</strong>: para uma pergunta que exige vários passos, o orquestrador monta o plano antes de executar, em vez de tentar responder de uma vez.</li><li><strong>Leitura direta do ERP por API</strong>, em tempo real, e não sobre uma cópia desatualizada.</li><li><strong>Recuperação sobre documentos</strong> (RAG) para o que não é dado estruturado.</li></ul>",
-            "en": ""
+            "en": "<p>An assistant that converses in natural language inside Teams and fetches data wherever it lives, without requiring the user to know where it came from.</p><ul><li><strong>Domain specialist agents</strong> — CRM, projects and support — each with the vocabulary and rules of its own area.</li><li><strong>Plan-and-act loop</strong>: for a question requiring several steps, the orchestrator builds the plan before executing, rather than trying to answer in one shot.</li><li><strong>Direct ERP reads via API</strong>, in real time, rather than over a stale copy.</li><li><strong>Document retrieval</strong> (RAG) for everything that is not structured data.</li></ul>"
           }
         },
         {
           "id": "resultado",
           "titulo": {
             "pt": "Resultado",
-            "en": ""
+            "en": "Outcome"
           },
           "corpo": {
             "pt": "<p>Perguntas que antes exigiam abrir três sistemas passaram a ser respondidas na conversa onde a equipe já estava. O assistente virou a primeira parada para consulta operacional.</p><p>O uso real também expôs com clareza o limite da arquitetura de agentes especialistas: profundidade por área, mas silos de análise entre elas — perguntas que cruzam domínios exigem uma camada de federação de dados, que é a evolução mapeada para o projeto.</p>",
-            "en": ""
+            "en": "<p>Questions that used to require opening three systems became answerable in the conversation the team was already in. The assistant became the first stop for operational queries.</p><p>Real use also exposed the limit of a specialist-agent architecture: depth within each area, but analytical silos between them. Questions that cross domains need a data federation layer, which is the evolution mapped for the project.</p>"
           }
         }
       ],
       "pdf": "Projetos/SAM_Multi_Agent_Assistant.pdf",
       "status": {
         "pt": "Em operação",
-        "en": ""
+        "en": "In operation"
       },
       "autoria": {
         "tipo": "desenvolvido internamente",
         "nota": {
           "pt": "Desenvolvido internamente, como ferramenta de uso corporativo.",
-          "en": ""
+          "en": "Developed internally, as a corporate-use tool."
         }
       },
       "seo": {
         "title": {
           "pt": "Multi-Agent Assistant — copiloto de operações sobre ERP e Teams | Thiago Seiki Kato",
-          "en": ""
+          "en": "Multi-Agent Assistant — operations copilot over ERP and Teams | Thiago Seiki Kato"
         },
         "description": {
           "pt": "Assistente multi-agente que unifica ERP, nuvem e e-mail e responde em linguagem natural no Microsoft Teams, com orquestração de planejar e agir para tarefas de múltiplos passos.",
-          "en": ""
+          "en": "Multi-agent assistant unifying ERP, cloud storage and email, answering in natural language inside Microsoft Teams with plan-and-act orchestration for multi-step tasks."
         }
       }
     },
@@ -601,21 +636,28 @@
       "icone": "fa-users",
       "titulo": {
         "pt": "Sistema de Gestão Lótus Escoteiros",
-        "en": ""
+        "en": "Lótus Scout Group Management System"
       },
       "subtitulo": {
         "pt": "Gestão financeira e pedagógica para uma organização voluntária",
-        "en": ""
+        "en": "Financial and educational management for a volunteer organisation"
       },
       "resumo": {
         "pt": "Plataforma completa para um grupo escoteiro de 460 membros — mensalidades com regras de desconto, workflow de reembolsos com alçadas, fechamento contábil e acompanhamento de progressão dos jovens — operando a custo zero.",
-        "en": ""
+        "en": "A complete platform for a 460-member scout group — membership fees with discount rules, reimbursement workflow with approval tiers, accounting close and youth progression tracking — running at zero cost."
       },
-      "tags": [
-        "Full Stack",
-        "Supabase",
-        "Custo Zero"
-      ],
+      "tags": {
+        "pt": [
+          "Full Stack",
+          "Supabase",
+          "Custo Zero"
+        ],
+        "en": [
+          "Full Stack",
+          "Supabase",
+          "Zero Cost"
+        ]
+      },
       "stack": [
         "Next.js 14",
         "TypeScript",
@@ -632,21 +674,21 @@
           "valor": "460",
           "rotulo": {
             "pt": "membros atendidos",
-            "en": ""
+            "en": "members served"
           }
         },
         {
           "valor": "R$ 0",
           "rotulo": {
             "pt": "custo mensal de operação",
-            "en": ""
+            "en": "monthly running cost"
           }
         },
         {
           "valor": "5",
           "rotulo": {
             "pt": "perfis de permissão",
-            "en": ""
+            "en": "permission profiles"
           }
         }
       ],
@@ -655,56 +697,56 @@
           "id": "problema",
           "titulo": {
             "pt": "O problema",
-            "en": ""
+            "en": "The problem"
           },
           "corpo": {
             "pt": "<p>Um grupo escoteiro de 460 pessoas tem a complexidade administrativa de uma pequena empresa — mensalidades com descontos por irmão, reembolsos que precisam de aprovação, prestação de contas para um conselho fiscal — e o orçamento de uma organização sem fins lucrativos tocada por voluntários.</p><p>A restrição real não era técnica, era econômica: qualquer solução com mensalidade recorrente estava fora. E processos manuais consumiam o tempo de quem já estava doando tempo.</p>",
-            "en": ""
+            "en": "<p>A scout group of 460 people has the administrative complexity of a small company — fees with sibling discounts, reimbursements needing approval, accountability to a fiscal council — and the budget of a non-profit run by volunteers.</p><p>The real constraint was not technical but economic: any solution with a recurring subscription was out. And manual processes consumed the time of people who were already donating their time.</p>"
           }
         },
         {
           "id": "solucao",
           "titulo": {
             "pt": "A solução",
-            "en": ""
+            "en": "The solution"
           },
           "corpo": {
             "pt": "<p>Atuei como líder técnico e desenvolvedor full stack — do levantamento de requisitos e da especificação à modelagem de dados, à arquitetura de segurança e à infraestrutura.</p><p>A escolha de cada tecnologia foi guiada por um critério incomum: <strong>performance de ponta dentro de camadas gratuitas</strong>.</p><ul><li><strong>Faturamento automatizado</strong> com regras compostas — desconto para irmãos distribuído entre centros de custo, desconto de diretoria e chefia.</li><li><strong>Workflow de reembolso</strong> com alçadas por valor e auditoria com comprovante anexado.</li><li><strong>Fechamento mensal com travamento</strong>: mês aprovado pelo conselho fiscal não é mais editável, o que garante integridade contábil.</li><li><strong>Progressão unificada</strong> — atividades, especialidades e conquistas dos jovens, com fila de aprovação em tempo real para chefes e pais.</li><li><strong>Permissões granulares</strong> por perfil, isoladas no banco por Row Level Security.</li><li><strong>Keep-alive</strong> para impedir o auto-pause das instâncias gratuitas do banco — a mitigação que torna a camada gratuita viável em produção.</li></ul><p>A interface é mobile-first por um motivo concreto: chefes de seção registram progressão e aprovam reembolso em campo, do celular.</p>",
-            "en": ""
+            "en": "<p>I acted as technical lead and full stack developer — from requirements gathering and the specification through to data modelling, security architecture and infrastructure.</p><p>Every technology choice was guided by an unusual criterion: <strong>strong performance within free tiers</strong>.</p><ul><li><strong>Automated billing</strong> with compound rules — sibling discounts distributed across cost centres, board and leadership discounts.</li><li><strong>Reimbursement workflow</strong> with approval tiers by amount and auditing with attached receipts.</li><li><strong>Monthly close with locking</strong>: a month approved by the fiscal council can no longer be edited, which guarantees accounting integrity.</li><li><strong>Unified progression</strong> — activities, badges and achievements, with a real-time approval queue for leaders and parents.</li><li><strong>Granular permissions</strong> by profile, isolated in the database through Row Level Security.</li><li><strong>Keep-alive</strong> to prevent the free database instance from auto-pausing — the mitigation that makes the free tier viable in production.</li></ul><p>The interface is mobile-first for a concrete reason: section leaders record progression and approve reimbursements in the field, from their phones.</p>"
           }
         },
         {
           "id": "resultado",
           "titulo": {
             "pt": "Resultado",
-            "en": ""
+            "en": "Outcome"
           },
           "corpo": {
             "pt": "<p>Custo de operação de R$ 0,00 por mês na escala atual do grupo, com processos que antes eram manuais rodando sozinhos. A migração entre desenvolvimento e produção é transparente, por variáveis de ambiente e migrations SQL.</p>",
-            "en": ""
+            "en": "<p>Zero monthly running cost at the group's current scale, with processes that used to be manual now running on their own. Moving between development and production is transparent, through environment variables and SQL migrations.</p>"
           }
         }
       ],
       "pdf": "Projetos/Lotus_Engineering_Case_Study.pdf",
       "status": {
         "pt": "Em produção",
-        "en": ""
+        "en": "In production"
       },
       "autoria": {
         "tipo": "autoral",
         "nota": {
           "pt": "Projeto autoral, desenvolvido de forma voluntária para uma organização sem fins lucrativos, na função de líder técnico e desenvolvedor full stack.",
-          "en": ""
+          "en": "Original work, developed voluntarily for a non-profit organisation, acting as technical lead and full stack developer."
         }
       },
       "seo": {
         "title": {
           "pt": "Sistema de Gestão Lótus Escoteiros — 460 membros a custo zero | Thiago Seiki Kato",
-          "en": ""
+          "en": "Lótus Scout Group Management System — 460 members at zero cost | Thiago Seiki Kato"
         },
         "description": {
           "pt": "Plataforma full stack para grupo escoteiro de 460 membros: mensalidades com descontos compostos, reembolsos com alçadas, fechamento contábil e progressão — operando a R$ 0 por mês.",
-          "en": ""
+          "en": "Full stack platform for a 460-member scout group: fees with compound discounts, reimbursements with approval tiers, accounting close and progression — running at zero monthly cost."
         }
       }
     },
@@ -715,21 +757,28 @@
       "icone": "fa-project-diagram",
       "titulo": {
         "pt": "OmniTwin",
-        "en": ""
+        "en": "OmniTwin"
       },
       "subtitulo": {
         "pt": "Gêmeos digitais para resiliência de operações industriais",
-        "en": ""
+        "en": "Digital twins for industrial operations resilience"
       },
       "resumo": {
         "pt": "Plataforma de simulação de eventos discretos baseada em grafos: você modela a operação visualmente, o motor executa falhas, filas e restrições ao longo do tempo, e o resultado mostra onde a cadeia quebra antes de ela quebrar.",
-        "en": ""
+        "en": "A graph-based discrete-event simulation platform: you model the operation visually, the engine runs failures, queues and constraints over time, and the result shows where the chain breaks before it actually breaks."
       },
-      "tags": [
-        "Digital Twin",
-        "Simulação",
-        "SimPy"
-      ],
+      "tags": {
+        "pt": [
+          "Digital Twin",
+          "Simulação",
+          "SimPy"
+        ],
+        "en": [
+          "Digital Twin",
+          "Simulation",
+          "SimPy"
+        ]
+      },
       "stack": [
         "Python 3.11",
         "FastAPI",
@@ -750,14 +799,14 @@
           "valor": "3",
           "rotulo": {
             "pt": "tipos de nó: ativo, processo e estoque",
-            "en": ""
+            "en": "node types: asset, process and stock"
           }
         },
         {
           "valor": "4",
           "rotulo": {
             "pt": "famílias de KPI de saída",
-            "en": ""
+            "en": "families of output KPI"
           }
         }
       ],
@@ -766,56 +815,56 @@
           "id": "problema",
           "titulo": {
             "pt": "O problema",
-            "en": ""
+            "en": "The problem"
           },
           "corpo": {
             "pt": "<p>Planejamento de cadeia de suprimentos costuma ser feito com médias. Média de tempo de ciclo, média de lead time, média de disponibilidade. O problema é que operação não quebra na média — quebra quando a máquina falha na semana em que o fornecedor atrasou e o mix de produção mudou.</p><p>Perguntas do tipo \"o que acontece se meu principal fornecedor atrasar dez dias\" não têm resposta numa planilha de médias. Elas exigem rodar a operação, com as falhas dentro.</p>",
-            "en": ""
+            "en": "<p>Supply chain planning is usually done with averages. Average cycle time, average lead time, average availability. The problem is that operations do not break on average — they break when the machine fails during the week the supplier was late and the production mix changed.</p><p>Questions like \"what happens if my main supplier is ten days late\" have no answer in a spreadsheet of averages. They require running the operation with the failures inside it.</p>"
           }
         },
         {
           "id": "solucao",
           "titulo": {
             "pt": "A solução",
-            "en": ""
+            "en": "The solution"
           },
           "corpo": {
             "pt": "<p>A arquitetura segue um padrão de <strong>simulação desacoplada</strong>: o motor de cálculo em Python é totalmente independente da interface de modelagem, e os dois conversam por esquemas JSON rigorosos, validados por Pydantic. Trocar a interface não toca no motor; mudar o motor não quebra o modelo salvo.</p><ul><li><strong>Modelagem visual em grafo</strong> — nós de ativo, processo e estoque, conectados na tela, sem escrever código de simulação.</li><li><strong>Motor de eventos discretos</strong> em SimPy, com falha estocástica por MTBF/MTTR, matriz de setup por troca de SKU e validação de lista de materiais a cada processamento.</li><li><strong>Análise de topologia</strong> com NetworkX para caminho crítico e validação do grafo antes de simular.</li><li><strong>Teste de estresse</strong> — múltiplas simulações variando um parâmetro, como o atraso de um fornecedor.</li><li><strong>Telemetria ao vivo</strong> por MQTT, com regra explícita de <em>fallback</em>: parâmetro fora de faixa ou indisponível volta obrigatoriamente ao valor estocástico do modelo.</li></ul><p>Cada mudança de estado gera log com o timestamp <strong>da simulação</strong>, não do relógio real — é o que permite análise de causa raiz depois da rodada.</p>",
-            "en": ""
+            "en": "<p>The architecture follows a <strong>decoupled simulation</strong> pattern: the Python calculation engine is entirely independent of the modelling interface, and the two communicate through strict JSON schemas validated by Pydantic. Replacing the interface does not touch the engine; changing the engine does not break a saved model.</p><ul><li><strong>Visual graph modelling</strong> — asset, process and stock nodes, connected on screen, with no simulation code to write.</li><li><strong>Discrete-event engine</strong> in SimPy, with stochastic failure by MTBF/MTTR, a setup matrix for SKU changeovers, and bill-of-materials validation on every run.</li><li><strong>Topology analysis</strong> with NetworkX for critical path and graph validation before simulating.</li><li><strong>Stress testing</strong> — multiple simulations varying one parameter, such as a supplier delay.</li><li><strong>Live telemetry</strong> over MQTT, with an explicit fallback rule: a parameter out of range or unavailable reverts to the model's stochastic value.</li></ul><p>Every state change logs a timestamp from <strong>the simulation clock</strong>, not the wall clock — which is what makes root-cause analysis possible after the run.</p>"
           }
         },
         {
           "id": "resultado",
           "titulo": {
             "pt": "Resultado",
-            "en": ""
+            "en": "Outcome"
           },
           "corpo": {
             "pt": "<p>A saída não é um número único, e sim o comportamento da operação ao longo do tempo: série de nível de estoque, Gantt de falha e reparo por ativo, identificação do nó que mais restringiu o fluxo e impacto financeiro da demanda não atendida.</p><p>Isso muda a pergunta que o time consegue fazer — de \"qual é a nossa capacidade\" para \"onde essa operação quebra primeiro, e quanto custa\".</p>",
-            "en": ""
+            "en": "<p>The output is not a single number but the behaviour of the operation over time: stock level series, a Gantt of failure and repair per asset, identification of the node that most constrained flow, and the financial impact of unmet demand.</p><p>That changes the question the team can ask — from \"what is our capacity\" to \"where does this operation break first, and what does it cost\".</p>"
           }
         }
       ],
       "pdf": "Projetos/OmniTwin_Operational_Strategy.pdf",
       "status": {
         "pt": "Em desenvolvimento",
-        "en": ""
+        "en": "In development"
       },
       "autoria": {
         "tipo": "autoral",
         "nota": {
           "pt": "Projeto autoral.",
-          "en": ""
+          "en": "Original work."
         }
       },
       "seo": {
         "title": {
           "pt": "OmniTwin — gêmeos digitais e simulação de eventos discretos | Thiago Seiki Kato",
-          "en": ""
+          "en": "OmniTwin — digital twins and discrete-event simulation | Thiago Seiki Kato"
         },
         "description": {
           "pt": "Plataforma de simulação de eventos discretos em grafo para resiliência de cadeias de suprimento: SimPy, NetworkX, teste de estresse e telemetria ao vivo por MQTT.",
-          "en": ""
+          "en": "Graph-based discrete-event simulation platform for supply chain resilience: SimPy, NetworkX, stress testing and live telemetry over MQTT."
         }
       }
     },
@@ -826,21 +875,28 @@
       "icone": "fa-network-wired",
       "titulo": {
         "pt": "Supply Chain Pipeline Builder",
-        "en": ""
+        "en": "Supply Chain Pipeline Builder"
       },
       "subtitulo": {
         "pt": "Construtor visual de pipelines de análise e previsão de demanda",
-        "en": ""
+        "en": "Visual builder for analysis and demand forecasting pipelines"
       },
       "resumo": {
         "pt": "Ferramenta no-code onde o analista monta fluxos de dados conectando cards num canvas — ETL, classificação de estoque, simulação de Monte Carlo e previsão de séries temporais — e exporta o pipeline pronto como script Python.",
-        "en": ""
+        "en": "A no-code tool where the analyst builds data flows by connecting cards on a canvas — ETL, inventory classification, Monte Carlo simulation and time-series forecasting — and exports the finished pipeline as a Python script."
       },
-      "tags": [
-        "No-Code",
-        "Forecasting",
-        "Monte Carlo"
-      ],
+      "tags": {
+        "pt": [
+          "No-Code",
+          "Forecasting",
+          "Monte Carlo"
+        ],
+        "en": [
+          "No-Code",
+          "Forecasting",
+          "Monte Carlo"
+        ]
+      },
       "stack": [
         "Python",
         "FastAPI",
@@ -855,21 +911,21 @@
           "valor": "15",
           "rotulo": {
             "pt": "operações de ETL",
-            "en": ""
+            "en": "ETL operations"
           }
         },
         {
           "valor": "14",
           "rotulo": {
             "pt": "templates prontos",
-            "en": ""
+            "en": "ready-made templates"
           }
         },
         {
           "valor": "3.3",
           "rotulo": {
             "pt": "versão em uso",
-            "en": ""
+            "en": "version in use"
           }
         }
       ],
@@ -878,67 +934,67 @@
           "id": "problema",
           "titulo": {
             "pt": "O problema",
-            "en": ""
+            "en": "The problem"
           },
           "corpo": {
             "pt": "<p>Análise de supply chain vive numa terra de ninguém: complexa demais para planilha, específica demais para uma ferramenta de BI, e frequente demais para virar projeto de engenharia de dados toda vez.</p><p>O analista que sabe a regra do negócio — como classificar o estoque, que nível de serviço usar, o que é sazonalidade e o que é ruído — geralmente não escreve o Python que faz a conta. E quem escreve o Python não conhece a regra.</p>",
-            "en": ""
+            "en": "<p>Supply chain analysis lives in a no-man's-land: too complex for a spreadsheet, too specific for a BI tool, and too frequent to become a data engineering project every time.</p><p>The analyst who knows the business rule — how to classify inventory, what service level to use, what is seasonality and what is noise — usually does not write the Python that does the maths. And whoever writes the Python does not know the rule.</p>"
           }
         },
         {
           "id": "solucao",
           "titulo": {
             "pt": "A solução",
-            "en": ""
+            "en": "The solution"
           },
           "corpo": {
             "pt": "<p>Um canvas onde cada card é uma operação e as conexões são o fluxo de dados. As colunas disponíveis são detectadas automaticamente do card anterior, e cada etapa mostra a prévia do resultado — o analista vê a transformação acontecendo, não descobre o erro no fim.</p><ul><li><strong>15 operações de ETL</strong> — filtro, cálculo com condicional, junção, agregação, pivot, datas, texto, deduplicação, união, conversão de tipo, tratamento de nulos.</li><li><strong>Análise de estoque</strong> — classificação ABC/XYZ, estoque de segurança, ponto de reposição e lote econômico, com conversão automática de período.</li><li><strong>Monte Carlo</strong> para estoque de segurança otimizado por custo, sobre mais de 10.000 simulações.</li><li><strong>Previsão</strong> — média móvel simples, ponderada e exponencial, mais ARIMA/SARIMA com banda de confiança e suporte por grupo, com métricas de acurácia MAE, RMSE e MAPE.</li><li><strong>Validação antes de executar</strong>, com checagem local instantânea e análise profunda no backend, apontando o card exato de cada problema.</li><li><strong>Exportação como código</strong> — qualquer pipeline vira script Python ou notebook Jupyter executável, gerado inteiramente no navegador.</li></ul><p>A exportação como código é a decisão de produto mais importante: a ferramenta não aprisiona o trabalho. O que foi montado no canvas sai como Python legível, que roda sem ela.</p>",
-            "en": ""
+            "en": "<p>A canvas where each card is an operation and the connections are the data flow. Available columns are detected automatically from the previous card, and each step previews its result — the analyst watches the transformation happen instead of discovering the error at the end.</p><ul><li><strong>15 ETL operations</strong> — filter, conditional calculation, join, aggregation, pivot, dates, text, deduplication, union, type casting, null handling.</li><li><strong>Inventory analysis</strong> — ABC/XYZ classification, safety stock, reorder point and economic order quantity, with automatic period conversion.</li><li><strong>Monte Carlo</strong> for cost-optimised safety stock, over more than 10,000 simulations.</li><li><strong>Forecasting</strong> — simple, weighted and exponential moving averages, plus ARIMA/SARIMA with confidence bands and per-group support, with MAE, RMSE and MAPE accuracy metrics.</li><li><strong>Validation before execution</strong>, with an instant local check and deep backend analysis, pointing to the exact card behind each problem.</li><li><strong>Export as code</strong> — any pipeline becomes an executable Python script or Jupyter notebook, generated entirely in the browser.</li></ul><p>Export as code is the most important product decision: the tool does not hold the work hostage. What was built on the canvas comes out as readable Python that runs without it.</p>"
           }
         },
         {
           "id": "integracao",
           "titulo": {
             "pt": "Capítulo atual: integração de demanda planejada",
-            "en": ""
+            "en": "Current chapter: planned demand integration"
           },
           "corpo": {
             "pt": "<p>A frente em desenvolvimento hoje conecta o Pipeline Builder a um sistema corporativo de planejamento, para que a previsão deixe de ser um exercício isolado e passe a alimentar a demanda planejada da operação.</p><p>É a transição que mais interessa no projeto: sair de ferramenta de análise, onde o resultado é um gráfico que alguém interpreta, para componente de sistema, onde o resultado é um número que outro processo consome — com o rigor de contrato de dados e reprodutibilidade que isso exige.</p>",
-            "en": ""
+            "en": "<p>The work in progress connects the Pipeline Builder to a corporate planning system, so that forecasting stops being an isolated exercise and starts feeding the operation's planned demand.</p><p>It is the most interesting transition in the project: moving from an analysis tool, where the result is a chart someone interprets, to a system component, where the result is a number another process consumes — with the data-contract rigour and reproducibility that this demands.</p>"
           }
         },
         {
           "id": "resultado",
           "titulo": {
             "pt": "Resultado",
-            "en": ""
+            "en": "Outcome"
           },
           "corpo": {
             "pt": "<p>Análises que dependiam de um desenvolvedor disponível passaram a ser montadas por quem conhece a regra de negócio. E o pipeline montado no canvas não fica preso à ferramenta: sai como código.</p>",
-            "en": ""
+            "en": "<p>Analyses that depended on an available developer are now built by the people who know the business rule. And the pipeline built on the canvas is not trapped in the tool: it comes out as code.</p>"
           }
         }
       ],
       "pdf": "Projetos/LogiChain_Architect_Pro_Intelligent_Supply_Chain.pdf",
       "status": {
         "pt": "Em evolução",
-        "en": ""
+        "en": "Evolving"
       },
       "autoria": {
         "tipo": "autoral",
         "nota": {
           "pt": "Projeto pessoal e autoral, de titularidade própria — declarada no LICENSE do repositório. Atualmente em frente de integração com um sistema corporativo para demanda planejada.",
-          "en": ""
+          "en": "Personal, original work, under my own ownership — declared in the repository LICENSE. Currently in an integration effort with a corporate system for planned demand."
         }
       },
       "seo": {
         "title": {
           "pt": "Supply Chain Pipeline Builder — pipelines no-code de previsão e estoque | Thiago Seiki Kato",
-          "en": ""
+          "en": "Supply Chain Pipeline Builder — no-code forecasting and inventory pipelines | Thiago Seiki Kato"
         },
         "description": {
           "pt": "Construtor visual no-code de pipelines de supply chain: 15 operações de ETL, classificação ABC/XYZ, Monte Carlo, ARIMA/SARIMA e exportação do fluxo como script Python.",
-          "en": ""
+          "en": "Visual no-code builder for supply chain pipelines: 15 ETL operations, ABC/XYZ classification, Monte Carlo, ARIMA/SARIMA and export of the flow as a Python script."
         }
       }
     },
@@ -949,21 +1005,28 @@
       "icone": "fa-diagram-project",
       "titulo": {
         "pt": "Ecossistema JARVIS",
-        "en": ""
+        "en": "JARVIS Ecosystem"
       },
       "subtitulo": {
         "pt": "Quatro agentes que conversam por protocolo, não por biblioteca compartilhada",
-        "en": ""
+        "en": "Four agents that talk over a protocol, not a shared library"
       },
       "resumo": {
         "pt": "Ecossistema de agentes de IA para o dia a dia: JARVIS orquestra e entende o pedido, Alfred guarda a memória da casa, Lucius cuida das finanças com painel próprio, e a Portaria dá identidade e sessão comuns aos dois. Processos separados, falando por A2A.",
-        "en": ""
+        "en": "An ecosystem of everyday AI agents: JARVIS orchestrates and interprets the request, Alfred holds the household memory, Lucius handles finances with its own dashboard, and Portaria gives both a shared identity. Separate processes, speaking A2A."
       },
-      "tags": [
-        "A2A",
-        "Multi-agente",
-        "Gemini"
-      ],
+      "tags": {
+        "pt": [
+          "A2A",
+          "Multi-agente",
+          "Gemini"
+        ],
+        "en": [
+          "A2A",
+          "Multi-agent",
+          "Gemini"
+        ]
+      },
       "stack": [
         "Python 3.12",
         "FastAPI",
@@ -980,21 +1043,21 @@
           "valor": "751",
           "rotulo": {
             "pt": "testes automatizados nos quatro repositórios",
-            "en": ""
+            "en": "automated tests across four repositories"
           }
         },
         {
           "valor": "4",
           "rotulo": {
             "pt": "processos independentes",
-            "en": ""
+            "en": "independent processes"
           }
         },
         {
           "valor": "7",
           "rotulo": {
             "pt": "rotas de leitura no painel financeiro",
-            "en": ""
+            "en": "read routes in the finance dashboard"
           }
         }
       ],
@@ -1003,56 +1066,56 @@
           "id": "problema",
           "titulo": {
             "pt": "O problema",
-            "en": ""
+            "en": "The problem"
           },
           "corpo": {
             "pt": "<p>A maneira fácil de construir vários agentes é colocar todos no mesmo processo, compartilhando objetos em memória. Funciona na demonstração e falha como arquitetura: os agentes deixam de ser autônomos e viram funções de um monólito, e nada do que se aprende ali se transfere para um sistema real, onde as partes rodam separadas e podem cair de forma independente.</p><p>Eu queria testar a pergunta que importa antes de propor esse tipo de arquitetura em ambiente corporativo: <strong>o que quebra quando agentes de verdade precisam se comunicar por protocolo?</strong></p>",
-            "en": ""
+            "en": "<p>The easy way to build several agents is to put them all in one process, sharing objects in memory. It works in a demo and fails as architecture: the agents stop being autonomous and become functions of a monolith, and nothing you learn there transfers to a real system, where the parts run separately and can fail independently.</p><p>I wanted to test the question that matters before proposing this kind of architecture in a corporate environment: <strong>what breaks when real agents have to communicate over a protocol?</strong></p>"
           }
         },
         {
           "id": "solucao",
           "titulo": {
             "pt": "A solução",
-            "en": ""
+            "en": "The solution"
           },
           "corpo": {
             "pt": "<p>Quatro repositórios, quatro processos, comunicação por protocolo A2A sobre HTTP. Nenhum deles alcança o banco do outro.</p><ul><li><strong>JARVIS</strong> — o orquestrador. Entende o pedido em linguagem natural, decide a quem perguntar e compõe a resposta.</li><li><strong>Alfred</strong> — a memória da casa. Registra manutenções, fornecedores e histórico, e responde consultas com o dado exato, incluindo o verbatim quando é isso que foi pedido.</li><li><strong>Lucius</strong> — as finanças. Importa lançamentos, categoriza, calcula por dois eixos de data, projeta e sustenta um painel web próprio, para consulta sem passar pelo agente.</li><li><strong>Portaria</strong> — identidade e sessão. Nasceu de uma extração: o login saiu do JARVIS e virou pacote instalável pelos dois, para que a mesma senha e a mesma sessão sirvam às duas telas.</li></ul><p>Duas decisões de projeto que valeram mais do que o código: o painel do Lucius separa <strong>fato de previsão em coleções distintas</strong> no JSON, para que nenhum consumidor some as duas por engano; e toda consulta expõe o <em>drill-down</em> das linhas que formaram cada número, além de declarar o que ficou de fora da soma e quanto isso representa.</p>",
-            "en": ""
+            "en": "<p>Four repositories, four processes, communicating over the A2A protocol on HTTP. None of them reaches into another's database.</p><ul><li><strong>JARVIS</strong> — the orchestrator. Interprets the request in natural language, decides who to ask, and composes the answer.</li><li><strong>Alfred</strong> — the household memory. Records maintenance, suppliers and history, and answers queries with the exact data, including verbatim when that is what was asked for.</li><li><strong>Lucius</strong> — the finances. Imports transactions, categorises, calculates across two date axes, forecasts, and backs its own web dashboard for lookups without going through the agent.</li><li><strong>Portaria</strong> — identity and session. Born from an extraction: login left JARVIS and became a package both install, so that the same password and session serve both screens.</li></ul><p>Two design decisions worth more than the code: the Lucius dashboard separates <strong>fact from forecast into distinct collections</strong> in the JSON, so no consumer can sum the two by accident; and every query exposes a drill-down of the rows behind each number, while declaring what was left out of the total and how much that represents.</p>"
           }
         },
         {
           "id": "resultado",
           "titulo": {
             "pt": "Resultado",
-            "en": ""
+            "en": "Outcome"
           },
           "corpo": {
             "pt": "<p>O fio completo foi executado com o modelo real em agosto de 2026, com dois agentes no ar simultaneamente — não com dublês. Isso provou o que teste automatizado não prova: que o nome do modelo é chamável e que a API honra o esquema de resposta estruturada.</p><p>Os testes automatizados, por decisão explícita, substituem as três pontas de LLM por dublês determinísticos. Um teste não pode depender de chave de API nem de uma resposta que varia.</p><p>O aprendizado que interessa para ambiente corporativo é sobre custo de integração: agentes separados por protocolo custam mais para construir e devolvem autonomia real, incluindo a capacidade de um cair sem derrubar os outros.</p>",
-            "en": ""
+            "en": "<p>The full thread was executed against the real model in August 2026, with two agents live simultaneously — not with stubs. That proved what automated tests cannot: that the model name is callable and that the API honours structured response schemas.</p><p>The automated tests, by explicit decision, replace all three LLM endpoints with deterministic stubs. A test cannot depend on an API key or on an answer that varies.</p><p>The lesson that matters for a corporate setting is about integration cost: agents separated by a protocol cost more to build and return real autonomy — including the ability for one to fail without taking the others down.</p>"
           }
         }
       ],
       "pdf": null,
       "status": {
         "pt": "Fio vivo em operação",
-        "en": ""
+        "en": "Live and running"
       },
       "autoria": {
         "tipo": "autoral",
         "nota": {
           "pt": "Projeto pessoal e autoral. Laboratório para testar arquiteturas multi-agente antes de propor equivalentes em ambiente corporativo.",
-          "en": ""
+          "en": "Personal, original work. A lab for testing multi-agent architectures before proposing equivalents in a corporate setting."
         }
       },
       "seo": {
         "title": {
           "pt": "Ecossistema JARVIS — quatro agentes de IA comunicando por protocolo A2A | Thiago Seiki Kato",
-          "en": ""
+          "en": "JARVIS Ecosystem — four AI agents communicating over A2A | Thiago Seiki Kato"
         },
         "description": {
           "pt": "Ecossistema multi-agente com JARVIS, Alfred, Lucius e Portaria: processos independentes que se comunicam por A2A, com identidade compartilhada e 751 testes automatizados.",
-          "en": ""
+          "en": "Multi-agent ecosystem with JARVIS, Alfred, Lucius and Portaria: independent processes communicating over A2A, with shared identity and 751 automated tests."
         }
       }
     },
@@ -1063,21 +1126,28 @@
       "icone": "fa-graduation-cap",
       "titulo": {
         "pt": "Dedé",
-        "en": ""
+        "en": "Dedé"
       },
       "subtitulo": {
         "pt": "Estudo adaptativo para crianças, com relatório para o responsável",
-        "en": ""
+        "en": "Adaptive study for children, with a report for the guardian"
       },
       "resumo": {
         "pt": "Aplicativo de estudo que gera questões por IA e ajusta a dificuldade em tempo real conforme o aluno acerta ou erra, com modo de treino e modo de simulado, e um relatório de domínio por tópico para quem acompanha.",
-        "en": ""
+        "en": "A study app that generates questions with AI and adjusts difficulty in real time as the student answers, with a practice mode and an exam mode, plus a topic-mastery report for whoever is following along."
       },
-      "tags": [
-        "Educação",
-        "Adaptativo",
-        "Firebase"
-      ],
+      "tags": {
+        "pt": [
+          "Educação",
+          "Adaptativo",
+          "Firebase"
+        ],
+        "en": [
+          "Education",
+          "Adaptive",
+          "Firebase"
+        ]
+      },
       "stack": [
         "React",
         "Vite",
@@ -1093,21 +1163,21 @@
           "valor": "3",
           "rotulo": {
             "pt": "agentes pedagógicos",
-            "en": ""
+            "en": "pedagogical agents"
           }
         },
         {
           "valor": "2",
           "rotulo": {
             "pt": "modos: treinar e simular",
-            "en": ""
+            "en": "modes: practice and exam"
           }
         },
         {
           "valor": "0",
           "rotulo": {
             "pt": "redeploys para trocar de modelo",
-            "en": ""
+            "en": "redeploys needed to switch model"
           }
         }
       ],
@@ -1116,56 +1186,56 @@
           "id": "problema",
           "titulo": {
             "pt": "O problema",
-            "en": ""
+            "en": "The problem"
           },
           "corpo": {
             "pt": "<p>Material de estudo impresso tem uma dificuldade só. A criança que já domina o tópico repete o que sabe, e a que não domina trava no mesmo ponto sem quem explique de outro jeito. Quem acompanha, por sua vez, enxerga a nota — não onde está o buraco.</p>",
-            "en": ""
+            "en": "<p>Printed study material has one level of difficulty. A child who already knows the topic repeats what they know, and one who does not gets stuck at the same point with nobody to explain it differently. The person following along, meanwhile, sees the grade — not where the gap is.</p>"
           }
         },
         {
           "id": "solucao",
           "titulo": {
             "pt": "A solução",
-            "en": ""
+            "en": "The solution"
           },
           "corpo": {
             "pt": "<p>Três agentes com papéis distintos, e a lógica adaptativa deliberadamente <strong>fora do LLM</strong>.</p><ul><li><strong>Engenheiro pedagógico</strong> — gera a questão contextualizada no perfil do aluno, em múltipla escolha ou texto livre.</li><li><strong>Corretor pedagógico</strong> — avalia a resposta em dois modos: tutor, com condução socrática, ou avaliador, com nota.</li><li><strong>Sintetizador de relatório</strong> — escreve o resumo em linguagem natural para o responsável, com cache para não repetir chamada.</li></ul><p>O domínio de cada tópico é uma média móvel exponencial ponderada pela dificuldade, em código comum e testável. A adaptação também: dois acertos seguidos aumentam a dificuldade, um erro reduz, e o próximo tópico é sempre o de menor domínio. Deixar isso fora do modelo torna o comportamento previsível e auditável — e barato.</p><p>O provedor de IA e o modelo são configurados por um painel administrativo, guardados numa coleção com acesso negado ao cliente. Trocar de Gemini para Claude não exige redeploy.</p>",
-            "en": ""
+            "en": "<p>Three agents with distinct roles, and the adaptive logic deliberately <strong>outside the LLM</strong>.</p><ul><li><strong>Pedagogical engineer</strong> — generates the question contextualised to the student profile, multiple choice or free text.</li><li><strong>Pedagogical corrector</strong> — evaluates the answer in two modes: tutor, with Socratic guidance, or examiner, with a grade.</li><li><strong>Report summariser</strong> — writes the natural-language summary for the guardian, with caching so no call repeats.</li></ul><p>Topic mastery is an exponential moving average weighted by difficulty, in ordinary testable code. So is the adaptation: two correct answers in a row raise the difficulty, one wrong answer lowers it, and the next topic is always the weakest one. Keeping this outside the model makes the behaviour predictable and auditable — and cheap.</p><p>The AI provider and model are configured through an admin panel, stored in a collection the client cannot read. Switching from Gemini to Claude requires no redeploy.</p>"
           }
         },
         {
           "id": "resultado",
           "titulo": {
             "pt": "Resultado",
-            "en": ""
+            "en": "Outcome"
           },
           "corpo": {
             "pt": "<p>O responsável deixou de ver só a nota e passou a ver domínio por tópico, com sessão de revisão montada a partir do que está mais fraco. E a troca de modelo virou configuração, o que transformou o app num banco de comparação prático entre provedores.</p>",
-            "en": ""
+            "en": "<p>The guardian stopped seeing only a grade and started seeing mastery by topic, with a revision session built from the weakest areas. And switching models became configuration, which turned the app into a practical bench for comparing providers.</p>"
           }
         }
       ],
       "pdf": null,
       "status": {
         "pt": "v1",
-        "en": ""
+        "en": "v1"
       },
       "autoria": {
         "tipo": "autoral",
         "nota": {
           "pt": "Projeto pessoal e autoral.",
-          "en": ""
+          "en": "Personal, original work."
         }
       },
       "seo": {
         "title": {
           "pt": "Dedé — plataforma de estudo adaptativo com IA para crianças | Thiago Seiki Kato",
-          "en": ""
+          "en": "Dedé — adaptive AI study platform for children | Thiago Seiki Kato"
         },
         "description": {
           "pt": "App de estudo adaptativo infantil: questões geradas por IA, dificuldade ajustada em tempo real, modo treino e simulado, e relatório de domínio por tópico para o responsável.",
-          "en": ""
+          "en": "Adaptive study app for children: AI-generated questions, difficulty adjusted in real time, practice and exam modes, and a topic-mastery report for the guardian."
         }
       }
     },
@@ -1176,21 +1246,28 @@
       "icone": "fa-shield-halved",
       "titulo": {
         "pt": "CyberSec Cockpit",
-        "en": ""
+        "en": "CyberSec Cockpit"
       },
       "subtitulo": {
         "pt": "Orquestração de testes de segurança com autorização auditada por IA",
-        "en": ""
+        "en": "Security testing orchestration with AI-audited authorisation"
       },
       "resumo": {
         "pt": "Framework interno de pentest agêntico: agentes planejam o teste dinamicamente, encadeiam ferramentas de SAST, SCA, DAST e rede, e nenhuma varredura começa sem que o escopo autorizado tenha sido verificado.",
-        "en": ""
+        "en": "An internal agentic pentest framework: agents plan the test dynamically, chain SAST, SCA, DAST and network tools, and no scan begins until the authorised scope has been verified."
       },
-      "tags": [
-        "Segurança",
-        "Agentes",
-        "Pipelines"
-      ],
+      "tags": {
+        "pt": [
+          "Segurança",
+          "Agentes",
+          "Pipelines"
+        ],
+        "en": [
+          "Security",
+          "Agents",
+          "Pipelines"
+        ]
+      },
       "stack": [
         "Python 3.12",
         "FastAPI 0.115",
@@ -1210,14 +1287,14 @@
           "valor": "4",
           "rotulo": {
             "pt": "camadas: SAST, SCA, DAST e rede",
-            "en": ""
+            "en": "layers: SAST, SCA, DAST and network"
           }
         },
         {
           "valor": "3",
           "rotulo": {
             "pt": "provedores de LLM roteados por custo",
-            "en": ""
+            "en": "LLM providers routed by cost"
           }
         }
       ],
@@ -1226,56 +1303,56 @@
           "id": "problema",
           "titulo": {
             "pt": "O problema",
-            "en": ""
+            "en": "The problem"
           },
           "corpo": {
             "pt": "<p>Teste de segurança tem duas dificuldades que não são técnicas. A primeira é de encadeamento: cada ferramenta fala uma língua, e correlacionar o achado da análise estática com o da varredura dinâmica é trabalho manual que se perde entre relatórios.</p><p>A segunda é mais séria — <strong>escopo</strong>. Varrer o que não foi autorizado não é um erro de configuração, é um problema legal. E o documento de autorização costuma ser um PDF que alguém leu uma vez.</p>",
-            "en": ""
+            "en": "<p>Security testing has two difficulties that are not technical. The first is chaining: every tool speaks its own language, and correlating a static-analysis finding with a dynamic-scan finding is manual work that gets lost between reports.</p><p>The second is more serious — <strong>scope</strong>. Scanning something that was not authorised is not a configuration error, it is a legal problem. And the authorisation document is usually a PDF someone read once.</p>"
           }
         },
         {
           "id": "solucao",
           "titulo": {
             "pt": "A solução",
-            "en": ""
+            "en": "The solution"
           },
           "corpo": {
             "pt": "<p>A regra que organiza o sistema inteiro é <em>authorization-first</em>: o documento de autorização é auditado por IA e o escopo extraído dele governa o que pode ser executado. Descoberta não-intrusiva alimenta os agentes, e só depois da validação de escopo um laboratório intrusivo pode ser acionado.</p><ul><li><strong>Planejamento dinâmico por agentes</strong>, com roteamento entre provedores de LLM por custo e adequação da tarefa.</li><li><strong>Revisão humana no meio do fluxo</strong> — triagem e validação antes da geração do relatório. A IA acelera, o especialista decide.</li><li><strong>Integração encadeada</strong> de análise estática, de dependências, dinâmica e de rede numa cadeia só.</li><li><strong>Pipelines assíncronos</strong> em Celery e Redis, com status em tempo real por WebSocket.</li></ul>",
-            "en": ""
+            "en": "<p>The rule that organises the whole system is authorisation-first: the authorisation document is audited by AI and the scope extracted from it governs what may be executed. Non-intrusive discovery feeds the agents, and only after scope validation can an intrusive lab be triggered.</p><ul><li><strong>Dynamic planning by agents</strong>, routing between LLM providers by cost and task fit.</li><li><strong>Human review mid-flow</strong> — triage and validation before the report is generated. The AI accelerates; the specialist decides.</li><li><strong>Chained integration</strong> of static, dependency, dynamic and network analysis in a single chain.</li><li><strong>Asynchronous pipelines</strong> on Celery and Redis, with real-time status over WebSockets.</li></ul>"
           }
         },
         {
           "id": "resultado",
           "titulo": {
             "pt": "Resultado",
-            "en": ""
+            "en": "Outcome"
           },
           "corpo": {
             "pt": "<p>A rastreabilidade deixou de depender de disciplina do operador e passou a ser propriedade do sistema: toda execução se liga a uma autorização verificada. E o encadeamento entre ferramentas virou pipeline, não um trabalho de correlacionar relatórios à mão.</p>",
-            "en": ""
+            "en": "<p>Traceability stopped depending on operator discipline and became a property of the system: every run ties back to a verified authorisation. And chaining between tools became a pipeline rather than the work of correlating reports by hand.</p>"
           }
         }
       ],
       "pdf": null,
       "status": {
         "pt": "Em desenvolvimento",
-        "en": ""
+        "en": "In development"
       },
       "autoria": {
         "tipo": "autoral",
         "nota": {
           "pt": "Projeto pessoal e autoral, para uso em testes de segurança autorizados.",
-          "en": ""
+          "en": "Personal, original work, for authorised security testing."
         }
       },
       "seo": {
         "title": {
           "pt": "CyberSec Cockpit — pentest agêntico com autorização auditada | Thiago Seiki Kato",
-          "en": ""
+          "en": "CyberSec Cockpit — agentic pentesting with audited authorisation | Thiago Seiki Kato"
         },
         "description": {
           "pt": "Framework interno de pentest com agentes de IA: planejamento dinâmico, SAST, SCA, DAST e rede encadeados, revisão humana e escopo governado por autorização auditada.",
-          "en": ""
+          "en": "Internal pentest framework with AI agents: dynamic planning, chained SAST, SCA, DAST and network tools, human review and scope governed by audited authorisation."
         }
       }
     },
@@ -1286,21 +1363,28 @@
       "icone": "fa-users-cog",
       "titulo": {
         "pt": "Detective AI",
-        "en": ""
+        "en": "Detective AI"
       },
       "subtitulo": {
         "pt": "Avaliação de competências em IA por simulação investigativa",
-        "en": ""
+        "en": "Assessing AI competency through investigative simulation"
       },
       "resumo": {
         "pt": "Plataforma gamificada onde o candidato investiga um caso interrogando suspeitos que são personas de IA. O que se avalia não é a resposta certa, e sim como a pessoa conduz o interrogatório — engenharia de prompt, raciocínio dedutivo e controle emocional sob pressão.",
-        "en": ""
+        "en": "A gamified platform where the candidate investigates a case by interrogating suspects who are AI personas. What is assessed is not the right answer, but how the person conducts the interrogation — prompt engineering, deductive reasoning and emotional control under pressure."
       },
-      "tags": [
-        "Avaliação",
-        "Gamificação",
-        "BYOK"
-      ],
+      "tags": {
+        "pt": [
+          "Avaliação",
+          "Gamificação",
+          "BYOK"
+        ],
+        "en": [
+          "Assessment",
+          "Gamification",
+          "BYOK"
+        ]
+      },
       "stack": [
         "Flutter",
         "Python",
@@ -1316,14 +1400,14 @@
           "valor": "4",
           "rotulo": {
             "pt": "provedores de LLM intercambiáveis",
-            "en": ""
+            "en": "interchangeable LLM providers"
           }
         },
         {
           "valor": "2",
           "rotulo": {
             "pt": "níveis de isolamento de dados",
-            "en": ""
+            "en": "levels of data isolation"
           }
         }
       ],
@@ -1332,56 +1416,56 @@
           "id": "problema",
           "titulo": {
             "pt": "O problema",
-            "en": ""
+            "en": "The problem"
           },
           "corpo": {
             "pt": "<p>Currículo lista \"engenharia de prompt\" e \"pensamento crítico\". Não existe forma honesta de validar isso num teste de múltipla escolha — a nuance de negociar com um modelo evasivo não cabe em alternativas.</p><p>E treinar gente nova direto no sistema de produção, com dado real, troca um risco por outro.</p>",
-            "en": ""
+            "en": "<p>A CV lists \"prompt engineering\" and \"critical thinking\". There is no honest way to validate that in a multiple-choice test — the nuance of negotiating with an evasive model does not fit into options.</p><p>And training newcomers directly in the production system, on real data, trades one risk for another.</p>"
           }
         },
         {
           "id": "solucao",
           "titulo": {
             "pt": "A solução",
-            "en": ""
+            "en": "The solution"
           },
           "corpo": {
             "pt": "<p>Um caso de investigação como ambiente de avaliação. O candidato interroga suspeitos movidos por LLM, que respondem em tempo real conforme personalidade e contexto — não por script fixo — e que <strong>lembram do que foi dito, podem mentir e podem se contradizer</strong>.</p><ul><li><strong>Engenharia de prompt sob avaliação real</strong> — contornar álibi exige estruturar comandos que exponham falhas lógicas; uma IA prolixa exige persistência.</li><li><strong>Medidor de estresse por persona</strong>: acusar sem prova aumenta a resistência. Saber quando pressionar e quando acalmar é parte da nota.</li><li><strong>Raciocínio forense</strong> — escolher a ferramenta certa para cada evidência e cruzar fatos, não só perguntar.</li><li><strong>Tela de acusação final</strong>, exigindo síntese de motivo e método a partir do que foi coletado.</li><li><strong>Casos personalizados em JSON</strong>, incluindo pistas marcadas como falsas — a empresa cria o próprio mistério, como um vazamento interno para treinar compliance.</li></ul><p>A arquitetura é <em>bring your own key</em>, em dois níveis: chave corporativa com garantia de não-treinamento, ou execução totalmente local via Ollama, sem nenhum dado saindo da infraestrutura. Trocar de provedor também permite comparar como a mesma pessoa lida com modelos de raciocínio diferentes.</p>",
-            "en": ""
+            "en": "<p>An investigation case as the assessment environment. The candidate interrogates LLM-driven suspects who respond in real time according to personality and context — not from a fixed script — and who <strong>remember what was said, can lie, and can contradict themselves</strong>.</p><ul><li><strong>Prompt engineering genuinely under test</strong> — getting around an alibi requires structuring commands that expose logical gaps; a verbose model requires persistence.</li><li><strong>Stress meter per persona</strong>: accusing without evidence increases resistance. Knowing when to press and when to calm is part of the score.</li><li><strong>Forensic reasoning</strong> — choosing the right tool for each piece of evidence and cross-referencing facts, not just asking.</li><li><strong>Final accusation screen</strong>, requiring a synthesis of motive and method from what was collected.</li><li><strong>Custom cases in JSON</strong>, including clues flagged as red herrings — the company writes its own mystery, such as an internal leak for compliance training.</li></ul><p>The architecture is bring-your-own-key, at two levels: a corporate key with a no-training guarantee, or fully local execution via Ollama, with no data leaving the infrastructure. Switching providers also allows comparing how the same person handles different reasoning models.</p>"
           }
         },
         {
           "id": "resultado",
           "titulo": {
             "pt": "Resultado",
-            "en": ""
+            "en": "Outcome"
           },
           "corpo": {
             "pt": "<p>A avaliação passou a se basear em comportamento observado sob pressão, e não em declaração de currículo. Como sandbox de treino, errar o prompt deixou de custar um cliente.</p><p>O detector de mentiras e o retorno visual de estresse funcionam como mentoria imediata: a pessoa vê o efeito da própria abordagem no momento em que ela acontece.</p>",
-            "en": ""
+            "en": "<p>Assessment came to rest on behaviour observed under pressure rather than on a claim in a CV. As a training sandbox, getting the prompt wrong stopped costing a client.</p><p>The lie detector and the visual stress feedback work as immediate mentoring: the person sees the effect of their own approach in the moment it happens.</p>"
           }
         }
       ],
       "pdf": "Projetos/AI_Talent_Simulation.pdf",
       "status": {
         "pt": "Protótipo funcional",
-        "en": ""
+        "en": "Working prototype"
       },
       "autoria": {
         "tipo": "autoral",
         "nota": {
           "pt": "Projeto pessoal e autoral.",
-          "en": ""
+          "en": "Personal, original work."
         }
       },
       "seo": {
         "title": {
           "pt": "Detective AI — avaliação de engenharia de prompt por simulação | Thiago Seiki Kato",
-          "en": ""
+          "en": "Detective AI — assessing prompt engineering through simulation | Thiago Seiki Kato"
         },
         "description": {
           "pt": "Plataforma gamificada de avaliação de talentos: o candidato interroga personas de IA para resolver um caso, medindo engenharia de prompt, dedução e controle sob pressão.",
-          "en": ""
+          "en": "Gamified talent assessment platform: the candidate interrogates AI personas to solve a case, measuring prompt engineering, deduction and composure under pressure."
         }
       }
     }

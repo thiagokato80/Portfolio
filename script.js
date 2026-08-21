@@ -285,6 +285,13 @@ function applyLanguage(lang) {
         if (t[key] !== undefined) el.placeholder = t[key];
     });
 
+    // Os cards gerados carregam os dois destinos; o link segue o idioma
+    // escolhido. Sem traducao, data-href-en ja aponta para a pagina em pt.
+    document.querySelectorAll('[data-href-pt][data-href-en]').forEach(el => {
+        const destino = el.getAttribute(lang === 'en' ? 'data-href-en' : 'data-href-pt');
+        if (destino) el.setAttribute('href', destino);
+    });
+
     document.querySelectorAll('.lang-opt').forEach(opt => {
         opt.classList.toggle('lang-active', opt.dataset.lang === lang);
     });

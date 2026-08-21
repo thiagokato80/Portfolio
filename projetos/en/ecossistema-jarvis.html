@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Multi-agent ecosystem with JARVIS, Alfred, Lucius and Portaria: independent processes communicating over A2A, with shared identity and 751 automated tests.">
+  <meta name="author" content="Thiago Seiki Kato">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://thiagokato.github.io/Portfolio/projetos/en/ecossistema-jarvis.html">
+  <meta property="og:title" content="JARVIS Ecosystem — four AI agents communicating over A2A | Thiago Seiki Kato">
+  <meta property="og:description" content="Multi-agent ecosystem with JARVIS, Alfred, Lucius and Portaria: independent processes communicating over A2A, with shared identity and 751 automated tests.">
+  <meta property="og:image" content="https://thiagokato.github.io/Portfolio/Currículo/Foto.jpg">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="JARVIS Ecosystem — four AI agents communicating over A2A | Thiago Seiki Kato">
+  <meta property="twitter:description" content="Multi-agent ecosystem with JARVIS, Alfred, Lucius and Portaria: independent processes communicating over A2A, with shared identity and 751 automated tests.">
+
+  <title>JARVIS Ecosystem — four AI agents communicating over A2A | Thiago Seiki Kato</title>
+
+  <link rel="canonical" href="https://thiagokato.github.io/Portfolio/projetos/en/ecossistema-jarvis.html">
+  <link rel="alternate" hreflang="pt-BR" href="https://thiagokato.github.io/Portfolio/projetos/ecossistema-jarvis.html">
+  <link rel="alternate" hreflang="en" href="https://thiagokato.github.io/Portfolio/projetos/en/ecossistema-jarvis.html">
+  <link rel="alternate" hreflang="x-default" href="https://thiagokato.github.io/Portfolio/projetos/ecossistema-jarvis.html">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="icon" type="image/png" href="../../favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "JARVIS Ecosystem",
+      "description": "Multi-agent ecosystem with JARVIS, Alfred, Lucius and Portaria: independent processes communicating over A2A, with shared identity and 751 automated tests.",
+      "applicationCategory": "BusinessApplication",
+      "url": "https://thiagokato.github.io/Portfolio/projetos/en/ecossistema-jarvis.html",
+      "author": {
+        "@type": "Person",
+        "name": "Thiago Seiki Kato",
+        "url": "https://thiagokato.github.io/Portfolio/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Portfólio",
+          "item": "https://thiagokato.github.io/Portfolio/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "JARVIS Ecosystem",
+          "item": "https://thiagokato.github.io/Portfolio/projetos/en/ecossistema-jarvis.html"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <script>
+(function () {
+  try {
+    var tema = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', tema);
+  } catch (e) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+})();
+</script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="nav-container">
+        <a href="../../index.html" class="logo">
+          <span class="logo-bracket">[</span>TSK<span class="logo-bracket">]</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="../../index.html#projects">Back to portfolio</a></li>
+          <li class="lang-switch"><a href="../ecossistema-jarvis.html">Português</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container caso">
+    <article>
+      <div class="caso-hero">
+        <div class="caso-hero-icone"><i class="fas fa-diagram-project"></i></div>
+        <span class="status-badge">Live and running</span>
+        <h1>JARVIS Ecosystem</h1>
+        <p class="caso-subtitulo">Four agents that talk over a protocol, not a shared library</p>
+        <p class="about-lead">An ecosystem of everyday AI agents: JARVIS orchestrates and interprets the request, Alfred holds the household memory, Lucius handles finances with its own dashboard, and Portaria gives both a shared identity. Separate processes, speaking A2A.</p>
+        <div class="project-tags">
+          <span class="tag">A2A</span>
+          <span class="tag">Multi-agent</span>
+          <span class="tag">Gemini</span>
+        </div>
+      </div>
+
+      <div class="caso-numeros">
+        <div class="caso-numero">
+          <span class="caso-numero-valor">751</span>
+          <span class="caso-numero-rotulo">automated tests across four repositories</span>
+        </div>
+        <div class="caso-numero">
+          <span class="caso-numero-valor">4</span>
+          <span class="caso-numero-rotulo">independent processes</span>
+        </div>
+        <div class="caso-numero">
+          <span class="caso-numero-valor">7</span>
+          <span class="caso-numero-rotulo">read routes in the finance dashboard</span>
+        </div>
+      </div>
+      <section class="caso-secao" id="problema">
+        <h2>The problem</h2>
+        <p>The easy way to build several agents is to put them all in one process, sharing objects in memory. It works in a demo and fails as architecture: the agents stop being autonomous and become functions of a monolith, and nothing you learn there transfers to a real system, where the parts run separately and can fail independently.</p><p>I wanted to test the question that matters before proposing this kind of architecture in a corporate environment: <strong>what breaks when real agents have to communicate over a protocol?</strong></p>
+      </section>
+      <section class="caso-secao" id="solucao">
+        <h2>The solution</h2>
+        <p>Four repositories, four processes, communicating over the A2A protocol on HTTP. None of them reaches into another's database.</p><ul><li><strong>JARVIS</strong> — the orchestrator. Interprets the request in natural language, decides who to ask, and composes the answer.</li><li><strong>Alfred</strong> — the household memory. Records maintenance, suppliers and history, and answers queries with the exact data, including verbatim when that is what was asked for.</li><li><strong>Lucius</strong> — the finances. Imports transactions, categorises, calculates across two date axes, forecasts, and backs its own web dashboard for lookups without going through the agent.</li><li><strong>Portaria</strong> — identity and session. Born from an extraction: login left JARVIS and became a package both install, so that the same password and session serve both screens.</li></ul><p>Two design decisions worth more than the code: the Lucius dashboard separates <strong>fact from forecast into distinct collections</strong> in the JSON, so no consumer can sum the two by accident; and every query exposes a drill-down of the rows behind each number, while declaring what was left out of the total and how much that represents.</p>
+      </section>
+      <section class="caso-secao" id="resultado">
+        <h2>Outcome</h2>
+        <p>The full thread was executed against the real model in August 2026, with two agents live simultaneously — not with stubs. That proved what automated tests cannot: that the model name is callable and that the API honours structured response schemas.</p><p>The automated tests, by explicit decision, replace all three LLM endpoints with deterministic stubs. A test cannot depend on an API key or on an answer that varies.</p><p>The lesson that matters for a corporate setting is about integration cost: agents separated by a protocol cost more to build and return real autonomy — including the ability for one to fail without taking the others down.</p>
+      </section>
+      <section class="caso-secao" id="stack">
+        <h2>Stack</h2>
+        <ul class="caso-stack">
+          <li>Python 3.12</li>
+          <li>FastAPI</li>
+          <li>Gemini</li>
+          <li>Pydantic</li>
+          <li>SQLAlchemy</li>
+          <li>Alembic</li>
+          <li>PostgreSQL</li>
+          <li>argon2</li>
+          <li>pytest</li>
+        </ul>
+      </section>
+
+      <section class="caso-cta">
+        <h2>Need something like this?</h2>
+        <p>I build systems like this one end to end — architecture, implementation and delivery.</p>
+        <a class="project-link" href="../../index.html#contact">
+          <span>Start a conversation</span> <i class="fas fa-arrow-right"></i>
+        </a>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <p>© 2026 Thiago Seiki Kato</p>
+  </footer>
+</body>
+
+</html>

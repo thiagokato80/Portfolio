@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Purchasing platform for property management companies: quotation opening, bids, exportable comparison map, line-by-line award and approval workflow.">
+  <meta name="author" content="Thiago Seiki Kato">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://thiagokato.github.io/Portfolio/projetos/en/procurement-condominial.html">
+  <meta property="og:title" content="Condominium Procurement — quotation, comparison map and award | Thiago Seiki Kato">
+  <meta property="og:description" content="Purchasing platform for property management companies: quotation opening, bids, exportable comparison map, line-by-line award and approval workflow.">
+  <meta property="og:image" content="https://thiagokato.github.io/Portfolio/Currículo/Foto.jpg">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="Condominium Procurement — quotation, comparison map and award | Thiago Seiki Kato">
+  <meta property="twitter:description" content="Purchasing platform for property management companies: quotation opening, bids, exportable comparison map, line-by-line award and approval workflow.">
+
+  <title>Condominium Procurement — quotation, comparison map and award | Thiago Seiki Kato</title>
+
+  <link rel="canonical" href="https://thiagokato.github.io/Portfolio/projetos/en/procurement-condominial.html">
+  <link rel="alternate" hreflang="pt-BR" href="https://thiagokato.github.io/Portfolio/projetos/procurement-condominial.html">
+  <link rel="alternate" hreflang="en" href="https://thiagokato.github.io/Portfolio/projetos/en/procurement-condominial.html">
+  <link rel="alternate" hreflang="x-default" href="https://thiagokato.github.io/Portfolio/projetos/procurement-condominial.html">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="icon" type="image/png" href="../../favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Condominium Procurement",
+      "description": "Purchasing platform for property management companies: quotation opening, bids, exportable comparison map, line-by-line award and approval workflow.",
+      "applicationCategory": "BusinessApplication",
+      "url": "https://thiagokato.github.io/Portfolio/projetos/en/procurement-condominial.html",
+      "author": {
+        "@type": "Person",
+        "name": "Thiago Seiki Kato",
+        "url": "https://thiagokato.github.io/Portfolio/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Portfólio",
+          "item": "https://thiagokato.github.io/Portfolio/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Condominium Procurement",
+          "item": "https://thiagokato.github.io/Portfolio/projetos/en/procurement-condominial.html"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <script>
+(function () {
+  try {
+    var tema = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', tema);
+  } catch (e) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+})();
+</script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="nav-container">
+        <a href="../../index.html" class="logo">
+          <span class="logo-bracket">[</span>TSK<span class="logo-bracket">]</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="../../index.html#projects">Back to portfolio</a></li>
+          <li class="lang-switch"><a href="../procurement-condominial.html">Português</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container caso">
+    <article>
+      <div class="caso-hero">
+        <div class="caso-hero-icone"><i class="fas fa-building"></i></div>
+        <span class="status-badge">In internal use</span>
+        <h1>Condominium Procurement</h1>
+        <p class="caso-subtitulo">From purchase request to payment, for property management companies</p>
+        <p class="about-lead">A platform that digitises the condominium purchasing cycle: opening a quotation, collecting bids, comparison map, line-by-line award and payment confirmation — with a configurable approval workflow.</p>
+        <div class="project-tags">
+          <span class="tag">Procurement</span>
+          <span class="tag">Workflow</span>
+          <span class="tag">Supabase</span>
+        </div>
+      </div>
+
+      <div class="caso-numeros">
+        <div class="caso-numero">
+          <span class="caso-numero-valor">5</span>
+          <span class="caso-numero-rotulo">access profiles</span>
+        </div>
+        <div class="caso-numero">
+          <span class="caso-numero-valor">3</span>
+          <span class="caso-numero-rotulo">levels of hierarchical catalogue</span>
+        </div>
+        <div class="caso-numero">
+          <span class="caso-numero-valor">2</span>
+          <span class="caso-numero-rotulo">comparison map export formats</span>
+        </div>
+      </div>
+      <section class="caso-secao" id="problema">
+        <h2>The problem</h2>
+        <p>Buying for a condominium is a process with many hands and no system: the building manager requests, the service desk scopes it, the buyer collects quotes by email, someone consolidates the bids into a spreadsheet, and finance pays. Every step lives somewhere different.</p><p>The result is predictable — nobody knows the status of a purchase without asking someone, comparing suppliers becomes manual spreadsheet work, and the record of who approved what gets lost in an inbox.</p>
+      </section>
+      <section class="caso-secao" id="solucao">
+        <h2>The solution</h2>
+        <p>A single flow, from quotation opening to payment confirmation, with the state of the process visible at any moment.</p><ul><li><strong>Kanban by phase</strong>, with drag between states, to see every process at once.</li><li><strong>Comparison map</strong> with one column per supplier and cells coloured by status — best price, outlier, disqualified — exportable to Excel and PDF, with automatic scaling for many suppliers.</li><li><strong>Line-by-line award</strong>: the winner of a quotation need not be the same for every item.</li><li><strong>Three bid channels</strong>: market quotation, marketplace import via CSV/XLSX, and online purchase.</li><li><strong>SLA alerts</strong> via <code>pg_cron</code>, with daily deduplication so the alert does not become noise.</li><li><strong>Duplicate supplier merging</strong> and company-registration checks.</li></ul><p>One product decision worth recording: when sending a quotation to a supplier, the platform composes the email and the buyer sends it from their own address. The system <strong>never acts as the sender</strong> — the supplier relationship stays with the person buying.</p>
+      </section>
+      <section class="caso-secao" id="resultado">
+        <h2>Outcome</h2>
+        <p>The purchasing process stopped living in inboxes and loose spreadsheets and gained state, an owner and a history. Comparing suppliers became a screen rather than a consolidation exercise.</p>
+      </section>
+      <section class="caso-secao" id="stack">
+        <h2>Stack</h2>
+        <ul class="caso-stack">
+          <li>Python 3.12</li>
+          <li>FastAPI 0.115</li>
+          <li>Supabase</li>
+          <li>PostgreSQL 15</li>
+          <li>Row Level Security</li>
+          <li>pg_cron</li>
+          <li>React 18</li>
+          <li>TypeScript</li>
+          <li>TanStack Query</li>
+        </ul>
+      </section>
+
+      <section class="caso-cta">
+        <h2>Need something like this?</h2>
+        <p>I build systems like this one end to end — architecture, implementation and delivery.</p>
+        <a class="project-link" href="../../index.html#contact">
+          <span>Start a conversation</span> <i class="fas fa-arrow-right"></i>
+        </a>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <p>© 2026 Thiago Seiki Kato</p>
+  </footer>
+</body>
+
+</html>

@@ -1,11 +1,14 @@
-import { t, escapar } from './texto.mjs';
+import { t, escapar, temTraducao } from './texto.mjs';
 
 function card(projeto, lang) {
   const classes = projeto.destaque ? 'project-card featured' : 'project-card';
   const rotuloLink = lang === 'en' ? 'View case study' : 'Ver estudo de caso';
-  const href = lang === 'en' ? `projetos/en/${projeto.slug}.html` : `projetos/${projeto.slug}.html`;
+  const hrefPt = `projetos/${projeto.slug}.html`;
+  // Sem traducao, o destino "en" cai na pagina em portugues em vez de 404.
+  const hrefEn = temTraducao(projeto) ? `projetos/en/${projeto.slug}.html` : hrefPt;
+  const href = lang === 'en' ? hrefEn : hrefPt;
 
-  const tags = projeto.tags
+  const tags = (projeto.tags[lang] || projeto.tags.pt)
     .map((tag) => `                                <span class="tag">${escapar(tag)}</span>`)
     .join('\n');
 
@@ -33,7 +36,7 @@ ${tags}
                             <ul class="project-features">
 ${features}
                             </ul>
-                            <a href="${href}" class="project-link">
+                            <a href="${href}" class="project-link" data-href-pt="${hrefPt}" data-href-en="${hrefEn}">
                                 <span data-i18n="proj-${projeto.slug}-link">${rotuloLink}</span>
                                 <i class="fas fa-arrow-right"></i>
                             </a>

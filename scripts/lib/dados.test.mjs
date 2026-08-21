@@ -11,7 +11,7 @@ function projetoValido(extra = {}) {
     titulo: { pt: 'Match Hub', en: '' },
     subtitulo: { pt: 'Sub', en: '' },
     resumo: { pt: 'Resumo', en: '' },
-    tags: ['GCP'],
+    tags: { pt: ['GCP'], en: ['GCP'] },
     stack: ['Python'],
     numeros: [],
     secoes: [{ id: 'problema', titulo: { pt: 'O problema', en: '' }, corpo: { pt: '<p>x</p>', en: '' } }],
@@ -122,4 +122,14 @@ test('artigo sem lead é erro', () => {
   const a = artigoValido();
   delete a.lead;
   assert.match(validarArtigos({ artigos: [a] })[0], /lead/);
+});
+
+test('tags fora do formato {pt, en} é erro', () => {
+  const erros = validar(dadosValidos([projetoValido({ tags: ['GCP'] })]));
+  assert.match(erros[0], /tags.*pt/);
+});
+
+test('tags com quantidades diferentes entre idiomas é erro', () => {
+  const erros = validar(dadosValidos([projetoValido({ tags: { pt: ['A', 'B'], en: ['A'] } })]));
+  assert.match(erros[0], /2 em pt e 1 em en/);
 });

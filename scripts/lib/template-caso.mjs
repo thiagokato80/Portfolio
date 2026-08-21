@@ -100,7 +100,7 @@ export function paginaCaso(projeto, opcoes = {}) {
       : 'Construo sistemas como este de ponta a ponta — arquitetura, implementação e entrega.';
   const ctaBotao = lang === 'en' ? 'Start a conversation' : 'Vamos conversar';
 
-  const tags = projeto.tags.map((tag) => `          <span class="tag">${escapar(tag)}</span>`).join('\n');
+  const tags = (projeto.tags[lang] || projeto.tags.pt).map((tag) => `          <span class="tag">${escapar(tag)}</span>`).join('\n');
 
   const jsonLd = JSON.stringify(
     {

@@ -9,7 +9,7 @@ const projeto = {
   titulo: { pt: 'Match Hub', en: '' },
   subtitulo: { pt: 'Padronização com IA', en: '' },
   resumo: { pt: 'Resumo do projeto', en: '' },
-  tags: ['GCP', 'Vertex AI'],
+  tags: { pt: ['GCP', 'Vertex AI'], en: ['GCP', 'Vertex AI'] },
   stack: ['Python 3.12', 'FastAPI'],
   numeros: [{ valor: '193', rotulo: { pt: 'testes', en: '' } }],
   secoes: [{ id: 'problema', titulo: { pt: 'O problema', en: '' }, corpo: { pt: '<p>Texto com <strong>negrito</strong></p>', en: '' } }],

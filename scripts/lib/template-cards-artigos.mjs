@@ -1,9 +1,11 @@
-import { t, escapar } from './texto.mjs';
+import { t, escapar, temTraducao } from './texto.mjs';
 import { tempoDeLeitura } from './template-artigo.mjs';
 
 function card(artigo, lang) {
   const rotuloLink = lang === 'en' ? 'Read article' : 'Ler artigo';
-  const href = lang === 'en' ? `Artigos/en/${artigo.slug}.html` : `Artigos/${artigo.slug}.html`;
+  const hrefPt = `Artigos/${artigo.slug}.html`;
+  const hrefEn = temTraducao(artigo) ? `Artigos/en/${artigo.slug}.html` : hrefPt;
+  const href = lang === 'en' ? hrefEn : hrefPt;
   const minutos = tempoDeLeitura(artigo, lang);
   const rotuloTempo = lang === 'en' ? `${minutos} min read` : `${minutos} min de leitura`;
 
@@ -13,7 +15,7 @@ function card(artigo, lang) {
                         <h3 data-i18n="art-${artigo.slug}-titulo">${escapar(t(artigo.titulo, lang))}</h3>
                         <p class="article-summary" data-i18n="art-${artigo.slug}-lead">${escapar(t(artigo.lead, lang))}</p>
                         <p class="article-meta" data-i18n="art-${artigo.slug}-meta">${rotuloTempo}</p>
-                        <a href="${href}" class="article-link">
+                        <a href="${href}" class="article-link" data-href-pt="${hrefPt}" data-href-en="${hrefEn}">
                             <span data-i18n="art-${artigo.slug}-link">${rotuloLink}</span> <i class="fas fa-arrow-right"></i>
                         </a>
                     </article>`;

@@ -311,7 +311,25 @@ superfície indexável: "O Vale da Morte da Automação", "Metodologia de Audito
 SaaS Sprawl" e "Gestão de Supply Chain Cervejaria Brasil". A decisão de incluí-los
 é do autor, no início da Fase 2.
 
-**Fase 3.** Preencher os campos `en` e gerar `projetos/en/`.
+**Fase 3 — concluída em 2026-08-21.** Campos `en` preenchidos e páginas em
+inglês geradas.
+
+Entregue: 12 projetos e 4 artigos em inglês (16 páginas), sitemap com 36 URLs.
+Os três artigos mais longos e de público local — "A Revolução Silenciosa",
+"Análise de Outlier" e "O Paradoxo Cognitivo" — ficaram só em português por
+decisão do autor.
+
+Dois bugs vindos da Fase 1, corrigidos aqui:
+
+1. As 19 páginas declaravam `hreflang` para `projetos/en/` e `Artigos/en/`, que
+   não existiam. O par agora só é emitido quando a tradução está completa,
+   decidido por `temTraducao()`.
+2. Os cards gerados não tinham chaves de i18n e ficavam em português ao trocar
+   o idioma no index. O gerador passou a emitir `data/i18n-gerado.js`, fundido
+   pelo `script.js` no objeto de traduções.
+
+`tags` migrou de array simples para `{ pt: [], en: [] }`, para ser o único campo
+textual que ainda não seguia o padrão bilíngue.
 
 ## Riscos
 

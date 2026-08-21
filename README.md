@@ -50,9 +50,27 @@ Requer apenas Node.js 18 ou superior. Não há dependências: nada de `npm insta
 
 ## Idiomas
 
-Todo campo textual do JSON tem a forma `{ "pt": "...", "en": "" }`. O `en` está
-vazio por enquanto; quando preenchido, o gerador emite `projetos/en/<slug>.html`
-com `hreflang` cruzado.
+Todo campo textual do JSON tem a forma `{ "pt": "...", "en": "" }` — inclusive
+`tags`, que é `{ "pt": [], "en": [] }` com as duas listas do mesmo tamanho.
+
+Um item só é publicado em inglês quando está **integralmente** traduzido: título,
+`seo` e todas as seções. `temTraducao()` decide isso, e a consequência é
+deliberada — meia tradução publicada faria o `hreflang` apontar para uma página
+incompleta, e o buscador trata isso como erro.
+
+Para o que está traduzido, o gerador emite:
+
+- `projetos/en/<slug>.html` e `Artigos/en/<slug>.html`
+- o par de `hreflang` cruzado, **apenas nessas páginas**
+- um alternador de idioma na navegação, que leva à contraparte
+- as URLs em inglês no `sitemap.xml`
+
+No `index.html`, o alternador PT/EN troca texto **e destino** dos cards: eles
+carregam `data-href-pt` e `data-href-en`. Item sem tradução aponta o destino
+"en" para a própria página em português, nunca para um 404.
+
+Para traduzir mais alguma coisa, preencha os campos `en` no JSON e rode o
+gerador. Nada mais precisa mudar.
 
 ## Autoria
 

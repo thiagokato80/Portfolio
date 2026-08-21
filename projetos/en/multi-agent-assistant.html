@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Multi-agent assistant unifying ERP, cloud storage and email, answering in natural language inside Microsoft Teams with plan-and-act orchestration for multi-step tasks.">
+  <meta name="author" content="Thiago Seiki Kato">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://thiagokato.github.io/Portfolio/projetos/en/multi-agent-assistant.html">
+  <meta property="og:title" content="Multi-Agent Assistant — operations copilot over ERP and Teams | Thiago Seiki Kato">
+  <meta property="og:description" content="Multi-agent assistant unifying ERP, cloud storage and email, answering in natural language inside Microsoft Teams with plan-and-act orchestration for multi-step tasks.">
+  <meta property="og:image" content="https://thiagokato.github.io/Portfolio/Currículo/Foto.jpg">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="Multi-Agent Assistant — operations copilot over ERP and Teams | Thiago Seiki Kato">
+  <meta property="twitter:description" content="Multi-agent assistant unifying ERP, cloud storage and email, answering in natural language inside Microsoft Teams with plan-and-act orchestration for multi-step tasks.">
+
+  <title>Multi-Agent Assistant — operations copilot over ERP and Teams | Thiago Seiki Kato</title>
+
+  <link rel="canonical" href="https://thiagokato.github.io/Portfolio/projetos/en/multi-agent-assistant.html">
+  <link rel="alternate" hreflang="pt-BR" href="https://thiagokato.github.io/Portfolio/projetos/multi-agent-assistant.html">
+  <link rel="alternate" hreflang="en" href="https://thiagokato.github.io/Portfolio/projetos/en/multi-agent-assistant.html">
+  <link rel="alternate" hreflang="x-default" href="https://thiagokato.github.io/Portfolio/projetos/multi-agent-assistant.html">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="icon" type="image/png" href="../../favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Multi-Agent Assistant",
+      "description": "Multi-agent assistant unifying ERP, cloud storage and email, answering in natural language inside Microsoft Teams with plan-and-act orchestration for multi-step tasks.",
+      "applicationCategory": "BusinessApplication",
+      "url": "https://thiagokato.github.io/Portfolio/projetos/en/multi-agent-assistant.html",
+      "author": {
+        "@type": "Person",
+        "name": "Thiago Seiki Kato",
+        "url": "https://thiagokato.github.io/Portfolio/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Portfólio",
+          "item": "https://thiagokato.github.io/Portfolio/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Multi-Agent Assistant",
+          "item": "https://thiagokato.github.io/Portfolio/projetos/en/multi-agent-assistant.html"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <script>
+(function () {
+  try {
+    var tema = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', tema);
+  } catch (e) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+})();
+</script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="nav-container">
+        <a href="../../index.html" class="logo">
+          <span class="logo-bracket">[</span>TSK<span class="logo-bracket">]</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="../../index.html#projects">Back to portfolio</a></li>
+          <li class="lang-switch"><a href="../multi-agent-assistant.html">Português</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container caso">
+    <article>
+      <div class="caso-hero">
+        <div class="caso-hero-icone"><i class="fas fa-robot"></i></div>
+        <span class="status-badge">In operation</span>
+        <h1>Multi-Agent Assistant</h1>
+        <p class="caso-subtitulo">Operations copilot across ERP, email and Microsoft Teams</p>
+        <p class="about-lead">A multi-agent assistant that unifies scattered data sources — ERP, cloud storage and email — and answers in natural language inside Teams, with a plan-and-act loop that resolves multi-step tasks.</p>
+        <div class="project-tags">
+          <span class="tag">Agents</span>
+          <span class="tag">RAG</span>
+          <span class="tag">Integration</span>
+        </div>
+      </div>
+
+      <div class="caso-numeros">
+        <div class="caso-numero">
+          <span class="caso-numero-valor">3</span>
+          <span class="caso-numero-rotulo">domains: CRM, PMO and help desk</span>
+        </div>
+        <div class="caso-numero">
+          <span class="caso-numero-valor">1</span>
+          <span class="caso-numero-rotulo">interface: natural language</span>
+        </div>
+      </div>
+      <section class="caso-secao" id="problema">
+        <h2>The problem</h2>
+        <p>The information that answers a management question almost never lives in a single system. The order is in the ERP, the attachment is in cloud storage, the agreement is in an email, and the decision has to happen now — in Teams, where the team already is.</p><p>The cost is not the time spent opening three screens: it is the broken train of thought. Someone who has to switch systems to finish a thought often does not finish it.</p>
+      </section>
+      <section class="caso-secao" id="solucao">
+        <h2>The solution</h2>
+        <p>An assistant that converses in natural language inside Teams and fetches data wherever it lives, without requiring the user to know where it came from.</p><ul><li><strong>Domain specialist agents</strong> — CRM, projects and support — each with the vocabulary and rules of its own area.</li><li><strong>Plan-and-act loop</strong>: for a question requiring several steps, the orchestrator builds the plan before executing, rather than trying to answer in one shot.</li><li><strong>Direct ERP reads via API</strong>, in real time, rather than over a stale copy.</li><li><strong>Document retrieval</strong> (RAG) for everything that is not structured data.</li></ul>
+      </section>
+      <section class="caso-secao" id="resultado">
+        <h2>Outcome</h2>
+        <p>Questions that used to require opening three systems became answerable in the conversation the team was already in. The assistant became the first stop for operational queries.</p><p>Real use also exposed the limit of a specialist-agent architecture: depth within each area, but analytical silos between them. Questions that cross domains need a data federation layer, which is the evolution mapped for the project.</p>
+      </section>
+      <section class="caso-secao" id="stack">
+        <h2>Stack</h2>
+        <ul class="caso-stack">
+          <li>Python</li>
+          <li>LLM</li>
+          <li>Odoo ERP</li>
+          <li>Microsoft Teams</li>
+          <li>Azure</li>
+          <li>RAG</li>
+        </ul>
+      </section>
+      <section class="caso-secao" id="documento">
+        <h2>Full document</h2>
+        <iframe src="../../Projetos/SAM_Multi_Agent_Assistant.pdf" class="caso-pdf" title="Multi-Agent Assistant" loading="lazy"></iframe>
+        <p><a class="project-link" href="../../Projetos/SAM_Multi_Agent_Assistant.pdf" target="_blank" rel="noopener">
+          <span>Download the full PDF</span> <i class="fas fa-download"></i>
+        </a></p>
+      </section>
+      <section class="caso-cta">
+        <h2>Need something like this?</h2>
+        <p>I build systems like this one end to end — architecture, implementation and delivery.</p>
+        <a class="project-link" href="../../index.html#contact">
+          <span>Start a conversation</span> <i class="fas fa-arrow-right"></i>
+        </a>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <p>© 2026 Thiago Seiki Kato</p>
+  </footer>
+</body>
+
+</html>

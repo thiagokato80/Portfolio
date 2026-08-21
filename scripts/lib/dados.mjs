@@ -4,7 +4,7 @@ export const GRUPOS_VALIDOS = ['plataformas', 'supplychain', 'laboratorio'];
 export const AUTORIAS_VALIDAS = ['autoral', 'sob contrato', 'desenvolvido internamente'];
 
 const CAMPOS_TEXTO = ['titulo', 'subtitulo', 'resumo', 'status'];
-const CAMPOS_ARRAY = ['tags', 'stack', 'numeros', 'secoes'];
+const CAMPOS_ARRAY = ['stack', 'numeros', 'secoes'];
 
 function erroCampoTexto(campo, nome, slug) {
   if (!campo || typeof campo !== 'object') return `${slug}: campo "${nome}" ausente`;
@@ -72,6 +72,12 @@ export function validar(dados) {
 
     if (p.pdf !== null && typeof p.pdf !== 'string') {
       erros.push(`${slug}: "pdf" precisa ser caminho string ou null`);
+    }
+
+    if (!p.tags || !Array.isArray(p.tags.pt) || !Array.isArray(p.tags.en)) {
+      erros.push(`${slug}: campo "tags" precisa ser { pt: [], en: [] }`);
+    } else if (p.tags.pt.length !== p.tags.en.length) {
+      erros.push(`${slug}: "tags" tem ${p.tags.pt.length} em pt e ${p.tags.en.length} em en`);
     }
 
     if (!p.autoria) {

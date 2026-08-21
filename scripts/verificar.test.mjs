@@ -11,7 +11,7 @@ function projeto(slug) {
   return {
     slug, grupo: 'plataformas', destaque: false, icone: 'fa-cube',
     titulo: { pt: slug, en: '' }, subtitulo: { pt: 's', en: '' }, resumo: { pt: 'r', en: '' },
-    tags: [], stack: [], numeros: [], secoes: [],
+    tags: { pt: [], en: [] }, stack: [], numeros: [], secoes: [],
     pdf: null, status: { pt: 'produção', en: '' },
     autoria: { tipo: 'autoral', nota: { pt: 'n', en: '' } },
     seo: { title: { pt: `T ${slug}`, en: '' }, description: { pt: `D ${slug}`, en: '' } },

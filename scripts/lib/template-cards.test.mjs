@@ -11,7 +11,7 @@ const projetos = [
   {
     slug: 'match-hub', grupo: 'plataformas', destaque: true, icone: 'fa-hospital',
     titulo: { pt: 'Match Hub', en: '' }, subtitulo: { pt: 'Sub', en: '' },
-    resumo: { pt: 'Resumo A', en: '' }, tags: ['GCP'],
+    resumo: { pt: 'Resumo A', en: '' }, tags: { pt: ['GCP'], en: ['GCP'] },
     stack: ['Python', 'FastAPI', 'Firestore', 'React'], numeros: [], secoes: [],
     pdf: null, status: { pt: 'Em produção', en: '' },
     seo: { title: { pt: 'x', en: '' }, description: { pt: 'y', en: '' } },
@@ -19,7 +19,7 @@ const projetos = [
   {
     slug: 'jarvis', grupo: 'laboratorio', destaque: false, icone: 'fa-robot',
     titulo: { pt: 'Ecossistema JARVIS', en: '' }, subtitulo: { pt: 'Sub', en: '' },
-    resumo: { pt: 'Resumo B', en: '' }, tags: ['A2A'],
+    resumo: { pt: 'Resumo B', en: '' }, tags: { pt: ['A2A'], en: ['A2A'] },
     stack: ['Python'], numeros: [], secoes: [],
     pdf: null, status: { pt: 'Ativo', en: '' },
     seo: { title: { pt: 'x', en: '' }, description: { pt: 'y', en: '' } },
@@ -66,4 +66,21 @@ test('escapa conteúdo textual', () => {
 test('em inglês o rótulo do link muda', () => {
   assert.match(blocoCards(grupos, projetos, 'en'), /View case study/);
   assert.match(blocoCards(grupos, projetos, 'pt'), /Ver estudo de caso/);
+});
+
+test('o card carrega os dois destinos, para o link seguir o idioma', () => {
+  const traduzido = [{
+    ...projetos[0],
+    titulo: { pt: 'Match Hub', en: 'Match Hub' },
+    seo: { title: { pt: 'x', en: 'x-en' }, description: { pt: 'y', en: 'y-en' } },
+    secoes: [{ id: 'a', titulo: { pt: 'A', en: 'A' }, corpo: { pt: '<p>x</p>', en: '<p>x-en</p>' } }],
+  }];
+  const html = blocoCards(grupos, traduzido);
+  assert.match(html, /data-href-pt="projetos\/match-hub\.html"/);
+  assert.match(html, /data-href-en="projetos\/en\/match-hub\.html"/);
+});
+
+test('sem tradução, o destino em inglês aponta para a página em português', () => {
+  const html = blocoCards(grupos, projetos);
+  assert.match(html, /data-href-en="projetos\/match-hub\.html"/);
 });

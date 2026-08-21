@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Graph-based discrete-event simulation platform for supply chain resilience: SimPy, NetworkX, stress testing and live telemetry over MQTT.">
+  <meta name="author" content="Thiago Seiki Kato">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://thiagokato.github.io/Portfolio/projetos/en/omnitwin.html">
+  <meta property="og:title" content="OmniTwin — digital twins and discrete-event simulation | Thiago Seiki Kato">
+  <meta property="og:description" content="Graph-based discrete-event simulation platform for supply chain resilience: SimPy, NetworkX, stress testing and live telemetry over MQTT.">
+  <meta property="og:image" content="https://thiagokato.github.io/Portfolio/Currículo/Foto.jpg">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="OmniTwin — digital twins and discrete-event simulation | Thiago Seiki Kato">
+  <meta property="twitter:description" content="Graph-based discrete-event simulation platform for supply chain resilience: SimPy, NetworkX, stress testing and live telemetry over MQTT.">
+
+  <title>OmniTwin — digital twins and discrete-event simulation | Thiago Seiki Kato</title>
+
+  <link rel="canonical" href="https://thiagokato.github.io/Portfolio/projetos/en/omnitwin.html">
+  <link rel="alternate" hreflang="pt-BR" href="https://thiagokato.github.io/Portfolio/projetos/omnitwin.html">
+  <link rel="alternate" hreflang="en" href="https://thiagokato.github.io/Portfolio/projetos/en/omnitwin.html">
+  <link rel="alternate" hreflang="x-default" href="https://thiagokato.github.io/Portfolio/projetos/omnitwin.html">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="icon" type="image/png" href="../../favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "OmniTwin",
+      "description": "Graph-based discrete-event simulation platform for supply chain resilience: SimPy, NetworkX, stress testing and live telemetry over MQTT.",
+      "applicationCategory": "BusinessApplication",
+      "url": "https://thiagokato.github.io/Portfolio/projetos/en/omnitwin.html",
+      "author": {
+        "@type": "Person",
+        "name": "Thiago Seiki Kato",
+        "url": "https://thiagokato.github.io/Portfolio/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Portfólio",
+          "item": "https://thiagokato.github.io/Portfolio/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "OmniTwin",
+          "item": "https://thiagokato.github.io/Portfolio/projetos/en/omnitwin.html"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <script>
+(function () {
+  try {
+    var tema = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', tema);
+  } catch (e) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+})();
+</script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="nav-container">
+        <a href="../../index.html" class="logo">
+          <span class="logo-bracket">[</span>TSK<span class="logo-bracket">]</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="../../index.html#projects">Back to portfolio</a></li>
+          <li class="lang-switch"><a href="../omnitwin.html">Português</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container caso">
+    <article>
+      <div class="caso-hero">
+        <div class="caso-hero-icone"><i class="fas fa-project-diagram"></i></div>
+        <span class="status-badge">In development</span>
+        <h1>OmniTwin</h1>
+        <p class="caso-subtitulo">Digital twins for industrial operations resilience</p>
+        <p class="about-lead">A graph-based discrete-event simulation platform: you model the operation visually, the engine runs failures, queues and constraints over time, and the result shows where the chain breaks before it actually breaks.</p>
+        <div class="project-tags">
+          <span class="tag">Digital Twin</span>
+          <span class="tag">Simulation</span>
+          <span class="tag">SimPy</span>
+        </div>
+      </div>
+
+      <div class="caso-numeros">
+        <div class="caso-numero">
+          <span class="caso-numero-valor">3</span>
+          <span class="caso-numero-rotulo">node types: asset, process and stock</span>
+        </div>
+        <div class="caso-numero">
+          <span class="caso-numero-valor">4</span>
+          <span class="caso-numero-rotulo">families of output KPI</span>
+        </div>
+      </div>
+      <section class="caso-secao" id="problema">
+        <h2>The problem</h2>
+        <p>Supply chain planning is usually done with averages. Average cycle time, average lead time, average availability. The problem is that operations do not break on average — they break when the machine fails during the week the supplier was late and the production mix changed.</p><p>Questions like "what happens if my main supplier is ten days late" have no answer in a spreadsheet of averages. They require running the operation with the failures inside it.</p>
+      </section>
+      <section class="caso-secao" id="solucao">
+        <h2>The solution</h2>
+        <p>The architecture follows a <strong>decoupled simulation</strong> pattern: the Python calculation engine is entirely independent of the modelling interface, and the two communicate through strict JSON schemas validated by Pydantic. Replacing the interface does not touch the engine; changing the engine does not break a saved model.</p><ul><li><strong>Visual graph modelling</strong> — asset, process and stock nodes, connected on screen, with no simulation code to write.</li><li><strong>Discrete-event engine</strong> in SimPy, with stochastic failure by MTBF/MTTR, a setup matrix for SKU changeovers, and bill-of-materials validation on every run.</li><li><strong>Topology analysis</strong> with NetworkX for critical path and graph validation before simulating.</li><li><strong>Stress testing</strong> — multiple simulations varying one parameter, such as a supplier delay.</li><li><strong>Live telemetry</strong> over MQTT, with an explicit fallback rule: a parameter out of range or unavailable reverts to the model's stochastic value.</li></ul><p>Every state change logs a timestamp from <strong>the simulation clock</strong>, not the wall clock — which is what makes root-cause analysis possible after the run.</p>
+      </section>
+      <section class="caso-secao" id="resultado">
+        <h2>Outcome</h2>
+        <p>The output is not a single number but the behaviour of the operation over time: stock level series, a Gantt of failure and repair per asset, identification of the node that most constrained flow, and the financial impact of unmet demand.</p><p>That changes the question the team can ask — from "what is our capacity" to "where does this operation break first, and what does it cost".</p>
+      </section>
+      <section class="caso-secao" id="stack">
+        <h2>Stack</h2>
+        <ul class="caso-stack">
+          <li>Python 3.11</li>
+          <li>FastAPI</li>
+          <li>SimPy</li>
+          <li>NetworkX</li>
+          <li>Pandas</li>
+          <li>NumPy</li>
+          <li>Pydantic</li>
+          <li>React</li>
+          <li>React Flow</li>
+          <li>PostgreSQL JSONB</li>
+          <li>MQTT</li>
+          <li>Celery</li>
+          <li>Redis</li>
+        </ul>
+      </section>
+      <section class="caso-secao" id="documento">
+        <h2>Full document</h2>
+        <iframe src="../../Projetos/OmniTwin_Operational_Strategy.pdf" class="caso-pdf" title="OmniTwin" loading="lazy"></iframe>
+        <p><a class="project-link" href="../../Projetos/OmniTwin_Operational_Strategy.pdf" target="_blank" rel="noopener">
+          <span>Download the full PDF</span> <i class="fas fa-download"></i>
+        </a></p>
+      </section>
+      <section class="caso-cta">
+        <h2>Need something like this?</h2>
+        <p>I build systems like this one end to end — architecture, implementation and delivery.</p>
+        <a class="project-link" href="../../index.html#contact">
+          <span>Start a conversation</span> <i class="fas fa-arrow-right"></i>
+        </a>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <p>© 2026 Thiago Seiki Kato</p>
+  </footer>
+</body>
+
+</html>
