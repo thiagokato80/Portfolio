@@ -151,7 +151,12 @@ Números citados no site precisam existir no repositório.
 | CyberSec Cockpit | `~/projects/personal/CyberSec` |
 
 Os 4 projetos restantes (OmniTwin, Multi-Agent Assistant, Lótus, AI Talent
-Simulation) têm o PDF em `Projetos/` como única fonte. O Supply Chain Pipeline
+Simulation) têm o PDF em `Projetos/` como fonte principal.
+
+Fontes complementares no Google Drive do autor, a usar junto com os repositórios:
+`Case Study: Sistema de Gestão Lótus Escoteiros`, `Avaliação de Mercado e
+Potencial de Negócios: Match Hub`, `Simulador Tributário Supply4Med`, `Manual do
+Usuário — BBZ Procurement`, specs do LexMind. O Supply Chain Pipeline
 Builder tem as duas: repositório e PDF.
 
 ---
@@ -230,10 +235,19 @@ conclusão.
 do `index.html` reestruturada em 3 subgrupos, `sitemap.xml` regenerado,
 `README.md` documentando o comando de build.
 
-**Fase 2.** Os 5 artigos de `Artigos/` convertidos de iframe-sobre-PDF para HTML
-completo, reusando o mesmo gerador via `data/artigos.json`. São 93 páginas de
-PDF (34, 27, 15, 13 e 4) — o item mais caro do projeto e o de maior risco de erro
-de transcrição, motivo pelo qual não bloqueia a Fase 1.
+**Fase 2.** Os artigos de `Artigos/` convertidos de iframe-sobre-PDF para HTML
+completo, reusando o mesmo gerador via `data/artigos.json`.
+
+Fonte revista em 2026-08-21: 4 dos 5 artigos existem como Google Docs na conta do
+autor, o que substitui a transcrição de 93 páginas de PDF por leitura de texto
+real e elimina o risco de erro de transcrição. *Análise de Outlier* não foi
+localizado como Doc e permanece como leitura de PDF (27 páginas) até que o autor
+indique o original.
+
+Há também material inédito no Drive, candidato a entrar nesta fase e ampliar a
+superfície indexável: "O Vale da Morte da Automação", "Metodologia de Auditoria:
+SaaS Sprawl" e "Gestão de Supply Chain Cervejaria Brasil". A decisão de incluí-los
+é do autor, no início da Fase 2.
 
 **Fase 3.** Preencher os campos `en` e gerar `projetos/en/`.
 
