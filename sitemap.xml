@@ -2,37 +2,43 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://thiagokato.github.io/Portfolio/</loc>
-    <lastmod>2026-03-30</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://thiagokato.github.io/Portfolio/projetos/match-hub.html</loc>
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://thiagokato.github.io/Portfolio/Artigos/a_produtividade_do_vibe_coding_e_o_rigor_da_engenharia.html</loc>
-    <lastmod>2026-03-30</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://thiagokato.github.io/Portfolio/Artigos/a_revolucao_silenciosa.html</loc>
-    <lastmod>2026-03-30</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://thiagokato.github.io/Portfolio/Artigos/analise_de_outlier.html</loc>
-    <lastmod>2026-03-30</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://thiagokato.github.io/Portfolio/Artigos/o_paradoxo_cognitivo_da_ia.html</loc>
-    <lastmod>2026-03-30</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://thiagokato.github.io/Portfolio/Artigos/saas_repatriation.html</loc>
-    <lastmod>2026-03-30</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
