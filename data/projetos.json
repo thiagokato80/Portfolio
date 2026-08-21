@@ -1,0 +1,64 @@
+{
+  "grupos": [
+    {
+      "id": "plataformas",
+      "titulo": { "pt": "Plataformas de Negócio", "en": "" },
+      "descricao": { "pt": "Sistemas em operação, construídos para empresas e suas equipes.", "en": "" }
+    },
+    {
+      "id": "supplychain",
+      "titulo": { "pt": "Supply Chain & Inteligência de Decisão", "en": "" },
+      "descricao": { "pt": "Simulação, previsão e análise para cadeias de suprimento.", "en": "" }
+    },
+    {
+      "id": "laboratorio",
+      "titulo": { "pt": "Laboratório de Agentes de IA", "en": "" },
+      "descricao": { "pt": "Onde eu testo modelos, protocolos e arquiteturas antes de levá-los para produção.", "en": "" }
+    }
+  ],
+  "projetos": [
+    {
+      "slug": "match-hub",
+      "grupo": "plataformas",
+      "destaque": true,
+      "icone": "fa-hospital",
+      "titulo": { "pt": "Match Hub", "en": "" },
+      "subtitulo": { "pt": "Padronização e matching de insumos hospitalares com IA", "en": "" },
+      "resumo": { "pt": "Plataforma SaaS multi-tenant que normaliza descrições de insumos hospitalares com LLM, gera embeddings semânticos e encontra itens equivalentes entre catálogos que nunca falaram a mesma língua.", "en": "" },
+      "tags": ["Multi-tenant", "Vertex AI", "GCP"],
+      "stack": ["Python 3.12", "FastAPI", "Cloud Run", "Firestore", "Vertex AI Vector Search", "Gemini Flash", "React 19", "Cloud Tasks"],
+      "numeros": [
+        { "valor": "193", "rotulo": { "pt": "testes automatizados", "en": "" } },
+        { "valor": "768", "rotulo": { "pt": "dimensões por embedding", "en": "" } },
+        { "valor": "2", "rotulo": { "pt": "serviços Cloud Run, mesma imagem", "en": "" } }
+      ],
+      "secoes": [
+        {
+          "id": "problema",
+          "titulo": { "pt": "O problema", "en": "" },
+          "corpo": { "pt": "<p>Cada hospital, distribuidor e fabricante descreve o mesmo item de um jeito. \"Seringa 10ml BD\", \"SER DESC 10 ML\" e \"seringa descartável 10 mL c/ agulha\" são o mesmo produto para um comprador e três produtos diferentes para um ERP.</p><p>Sem um catálogo comum não existe comparação de preço confiável, consolidação de compra nem análise de consumo. A padronização manual não escala: um catálogo de dezenas de milhares de itens consome meses de trabalho especializado e desatualiza enquanto é feito.</p>", "en": "" }
+        },
+        {
+          "id": "solucao",
+          "titulo": { "pt": "A solução", "en": "" },
+          "corpo": { "pt": "<p>O Match Hub normaliza a descrição com <strong>Gemini Flash</strong>, gera um embedding de 768 dimensões com <code>text-multilingual-embedding-002</code> e busca similares no <strong>Vertex AI Vector Search</strong>. Um segundo passe de LLM re-ranqueia os candidatos, e o que fica ambíguo vai para uma fila de curadoria humana em vez de virar um match errado silencioso.</p><ul><li><strong>Multi-tenant com isolamento por chave de API</strong> — cada cliente enxerga apenas a própria base.</li><li><strong>Catálogo canônico central</strong>, com fluxo de proposta e aprovação.</li><li><strong>Importação assíncrona</strong> via Cloud Tasks, em lotes de 5.000 itens, sem travar a API.</li><li><strong>Conector pull para ERP</strong> — o Hub puxa o catálogo e para em revisão, em vez de processar tudo automaticamente.</li><li><strong>Promoção de itens entre bases</strong> reaproveita descrição, embedding e categoria já processados, sem reprocessar no LLM e sem cobrar duas vezes.</li></ul><p>Em produção são dois serviços Cloud Run a partir da mesma imagem, separados pela variável <code>SERVICE_ROLE</code>: um atende requisições, o outro consome a fila.</p>", "en": "" }
+        },
+        {
+          "id": "resultado",
+          "titulo": { "pt": "Resultado", "en": "" },
+          "corpo": { "pt": "<p>A padronização de um catálogo inteiro passou de projeto de meses para execução assíncrona acompanhada em tela. O trabalho humano deixou de ser digitar e passou a ser decidir os casos que a IA marcou como incertos.</p><p>A arquitetura de cache e promoção foi desenhada em torno de um detalhe de custo: processar o mesmo item duas vezes é dinheiro jogado fora quando o processamento é uma chamada de LLM.</p>", "en": "" }
+        }
+      ],
+      "pdf": null,
+      "status": { "pt": "Em produção", "en": "" },
+      "autoria": {
+        "tipo": "autoral",
+        "nota": { "pt": "Projeto autoral. Desenvolvido fora do contexto de trabalho, a partir de uma necessidade identificada de saneamento de base e avaliação de itens similares entre empresas; posteriormente apresentado e incorporado. Lógica, modelagem e bibliotecas de autoria própria.", "en": "" }
+      },
+      "seo": {
+        "title": { "pt": "Match Hub — padronização de insumos hospitalares com IA | Thiago Seiki Kato", "en": "" },
+        "description": { "pt": "Plataforma SaaS multi-tenant que padroniza e faz matching de catálogos de insumos hospitalares usando LLM, embeddings de 768 dimensões e busca vetorial no Google Cloud.", "en": "" }
+      }
+    }
+  ]
+}
