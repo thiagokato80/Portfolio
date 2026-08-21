@@ -13,7 +13,7 @@
 ## Global Constraints
 
 - **Zero dependências.** Nenhum `npm install`, nenhum `package.json`, nenhum `node_modules` neste repositório. Só a biblioteca padrão do Node.
-- **Módulos ESM** com extensão `.mjs`. Testes com `node:test` + `node:assert/strict`, executados por `node --test scripts/`.
+- **Módulos ESM** com extensão `.mjs`. Testes com `node:test` + `node:assert/strict`, executados por `node --test "scripts/**/*.test.mjs"`.
 - **Todo campo textual no JSON é `{ "pt": "...", "en": "" }`.** O `en` fica vazio na Fase 1, mas o campo existe. Nenhuma string solta.
 - **`t(campo, lang)` faz fallback para `pt`** quando `en` está vazio. Nunca renderiza string vazia por falta de tradução.
 - **Site base:** `https://thiagokato.github.io/Portfolio` (sem barra final nas concatenações).
@@ -87,7 +87,7 @@ test('escapar aceita não-string', () => {
 
 - [ ] **Step 2: Rodar e confirmar que falha**
 
-Run: `node --test scripts/lib/texto.test.mjs`
+Run: `node --test "scripts/**/*.test.mjs"lib/texto.test.mjs`
 Expected: FAIL — `Cannot find module .../texto.mjs`
 
 - [ ] **Step 3: Implementar `texto.mjs`**
@@ -117,7 +117,7 @@ export function escapar(s) {
 
 - [ ] **Step 4: Rodar e confirmar que passa**
 
-Run: `node --test scripts/lib/texto.test.mjs`
+Run: `node --test "scripts/**/*.test.mjs"lib/texto.test.mjs`
 Expected: PASS — 7 testes.
 
 - [ ] **Step 5: Escrever o teste que falha para `dados.mjs`**
@@ -207,7 +207,7 @@ test('grupo declarado sem projeto não é erro', () => {
 
 - [ ] **Step 6: Rodar e confirmar que falha**
 
-Run: `node --test scripts/lib/dados.test.mjs`
+Run: `node --test "scripts/**/*.test.mjs"lib/dados.test.mjs`
 Expected: FAIL — módulo inexistente.
 
 - [ ] **Step 7: Implementar `dados.mjs`**
@@ -324,7 +324,7 @@ export function carregar(caminho) {
 
 - [ ] **Step 8: Rodar e confirmar que passa**
 
-Run: `node --test scripts/lib/dados.test.mjs`
+Run: `node --test "scripts/**/*.test.mjs"lib/dados.test.mjs`
 Expected: PASS — 9 testes.
 
 - [ ] **Step 9: Criar `data/projetos.json` com os grupos e o primeiro projeto real**
@@ -520,7 +520,7 @@ test('em inglês muda lang, caminho e link do par', () => {
 
 - [ ] **Step 2: Rodar e confirmar que falha**
 
-Run: `node --test scripts/lib/template-caso.test.mjs`
+Run: `node --test "scripts/**/*.test.mjs"lib/template-caso.test.mjs`
 Expected: FAIL — módulo inexistente.
 
 - [ ] **Step 3: Implementar `template-caso.mjs`**
@@ -732,7 +732,7 @@ ${blocoPdf(projeto, lang, prefixo)}
 
 - [ ] **Step 4: Rodar e confirmar que passa**
 
-Run: `node --test scripts/lib/template-caso.test.mjs`
+Run: `node --test "scripts/**/*.test.mjs"lib/template-caso.test.mjs`
 Expected: PASS — 11 testes.
 
 - [ ] **Step 5: Commit**
@@ -838,7 +838,7 @@ test('em inglês o rótulo do link muda', () => {
 
 - [ ] **Step 2: Rodar e confirmar que falha**
 
-Run: `node --test scripts/lib/template-cards.test.mjs`
+Run: `node --test "scripts/**/*.test.mjs"lib/template-cards.test.mjs`
 Expected: FAIL — módulo inexistente.
 
 - [ ] **Step 3: Implementar `template-cards.mjs`**
@@ -911,7 +911,7 @@ ${doGrupo.map((p) => card(p, lang)).join('\n')}
 
 - [ ] **Step 4: Rodar e confirmar que passa**
 
-Run: `node --test scripts/lib/template-cards.test.mjs`
+Run: `node --test "scripts/**/*.test.mjs"lib/template-cards.test.mjs`
 Expected: PASS — 7 testes.
 
 - [ ] **Step 5: Commit**
@@ -990,7 +990,7 @@ test('não altera nada fora dos marcadores', () => {
 
 - [ ] **Step 2: Rodar e confirmar que falha**
 
-Run: `node --test scripts/lib/indice.test.mjs`
+Run: `node --test "scripts/**/*.test.mjs"lib/indice.test.mjs`
 Expected: FAIL — módulo inexistente.
 
 - [ ] **Step 3: Implementar `indice.mjs`**
@@ -1026,7 +1026,7 @@ export function injetar(html, bloco) {
 
 - [ ] **Step 4: Rodar e confirmar que passa**
 
-Run: `node --test scripts/lib/indice.test.mjs`
+Run: `node --test "scripts/**/*.test.mjs"lib/indice.test.mjs`
 Expected: PASS — 6 testes.
 
 - [ ] **Step 5: Escrever o teste que falha para `sitemap.mjs`**
@@ -1069,7 +1069,7 @@ test('lista vazia gera urlset vazio e válido', () => {
 
 - [ ] **Step 6: Rodar e confirmar que falha**
 
-Run: `node --test scripts/lib/sitemap.test.mjs`
+Run: `node --test "scripts/**/*.test.mjs"lib/sitemap.test.mjs`
 Expected: FAIL — módulo inexistente.
 
 - [ ] **Step 7: Implementar `sitemap.mjs`**
@@ -1103,12 +1103,12 @@ export function sitemap(entradas, hoje) {
 
 - [ ] **Step 8: Rodar e confirmar que passa**
 
-Run: `node --test scripts/lib/sitemap.test.mjs`
+Run: `node --test "scripts/**/*.test.mjs"lib/sitemap.test.mjs`
 Expected: PASS — 4 testes.
 
 - [ ] **Step 9: Rodar a suíte inteira**
 
-Run: `node --test scripts/`
+Run: `node --test "scripts/**/*.test.mjs"`
 Expected: PASS — 44 testes acumulados, 0 falhas (texto 7, dados 9, template-caso 11, template-cards 7, indice 6, sitemap 4).
 
 - [ ] **Step 10: Commit**
@@ -1225,7 +1225,7 @@ test('autoria sem nota imprime só o tipo', () => {
 
 - [ ] **Step 2: Rodar e confirmar que falha**
 
-Run: `node --test scripts/lib/ficha.test.mjs`
+Run: `node --test "scripts/**/*.test.mjs"lib/ficha.test.mjs`
 Expected: FAIL — módulo inexistente.
 
 - [ ] **Step 3: Implementar `ficha.mjs`**
@@ -1287,7 +1287,7 @@ export function fichas(dados, lang = 'pt') {
 
 - [ ] **Step 4: Rodar e confirmar que passa**
 
-Run: `node --test scripts/lib/ficha.test.mjs`
+Run: `node --test "scripts/**/*.test.mjs"lib/ficha.test.mjs`
 Expected: PASS — 8 testes.
 
 - [ ] **Step 5: Commit**
@@ -1436,7 +1436,7 @@ Expected: a execução do meio imprime `ERRO: marcador <!-- PROJETOS:FIM --> nã
 
 - [ ] **Step 6: Rodar a suíte inteira**
 
-Run: `node --test scripts/`
+Run: `node --test "scripts/**/*.test.mjs"`
 Expected: PASS — 52 testes, 0 falhas (os 44 anteriores + 8 de `ficha`).
 
 - [ ] **Step 7: Commit**
@@ -1554,7 +1554,7 @@ test('link interno quebrado é problema', () => {
 
 - [ ] **Step 2: Rodar e confirmar que falha**
 
-Run: `node --test scripts/verificar.test.mjs`
+Run: `node --test "scripts/**/*.test.mjs"verificar.test.mjs`
 Expected: FAIL — módulo inexistente.
 
 - [ ] **Step 3: Implementar `verificar.mjs`**
@@ -1664,7 +1664,7 @@ if (ehPrincipal) {
 
 - [ ] **Step 4: Rodar e confirmar que passa**
 
-Run: `node --test scripts/verificar.test.mjs`
+Run: `node --test "scripts/**/*.test.mjs"verificar.test.mjs`
 Expected: PASS — 6 testes.
 
 - [ ] **Step 5: Rodar o verificador no repositório real**
@@ -1674,7 +1674,7 @@ Expected: `verificação ok — nenhum problema encontrado`
 
 - [ ] **Step 5b: Rodar a suíte completa**
 
-Run: `node --test scripts/`
+Run: `node --test "scripts/**/*.test.mjs"`
 Expected: PASS — 58 testes, 0 falhas.
 
 - [ ] **Step 6: Commit**
@@ -2141,7 +2141,7 @@ são sobrescritos na próxima geração.
 ## Testes
 
 ```bash
-node --test scripts/
+node --test "scripts/**/*.test.mjs"
 ```
 
 Requer apenas Node.js 18 ou superior. Não há dependências: nada de `npm install`.
@@ -2157,7 +2157,7 @@ com `hreflang` cruzado.
 
 Run:
 ```bash
-node --test scripts/ && node scripts/gerar.mjs && node scripts/verificar.mjs
+node --test "scripts/**/*.test.mjs" && node scripts/gerar.mjs && node scripts/verificar.mjs
 ```
 Expected: todos os testes passam; 12 páginas geradas; `verificação ok — nenhum problema encontrado`.
 
