@@ -4,6 +4,7 @@ import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { carregar, carregarArtigos } from './lib/dados.mjs';
+import { temTraducao } from './lib/texto.mjs';
 
 function texto(caminho) {
   return existsSync(caminho) ? readFileSync(caminho, 'utf8') : '';
@@ -91,9 +92,14 @@ export function checar(raiz) {
   const titles = new Map();
   const descricoes = new Map();
 
+  const projetosEn = dados.projetos.filter(temTraducao).map((p) => p.slug);
+  const artigosEn = artigos.filter(temTraducao).map((a) => a.slug);
+
   return [
     ...checarDiretorio(raiz, 'projetos', dados.projetos.map((p) => p.slug), xml, titles, descricoes),
     ...checarDiretorio(raiz, 'Artigos', artigos.map((a) => a.slug), xml, titles, descricoes),
+    ...checarDiretorio(raiz, 'projetos/en', projetosEn, xml, titles, descricoes),
+    ...checarDiretorio(raiz, 'Artigos/en', artigosEn, xml, titles, descricoes),
   ];
 }
 

@@ -262,7 +262,11 @@ function initLanguageToggle() {
 }
 
 function applyLanguage(lang) {
-    const t = translations[lang];
+    // As traducoes dos cards vem de data/i18n-gerado.js, emitido por
+    // scripts/gerar.mjs a partir de data/projetos.json e data/artigos.json.
+    // Sem isso, os cards gerados ficariam em portugues ao trocar para EN.
+    const geradas = (window.TRADUCOES_GERADAS && window.TRADUCOES_GERADAS[lang]) || {};
+    const t = Object.assign({}, translations[lang], geradas);
 
     document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
 

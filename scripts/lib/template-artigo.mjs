@@ -1,4 +1,4 @@
-import { t, escapar } from './texto.mjs';
+import { t, escapar, temTraducao } from './texto.mjs';
 
 const SITE_PADRAO = 'https://thiagokato.github.io/Portfolio';
 const PALAVRAS_POR_MINUTO = 200;
@@ -86,6 +86,18 @@ export function paginaArtigo(artigo, opcoes = {}) {
   const urlPt = urlPagina(site, artigo.slug, 'pt');
   const urlEn = urlPagina(site, artigo.slug, 'en');
 
+  const traduzido = temTraducao(artigo);
+  const alternates = traduzido
+    ? `  <link rel="alternate" hreflang="pt-BR" href="${urlPt}">
+  <link rel="alternate" hreflang="en" href="${urlEn}">
+  <link rel="alternate" hreflang="x-default" href="${urlPt}">
+`
+    : '';
+  const alternador = traduzido
+    ? `          <li class="lang-switch"><a href="${lang === 'en' ? '../' + artigo.slug + '.html' : 'en/' + artigo.slug + '.html'}">${lang === 'en' ? 'Português' : 'English'}</a></li>
+`
+    : '';
+
   const titulo = escapar(t(artigo.titulo, lang));
   const lead = escapar(t(artigo.lead, lang));
   const tag = escapar(t(artigo.tag, lang));
@@ -155,10 +167,7 @@ export function paginaArtigo(artigo, opcoes = {}) {
   <title>${seoTitle}</title>
 
   <link rel="canonical" href="${url}">
-  <link rel="alternate" hreflang="pt-BR" href="${urlPt}">
-  <link rel="alternate" hreflang="en" href="${urlEn}">
-  <link rel="alternate" hreflang="x-default" href="${urlPt}">
-  <link rel="stylesheet" href="${prefixo}styles.css">
+${alternates}  <link rel="stylesheet" href="${prefixo}styles.css">
   <link rel="icon" type="image/png" href="${prefixo}favicon.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
@@ -177,7 +186,7 @@ ${jsonLd}
         </a>
         <ul class="nav-links">
           <li><a href="${prefixo}index.html#articles">${rotuloVoltar}</a></li>
-        </ul>
+${alternador}        </ul>
       </div>
     </nav>
   </header>

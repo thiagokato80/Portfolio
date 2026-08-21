@@ -2144,3 +2144,20 @@ section {
 .artigo-secao table + h3 {
     margin-top: 34px;
 }
+
+/* Alternador de idioma nas paginas geradas */
+.lang-switch a {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    padding: 6px 12px;
+    border: 1px solid var(--border-accent);
+    border-radius: 999px;
+    color: var(--accent);
+    text-decoration: none;
+    transition: background var(--transition-fast);
+}
+
+.lang-switch a:hover {
+    background: var(--accent-dim);
+}

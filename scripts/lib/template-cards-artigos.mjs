@@ -9,12 +9,12 @@ function card(artigo, lang) {
 
   return `                    <article class="article-card">
                         <div class="article-icon"><i class="fas ${escapar(artigo.icone)}"></i></div>
-                        <span class="article-tag">${escapar(t(artigo.tag, lang))}</span>
-                        <h3>${escapar(t(artigo.titulo, lang))}</h3>
-                        <p class="article-summary">${escapar(t(artigo.lead, lang))}</p>
-                        <p class="article-meta">${rotuloTempo}</p>
+                        <span class="article-tag" data-i18n="art-${artigo.slug}-tag">${escapar(t(artigo.tag, lang))}</span>
+                        <h3 data-i18n="art-${artigo.slug}-titulo">${escapar(t(artigo.titulo, lang))}</h3>
+                        <p class="article-summary" data-i18n="art-${artigo.slug}-lead">${escapar(t(artigo.lead, lang))}</p>
+                        <p class="article-meta" data-i18n="art-${artigo.slug}-meta">${rotuloTempo}</p>
                         <a href="${href}" class="article-link">
-                            <span>${rotuloLink}</span> <i class="fas fa-arrow-right"></i>
+                            <span data-i18n="art-${artigo.slug}-link">${rotuloLink}</span> <i class="fas fa-arrow-right"></i>
                         </a>
                     </article>`;
 }

@@ -31,11 +31,9 @@ test('usa os campos de seo no title e na description', () => {
   assert.match(html, /<meta name="description" content="Descrição SEO">/);
 });
 
-test('inclui canonical e hreflang cruzado', () => {
+test('inclui canonical absoluto', () => {
   const html = paginaCaso(projeto);
   assert.match(html, /<link rel="canonical" href="https:\/\/thiagokato\.github\.io\/Portfolio\/projetos\/match-hub\.html">/);
-  assert.match(html, /hreflang="pt-BR" href="https:\/\/thiagokato\.github\.io\/Portfolio\/projetos\/match-hub\.html"/);
-  assert.match(html, /hreflang="en" href="https:\/\/thiagokato\.github\.io\/Portfolio\/projetos\/en\/match-hub\.html"/);
 });
 
 test('não escapa o corpo das seções', () => {
@@ -93,4 +91,41 @@ test('em inglês muda lang, caminho e link do par', () => {
   assert.match(html, /<html lang="en"/);
   assert.match(html, /<link rel="canonical" href="[^"]*\/projetos\/en\/match-hub\.html">/);
   assert.match(html, /href="\.\.\/\.\.\/index\.html"/);
+});
+
+function traduzido(base) {
+  return {
+    ...base,
+    titulo: { pt: base.titulo.pt, en: 'Translated title' },
+    seo: { title: { pt: base.seo.title.pt, en: 'SEO EN' },
+            description: { pt: base.seo.description.pt, en: 'Desc EN' } },
+    secoes: base.secoes.map((x) => ({ ...x, corpo: { pt: x.corpo.pt, en: '<p>EN body</p>' } })),
+  };
+}
+
+test('sem tradução, não declara hreflang alternativo', () => {
+  const html = paginaCaso(projeto);
+  assert.doesNotMatch(html, /hreflang="en"/);
+  assert.doesNotMatch(html, /hreflang="x-default"/);
+  assert.match(html, /rel="canonical"/);
+});
+
+test('sem tradução, não mostra o alternador de idioma', () => {
+  assert.doesNotMatch(paginaCaso(projeto), /class="lang-switch"/);
+});
+
+test('com tradução, declara o par de hreflang', () => {
+  const html = paginaCaso(traduzido(projeto));
+  assert.match(html, /hreflang="pt-BR"/);
+  assert.match(html, /hreflang="en"/);
+  assert.match(html, /hreflang="x-default"/);
+});
+
+test('com tradução, mostra o alternador apontando para a contraparte', () => {
+  const pt = paginaCaso(traduzido(projeto), { lang: 'pt' });
+  assert.match(pt, /class="lang-switch"/);
+  assert.match(pt, /href="en\//);
+  const en = paginaCaso(traduzido(projeto), { lang: 'en' });
+  assert.match(en, /class="lang-switch"/);
+  assert.match(en, /href="\.\.\//);
 });

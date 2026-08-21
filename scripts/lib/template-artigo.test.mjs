@@ -105,3 +105,40 @@ test('em inglês muda lang e caminho', () => {
   assert.match(html, /canonical" href="[^"]*\/Artigos\/en\/a_revolucao_silenciosa\.html"/);
   assert.match(html, /min read/);
 });
+
+function traduzido(base) {
+  return {
+    ...base,
+    titulo: { pt: base.titulo.pt, en: 'Translated title' },
+    seo: { title: { pt: base.seo.title.pt, en: 'SEO EN' },
+            description: { pt: base.seo.description.pt, en: 'Desc EN' } },
+    secoes: base.secoes.map((x) => ({ ...x, corpo: { pt: x.corpo.pt, en: '<p>EN body</p>' } })),
+  };
+}
+
+test('sem tradução, não declara hreflang alternativo', () => {
+  const html = paginaArtigo(artigo);
+  assert.doesNotMatch(html, /hreflang="en"/);
+  assert.doesNotMatch(html, /hreflang="x-default"/);
+  assert.match(html, /rel="canonical"/);
+});
+
+test('sem tradução, não mostra o alternador de idioma', () => {
+  assert.doesNotMatch(paginaArtigo(artigo), /class="lang-switch"/);
+});
+
+test('com tradução, declara o par de hreflang', () => {
+  const html = paginaArtigo(traduzido(artigo));
+  assert.match(html, /hreflang="pt-BR"/);
+  assert.match(html, /hreflang="en"/);
+  assert.match(html, /hreflang="x-default"/);
+});
+
+test('com tradução, mostra o alternador apontando para a contraparte', () => {
+  const pt = paginaArtigo(traduzido(artigo), { lang: 'pt' });
+  assert.match(pt, /class="lang-switch"/);
+  assert.match(pt, /href="en\//);
+  const en = paginaArtigo(traduzido(artigo), { lang: 'en' });
+  assert.match(en, /class="lang-switch"/);
+  assert.match(en, /href="\.\.\//);
+});
