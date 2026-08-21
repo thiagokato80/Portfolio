@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { validar } from './dados.mjs';
+import { validar, validarArtigos } from './dados.mjs';
 
 function projetoValido(extra = {}) {
   return {
@@ -76,4 +76,50 @@ test('grupo declarado sem projeto não é erro', () => {
   const d = dadosValidos([projetoValido()]);
   d.grupos.push({ id: 'laboratorio', titulo: { pt: 'Lab', en: '' }, descricao: { pt: 'd', en: '' } });
   assert.deepEqual(validar(d), []);
+});
+
+function artigoValido(extra = {}) {
+  return {
+    slug: 'a_revolucao_silenciosa',
+    icone: 'fa-database',
+    data: '2026-01-29',
+    tag: { pt: 'Data Strategy', en: '' },
+    titulo: { pt: 'A Revolução Silenciosa', en: '' },
+    lead: { pt: 'Chamada do artigo', en: '' },
+    secoes: [{ id: 's1', titulo: { pt: 'Parte 1', en: '' }, corpo: { pt: '<p>x</p>', en: '' } }],
+    pdf: null,
+    seo: { title: { pt: 'T', en: '' }, description: { pt: 'D', en: '' } },
+    ...extra,
+  };
+}
+
+test('artigo válido não produz erro', () => {
+  assert.deepEqual(validarArtigos({ artigos: [artigoValido()] }), []);
+});
+
+test('slug de artigo aceita underscore', () => {
+  assert.deepEqual(validarArtigos({ artigos: [artigoValido({ slug: 'saas_repatriation' })] }), []);
+});
+
+test('slug de artigo com maiúscula é erro', () => {
+  assert.match(validarArtigos({ artigos: [artigoValido({ slug: 'Artigo' })] })[0], /slug inválido/);
+});
+
+test('slug de artigo duplicado é erro', () => {
+  const erros = validarArtigos({ artigos: [artigoValido(), artigoValido()] });
+  assert.match(erros[0], /slug duplicado/);
+});
+
+test('data de artigo fora do formato ISO é erro', () => {
+  assert.match(validarArtigos({ artigos: [artigoValido({ data: '19/06/2026' })] })[0], /data/);
+});
+
+test('artigo sem seções é erro', () => {
+  assert.match(validarArtigos({ artigos: [artigoValido({ secoes: [] })] })[0], /pelo menos uma seção/);
+});
+
+test('artigo sem lead é erro', () => {
+  const a = artigoValido();
+  delete a.lead;
+  assert.match(validarArtigos({ artigos: [a] })[0], /lead/);
 });

@@ -1901,3 +1901,216 @@ section {
 .caso-numeros + .caso-secao {
     margin-top: 0;
 }
+
+/* =========================================
+   PÁGINA DE ARTIGO
+   ========================================= */
+
+.artigo {
+    margin-top: 120px;
+    margin-bottom: 80px;
+    max-width: 760px;
+}
+
+.artigo-hero {
+    margin-bottom: 40px;
+}
+
+.artigo h1 {
+    font-size: clamp(1.9rem, 4.5vw, 2.9rem);
+    line-height: 1.2;
+    margin: 14px 0 16px;
+}
+
+.artigo-lead {
+    font-size: 1.12rem;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+.artigo-meta {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.artigo-sep {
+    color: var(--accent);
+}
+
+.artigo-sumario {
+    padding: 24px 28px;
+    margin-bottom: 48px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 16px;
+}
+
+.artigo-sumario h2 {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+}
+
+.artigo-sumario ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: var(--text-secondary);
+}
+
+.artigo-sumario li {
+    margin-bottom: 10px;
+    padding-left: 16px;
+    position: relative;
+}
+
+.artigo-sumario li::before {
+    content: '\2192';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    opacity: 0.55;
+}
+
+.artigo-sumario a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.artigo-sumario a:hover {
+    color: var(--accent);
+}
+
+.artigo-secao {
+    margin-bottom: 48px;
+    scroll-margin-top: 100px;
+}
+
+.artigo-secao h2 {
+    font-size: 1.45rem;
+    line-height: 1.3;
+    margin-bottom: 18px;
+}
+
+.artigo-secao p {
+    color: var(--text-secondary);
+    font-size: 1.02rem;
+    line-height: 1.85;
+    margin-bottom: 20px;
+}
+
+.artigo-secao ul,
+.artigo-secao ol {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    padding-left: 22px;
+    margin-bottom: 22px;
+}
+
+.artigo-secao li {
+    margin-bottom: 12px;
+}
+
+.artigo-secao strong {
+    color: var(--text-primary);
+}
+
+.artigo-secao code {
+    font-family: var(--font-mono);
+    font-size: 0.86em;
+    padding: 2px 6px;
+    border-radius: 6px;
+    background: var(--bg-secondary);
+    color: var(--accent);
+}
+
+.artigo-secao blockquote {
+    margin: 0 0 22px;
+    padding: 4px 0 4px 22px;
+    border-left: 2px solid var(--accent);
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Tabelas dentro de artigo — rolam sozinhas em telas estreitas */
+.artigo-secao table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 24px;
+    font-size: 0.92rem;
+    display: block;
+    overflow-x: auto;
+}
+
+.artigo-secao th,
+.artigo-secao td {
+    padding: 12px 14px;
+    text-align: left;
+    vertical-align: top;
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    min-width: 200px;
+}
+
+.artigo-secao th {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.artigo-pdf {
+    margin-bottom: 40px;
+}
+
+/* Meta no card de artigo do index */
+.article-meta {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--text-dim);
+    margin-bottom: 14px;
+}
+
+@media (max-width: 768px) {
+    .artigo {
+        margin-top: 90px;
+    }
+    .artigo-sumario {
+        padding: 20px;
+    }
+}
+
+/* =========================================
+   NEUTRALIZACAO DE SELETORES DE ELEMENTO
+   nas paginas geradas (caso e artigo)
+
+   O site estiliza seletores de elemento nus: `header` (barra fixa),
+   `nav` (altura 72px) e `section` (padding de 80-140px). Conteudo gerado
+   que use essas tags herda esses estilos e quebra. Estas regras isolam as
+   paginas geradas. Guardadas por scripts/lib/estilos.test.mjs.
+   ========================================= */
+
+.caso section,
+.artigo section {
+    padding: 0;
+}
+
+.artigo-sumario,
+.caso nav,
+.artigo nav {
+    height: auto;
+}

@@ -104,3 +104,77 @@ export function carregar(caminho) {
   }
   return dados;
 }
+
+/** Valida a estrutura de artigos. Devolve lista de erros — vazia significa válido. */
+export function validarArtigos(dados) {
+  const erros = [];
+
+  if (!dados || !Array.isArray(dados.artigos)) {
+    return ['arquivo precisa de um array "artigos"'];
+  }
+
+  const vistos = new Set();
+  for (const a of dados.artigos) {
+    const slug = a?.slug ?? '(sem slug)';
+
+    if (typeof a.slug !== 'string' || !/^[a-z0-9_]+$/.test(a.slug)) {
+      erros.push(`${slug}: slug inválido — use apenas a-z, 0-9 e underscore`);
+    } else if (vistos.has(a.slug)) {
+      erros.push(`slug duplicado: ${a.slug}`);
+    } else {
+      vistos.add(a.slug);
+    }
+
+    if (typeof a.data !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(a.data)) {
+      erros.push(`${slug}: campo "data" precisa estar no formato AAAA-MM-DD`);
+    }
+
+    for (const nome of ['titulo', 'lead', 'tag']) {
+      const e = erroCampoTexto(a[nome], nome, slug);
+      if (e) erros.push(e);
+    }
+
+    if (!a.seo) {
+      erros.push(`${slug}: campo "seo" ausente`);
+    } else {
+      for (const nome of ['title', 'description']) {
+        const e = erroCampoTexto(a.seo[nome], `seo.${nome}`, slug);
+        if (e) erros.push(e);
+      }
+    }
+
+    if (!Array.isArray(a.secoes) || a.secoes.length === 0) {
+      erros.push(`${slug}: precisa de pelo menos uma seção em "secoes"`);
+    } else {
+      for (const [i, s] of a.secoes.entries()) {
+        if (typeof s?.id !== 'string') erros.push(`${slug}: secoes[${i}] precisa de "id"`);
+        for (const nome of ['titulo', 'corpo']) {
+          const e = erroCampoTexto(s?.[nome], `secoes[${i}].${nome}`, slug);
+          if (e) erros.push(e);
+        }
+      }
+    }
+
+    if (a.pdf !== null && typeof a.pdf !== 'string') {
+      erros.push(`${slug}: "pdf" precisa ser caminho string ou null`);
+    }
+  }
+
+  return erros;
+}
+
+/** Lê e valida o arquivo de artigos. Lança Error listando todos os problemas. */
+export function carregarArtigos(caminho) {
+  const bruto = readFileSync(caminho, 'utf8');
+  let dados;
+  try {
+    dados = JSON.parse(bruto);
+  } catch (e) {
+    throw new Error(`${caminho}: JSON inválido — ${e.message}`);
+  }
+  const erros = validarArtigos(dados);
+  if (erros.length > 0) {
+    throw new Error(`${caminho}: ${erros.length} problema(s)\n  - ${erros.join('\n  - ')}`);
+  }
+  return dados;
+}

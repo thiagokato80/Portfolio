@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { injetar, MARCA_INICIO, MARCA_FIM } from './indice.mjs';
+import { injetar, MARCA_INICIO, MARCA_FIM, MARCA_ARTIGOS_INICIO, MARCA_ARTIGOS_FIM } from './indice.mjs';
 
 const base = `<section>
 ${MARCA_INICIO}
@@ -40,4 +40,20 @@ test('não altera nada fora dos marcadores', () => {
   const saida = injetar(html, 'novo');
   assert.ok(saida.startsWith('ANTES'));
   assert.ok(saida.endsWith('DEPOIS'));
+});
+
+test('aceita um par de marcadores alternativo', () => {
+  const html = `A${MARCA_ARTIGOS_INICIO}velho${MARCA_ARTIGOS_FIM}B`;
+  const saida = injetar(html, 'novo', MARCA_ARTIGOS_INICIO, MARCA_ARTIGOS_FIM);
+  assert.match(saida, /novo/);
+  assert.doesNotMatch(saida, /velho/);
+});
+
+test('marcadores de artigo e de projeto são distintos', () => {
+  assert.notEqual(MARCA_INICIO, MARCA_ARTIGOS_INICIO);
+  assert.notEqual(MARCA_FIM, MARCA_ARTIGOS_FIM);
+});
+
+test('erro do par alternativo cita o marcador certo', () => {
+  assert.throws(() => injetar('nada aqui', 'x', MARCA_ARTIGOS_INICIO, MARCA_ARTIGOS_FIM), /ARTIGOS:INICIO/);
 });

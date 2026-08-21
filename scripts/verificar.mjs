@@ -3,7 +3,7 @@
 import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { carregar } from './lib/dados.mjs';
+import { carregar, carregarArtigos } from './lib/dados.mjs';
 
 function texto(caminho) {
   return existsSync(caminho) ? readFileSync(caminho, 'utf8') : '';
@@ -14,77 +14,87 @@ function extrair(html, regex) {
   return m ? m[1].trim() : '';
 }
 
-/** Roda as seis checagens. Devolve lista de problemas — vazia significa tudo certo. */
-export function checar(raiz) {
+/**
+ * Checa um diretório de páginas geradas contra a lista de slugs esperada.
+ * Cobre: slug sem página, página órfã, ausência no sitemap, title/description
+ * vazio ou duplicado, e link interno quebrado.
+ */
+function checarDiretorio(raiz, dir, slugs, xml, titles, descricoes) {
   const problemas = [];
-
-  let dados;
-  try {
-    dados = carregar(join(raiz, 'data', 'projetos.json'));
-  } catch (e) {
-    return [e.message];
-  }
-
-  const dirProjetos = join(raiz, 'projetos');
-  const arquivos = existsSync(dirProjetos)
-    ? readdirSync(dirProjetos).filter((f) => f.endsWith('.html'))
+  const caminhoDir = join(raiz, dir);
+  const arquivos = existsSync(caminhoDir)
+    ? readdirSync(caminhoDir).filter((f) => f.endsWith('.html'))
     : [];
-  const slugs = new Set(dados.projetos.map((p) => p.slug));
+  const esperados = new Set(slugs);
 
-  // 1) todo slug virou página
-  for (const p of dados.projetos) {
-    if (!existsSync(join(dirProjetos, `${p.slug}.html`))) {
-      problemas.push(`falta a página projetos/${p.slug}.html — rode node scripts/gerar.mjs`);
+  for (const slug of slugs) {
+    if (!existsSync(join(caminhoDir, `${slug}.html`))) {
+      problemas.push(`falta a página ${dir}/${slug}.html — rode node scripts/gerar.mjs`);
+    }
+    if (!xml.includes(`/${dir}/${slug}.html`)) {
+      problemas.push(`sitemap.xml não contém /${dir}/${slug}.html`);
     }
   }
-
-  // 2) nenhuma página órfã
-  for (const f of arquivos) {
-    if (!slugs.has(f.replace(/\.html$/, ''))) {
-      problemas.push(`projetos/${f} é órfã — nenhum slug corresponde no JSON`);
-    }
-  }
-
-  // 3) sitemap em sincronia
-  const xml = texto(join(raiz, 'sitemap.xml'));
-  for (const p of dados.projetos) {
-    if (!xml.includes(`/projetos/${p.slug}.html`)) {
-      problemas.push(`sitemap.xml não contém /projetos/${p.slug}.html`);
-    }
-  }
-
-  // 4) title e description únicos e não vazios  +  5) links internos
-  const titles = new Map();
-  const descricoes = new Map();
 
   for (const f of arquivos) {
-    const caminho = join(dirProjetos, f);
+    if (!esperados.has(f.replace(/\.html$/, ''))) {
+      problemas.push(`${dir}/${f} é órfã — nenhum slug corresponde nos dados`);
+      continue;
+    }
+
+    const caminho = join(caminhoDir, f);
     const html = texto(caminho);
 
     const title = extrair(html, /<title>([\s\S]*?)<\/title>/i);
     const desc = extrair(html, /<meta name="description" content="([^"]*)"/i);
 
-    if (!title) problemas.push(`projetos/${f}: <title> vazio`);
-    else if (titles.has(title)) problemas.push(`title duplicado entre projetos/${f} e projetos/${titles.get(title)}: "${title}"`);
-    else titles.set(title, f);
+    if (!title) problemas.push(`${dir}/${f}: <title> vazio`);
+    else if (titles.has(title)) problemas.push(`title duplicado entre ${dir}/${f} e ${titles.get(title)}: "${title}"`);
+    else titles.set(title, `${dir}/${f}`);
 
-    if (!desc) problemas.push(`projetos/${f}: meta description vazia`);
-    else if (descricoes.has(desc)) problemas.push(`description duplicada entre projetos/${f} e projetos/${descricoes.get(desc)}`);
-    else descricoes.set(desc, f);
+    if (!desc) problemas.push(`${dir}/${f}: meta description vazia`);
+    else if (descricoes.has(desc)) problemas.push(`description duplicada entre ${dir}/${f} e ${descricoes.get(desc)}`);
+    else descricoes.set(desc, `${dir}/${f}`);
 
     for (const m of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
       const alvo = m[1];
       if (/^(https?:|mailto:|tel:|#|data:)/.test(alvo)) continue;
       const semAncora = alvo.split('#')[0];
       if (!semAncora) continue;
-      const absoluto = resolve(dirProjetos, decodeURIComponent(semAncora));
+      const absoluto = resolve(caminhoDir, decodeURIComponent(semAncora));
       if (!existsSync(absoluto)) {
-        problemas.push(`projetos/${f}: link interno quebrado — ${alvo}`);
+        problemas.push(`${dir}/${f}: link interno quebrado — ${alvo}`);
       }
     }
   }
 
   return problemas;
+}
+
+/** Roda as checagens sobre projetos e artigos. Vazia significa tudo certo. */
+export function checar(raiz) {
+  let dados;
+  let artigos;
+  try {
+    dados = carregar(join(raiz, 'data', 'projetos.json'));
+  } catch (e) {
+    return [e.message];
+  }
+  try {
+    artigos = carregarArtigos(join(raiz, 'data', 'artigos.json')).artigos;
+  } catch (e) {
+    if (e.code !== 'ENOENT') return [e.message];
+    artigos = [];
+  }
+
+  const xml = texto(join(raiz, 'sitemap.xml'));
+  const titles = new Map();
+  const descricoes = new Map();
+
+  return [
+    ...checarDiretorio(raiz, 'projetos', dados.projetos.map((p) => p.slug), xml, titles, descricoes),
+    ...checarDiretorio(raiz, 'Artigos', artigos.map((a) => a.slug), xml, titles, descricoes),
+  ];
 }
 
 const ehPrincipal = process.argv[1] && resolve(process.argv[1]) === resolve(fileURLToPath(import.meta.url));

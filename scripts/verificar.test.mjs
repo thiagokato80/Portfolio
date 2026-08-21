@@ -84,3 +84,61 @@ test('link interno quebrado é problema', () => {
   assert.ok(checar(raiz).some((p) => /nao-existe\.pdf/.test(p)));
   rmSync(raiz, { recursive: true, force: true });
 });
+
+function montarComArtigos({ slugs = ['a1'], paginas = ['a1'], noSitemap = [] } = {}) {
+  const raiz = mkdtempSync(join(tmpdir(), 'verifart-'));
+  mkdirSync(join(raiz, 'data'));
+  mkdirSync(join(raiz, 'projetos'));
+  mkdirSync(join(raiz, 'Artigos'));
+  writeFileSync(join(raiz, 'index.html'), '<html></html>');
+  writeFileSync(join(raiz, 'data', 'projetos.json'), JSON.stringify({ grupos: [], projetos: [] }));
+
+  const artigos = slugs.map((slug) => ({
+    slug, icone: 'fa-x', data: '2026-01-01',
+    tag: { pt: 'T', en: '' }, titulo: { pt: slug, en: '' }, lead: { pt: 'l', en: '' },
+    secoes: [{ id: 's', titulo: { pt: 'S', en: '' }, corpo: { pt: '<p>x</p>', en: '' } }],
+    pdf: null, seo: { title: { pt: `TA ${slug}`, en: '' }, description: { pt: `DA ${slug}`, en: '' } },
+  }));
+  writeFileSync(join(raiz, 'data', 'artigos.json'), JSON.stringify({ artigos }));
+
+  for (const s of paginas) {
+    writeFileSync(join(raiz, 'Artigos', `${s}.html`),
+      `<title>TA ${s}</title><meta name="description" content="DA ${s}"><a href="../index.html">v</a>`);
+  }
+  const urls = slugs.filter((s) => !noSitemap.includes(s)).map((s) => `${SITE}/Artigos/${s}.html`);
+  writeFileSync(join(raiz, 'sitemap.xml'),
+    `<?xml version="1.0"?><urlset>${urls.map((u) => `<url><loc>${u}</loc></url>`).join('')}</urlset>`);
+  return raiz;
+}
+
+test('artigo bem formado não gera problema', () => {
+  const raiz = montarComArtigos();
+  assert.deepEqual(checar(raiz), []);
+  rmSync(raiz, { recursive: true, force: true });
+});
+
+test('artigo sem página gerada é problema', () => {
+  const raiz = montarComArtigos({ slugs: ['a1', 'a2'], paginas: ['a1'] });
+  assert.ok(checar(raiz).some((p) => /Artigos\/a2\.html/.test(p) && /falta/i.test(p)));
+  rmSync(raiz, { recursive: true, force: true });
+});
+
+test('página de artigo órfã é problema', () => {
+  const raiz = montarComArtigos({ slugs: ['a1'], paginas: ['a1', 'zumbi'] });
+  assert.ok(checar(raiz).some((p) => /zumbi/.test(p) && /órf/i.test(p)));
+  rmSync(raiz, { recursive: true, force: true });
+});
+
+test('artigo fora do sitemap é problema', () => {
+  const raiz = montarComArtigos({ slugs: ['a1', 'a2'], paginas: ['a1', 'a2'], noSitemap: ['a2'] });
+  assert.ok(checar(raiz).some((p) => /sitemap/i.test(p) && /a2/.test(p)));
+  rmSync(raiz, { recursive: true, force: true });
+});
+
+test('title duplicado entre projeto e artigo é detectado', () => {
+  const raiz = montarComArtigos();
+  writeFileSync(join(raiz, 'projetos', 'p1.html'),
+    '<title>TA a1</title><meta name="description" content="outra"><a href="../index.html">v</a>');
+  assert.ok(checar(raiz).some((p) => /órf/i.test(p)));
+  rmSync(raiz, { recursive: true, force: true });
+});
