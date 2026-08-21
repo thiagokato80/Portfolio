@@ -48,6 +48,7 @@ temáticos.
 data/projetos.json ──► scripts/gerar.mjs ──► projetos/<slug>.html
                                         ──► index.html (bloco entre marcadores)
                                         ──► sitemap.xml
+                                        ──► PROJETOS.md (fichas para currículo)
 ```
 
 O gerador roda na máquina do autor (`node scripts/gerar.mjs`). Só a saída
@@ -90,6 +91,7 @@ arquivo.
   ],
   "pdf": null,
   "status": { "pt": "Em produção", "en": "" },
+  "autoria": { "tipo": "autoral", "nota": { "pt": "...", "en": "" } },
   "seo": { "title": { "pt": "...", "en": "" }, "description": { "pt": "...", "en": "" } }
 }
 ```
@@ -127,11 +129,33 @@ seção a cada um.
 planejada com o sistema da empresa é capítulo novo do mesmo produto, e entra
 como seção destacada na página de caso — não como projeto separado.
 
-### Confidencialidade
+### Autoria e confidencialidade
 
 Projetos corporativos usam **nome do projeto com cliente descrito genericamente**
-(ex.: "Match Hub — healthtech de distribuição hospitalar"). Nenhuma razão social,
-nenhum dado de cliente, nenhuma captura de tela com dados reais.
+(ex.: "Procurement Condominial — administradora de condomínios"). Nenhuma razão
+social, nenhum dado de cliente, nenhuma captura de tela com dados reais.
+
+Todo projeto declara `autoria.tipo`, com um de três valores: `autoral`,
+`sob contrato`, `desenvolvido internamente`. O campo existe porque obriga a
+escolher a palavra certa antes de publicar — o site é registro público e datado —
+e porque calibra a redação do currículo, gerado da mesma fonte.
+
+**Match Hub e Supply Chain Pipeline Builder são `autoral`.** Ambos foram
+desenvolvidos pelo autor fora do contexto de trabalho, a partir de uma
+necessidade que ele identificou, e depois apresentados para adoção. A redação
+deve refletir isso com precisão e **nunca** usar formulações que sugiram
+encomenda — "desenvolvido para a empresa", "projeto da empresa", ou o nome de
+qualquer empregador. O campo `autoria.nota` carrega esse histórico por extenso.
+
+### PROJETOS.md
+
+Quarta saída do gerador, na raiz do repositório: uma ficha por projeto com uma
+linha de resumo de negócio, problema, arquitetura, stack, resultado, status e
+autoria. É o insumo para currículo e LinkedIn.
+
+Gerado, não escrito à mão — para que site e currículo fiquem ancorados na mesma
+fonte por construção. `Resultado` sem métrica medida escreve literalmente
+"sem métrica medida", nunca um número estimado.
 
 ### Fonte dos fatos
 
@@ -182,6 +206,28 @@ do PDF. O PDF passa a ser anexo, não o conteúdo — é o que resolve a indexa�
 A página reusa `styles.css`. Classes novas necessárias: faixa de números, grid de
 stack, badge de status, cabeçalho de subgrupo.
 
+### Decisão de UI (2026-08-21)
+
+A linguagem visual do site é mantida: paleta midnight/teal, Outfit + JetBrains
+Mono, numeração das seções. Uma avaliação com capturas em 1440px e 390px
+concluiu que o conjunto é coerente e que a seção de Serviços é a referência de
+densidade do site.
+
+O que muda é a **seção de Projetos**, que hoje usa cards de largura total com um
+painel de ícone de cerca de 30% praticamente vazio — densidade ruim que piora com
+12 projetos, e que no mobile empurra o texto para fora da primeira dobra.
+
+- Cards de projeto adotam o formato dos cards de Serviços: grid compacto, ícone
+  pequeno inline, sem painel morto.
+- `destaque: true` passa a ocupar duas colunas, em vez de largura total.
+- No hero, os dois downloads de currículo viram ação secundária, para que
+  "Ver Projetos" seja visualmente primário.
+
+**Bug corrigido de passagem:** o card do Lótus Escoteiros reusa as chaves de i18n
+`scpb-f1|f2|f3` (`index.html:485-490`), então o JavaScript sobrescreve suas
+features com as do Pipeline Builder. Está no ar. A geração por dados elimina a
+classe do erro.
+
 ---
 
 ## SEO
@@ -191,8 +237,10 @@ Cada página gerada recebe:
 - `<title>` e `meta description` próprios, vindos de `seo` no JSON
 - `<link rel="canonical">` absoluto
 - Open Graph e Twitter Card
-- JSON-LD: `SoftwareApplication` (produtos) ou `CreativeWork` (estudos), mais
-  `BreadcrumbList`
+- JSON-LD: `SoftwareApplication` mais `BreadcrumbList`, num `@graph`. Todos os 12
+  projetos são software, então não há ramo `CreativeWork`. O nó
+  `SoftwareApplication` referencia o autor como `Person`, ligando cada página ao
+  `Person` do `index.html`.
 - `hreflang` cruzado entre pt e en
 
 `sitemap.xml` é regenerado inteiro pelo gerador, incluindo as URLs existentes de
