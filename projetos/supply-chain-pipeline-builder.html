@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Construtor visual no-code de pipelines de supply chain: 15 operações de ETL, classificação ABC/XYZ, Monte Carlo, ARIMA/SARIMA e exportação do fluxo como script Python.">
+  <meta name="author" content="Thiago Seiki Kato">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://thiagokato.github.io/Portfolio/projetos/supply-chain-pipeline-builder.html">
+  <meta property="og:title" content="Supply Chain Pipeline Builder — pipelines no-code de previsão e estoque | Thiago Seiki Kato">
+  <meta property="og:description" content="Construtor visual no-code de pipelines de supply chain: 15 operações de ETL, classificação ABC/XYZ, Monte Carlo, ARIMA/SARIMA e exportação do fluxo como script Python.">
+  <meta property="og:image" content="https://thiagokato.github.io/Portfolio/Currículo/Foto.jpg">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="Supply Chain Pipeline Builder — pipelines no-code de previsão e estoque | Thiago Seiki Kato">
+  <meta property="twitter:description" content="Construtor visual no-code de pipelines de supply chain: 15 operações de ETL, classificação ABC/XYZ, Monte Carlo, ARIMA/SARIMA e exportação do fluxo como script Python.">
+
+  <title>Supply Chain Pipeline Builder — pipelines no-code de previsão e estoque | Thiago Seiki Kato</title>
+
+  <link rel="canonical" href="https://thiagokato.github.io/Portfolio/projetos/supply-chain-pipeline-builder.html">
+  <link rel="alternate" hreflang="pt-BR" href="https://thiagokato.github.io/Portfolio/projetos/supply-chain-pipeline-builder.html">
+  <link rel="alternate" hreflang="en" href="https://thiagokato.github.io/Portfolio/projetos/en/supply-chain-pipeline-builder.html">
+  <link rel="alternate" hreflang="x-default" href="https://thiagokato.github.io/Portfolio/projetos/supply-chain-pipeline-builder.html">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Supply Chain Pipeline Builder",
+      "description": "Construtor visual no-code de pipelines de supply chain: 15 operações de ETL, classificação ABC/XYZ, Monte Carlo, ARIMA/SARIMA e exportação do fluxo como script Python.",
+      "applicationCategory": "BusinessApplication",
+      "url": "https://thiagokato.github.io/Portfolio/projetos/supply-chain-pipeline-builder.html",
+      "author": {
+        "@type": "Person",
+        "name": "Thiago Seiki Kato",
+        "url": "https://thiagokato.github.io/Portfolio/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Portfólio",
+          "item": "https://thiagokato.github.io/Portfolio/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Supply Chain Pipeline Builder",
+          "item": "https://thiagokato.github.io/Portfolio/projetos/supply-chain-pipeline-builder.html"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <script>
+(function () {
+  try {
+    var tema = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', tema);
+  } catch (e) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+})();
+</script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="nav-container">
+        <a href="../index.html" class="logo">
+          <span class="logo-bracket">[</span>TSK<span class="logo-bracket">]</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="../index.html#projects">Voltar ao portfólio</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container caso">
+    <article>
+      <div class="caso-hero">
+        <div class="caso-hero-icone"><i class="fas fa-network-wired"></i></div>
+        <span class="status-badge">Em evolução</span>
+        <h1>Supply Chain Pipeline Builder</h1>
+        <p class="caso-subtitulo">Construtor visual de pipelines de análise e previsão de demanda</p>
+        <p class="about-lead">Ferramenta no-code onde o analista monta fluxos de dados conectando cards num canvas — ETL, classificação de estoque, simulação de Monte Carlo e previsão de séries temporais — e exporta o pipeline pronto como script Python.</p>
+        <div class="project-tags">
+          <span class="tag">No-Code</span>
+          <span class="tag">Forecasting</span>
+          <span class="tag">Monte Carlo</span>
+        </div>
+      </div>
+
+      <div class="caso-numeros">
+        <div class="caso-numero">
+          <span class="caso-numero-valor">15</span>
+          <span class="caso-numero-rotulo">operações de ETL</span>
+        </div>
+        <div class="caso-numero">
+          <span class="caso-numero-valor">14</span>
+          <span class="caso-numero-rotulo">templates prontos</span>
+        </div>
+        <div class="caso-numero">
+          <span class="caso-numero-valor">3.3</span>
+          <span class="caso-numero-rotulo">versão em uso</span>
+        </div>
+      </div>
+      <section class="caso-secao" id="problema">
+        <h2>O problema</h2>
+        <p>Análise de supply chain vive numa terra de ninguém: complexa demais para planilha, específica demais para uma ferramenta de BI, e frequente demais para virar projeto de engenharia de dados toda vez.</p><p>O analista que sabe a regra do negócio — como classificar o estoque, que nível de serviço usar, o que é sazonalidade e o que é ruído — geralmente não escreve o Python que faz a conta. E quem escreve o Python não conhece a regra.</p>
+      </section>
+      <section class="caso-secao" id="solucao">
+        <h2>A solução</h2>
+        <p>Um canvas onde cada card é uma operação e as conexões são o fluxo de dados. As colunas disponíveis são detectadas automaticamente do card anterior, e cada etapa mostra a prévia do resultado — o analista vê a transformação acontecendo, não descobre o erro no fim.</p><ul><li><strong>15 operações de ETL</strong> — filtro, cálculo com condicional, junção, agregação, pivot, datas, texto, deduplicação, união, conversão de tipo, tratamento de nulos.</li><li><strong>Análise de estoque</strong> — classificação ABC/XYZ, estoque de segurança, ponto de reposição e lote econômico, com conversão automática de período.</li><li><strong>Monte Carlo</strong> para estoque de segurança otimizado por custo, sobre mais de 10.000 simulações.</li><li><strong>Previsão</strong> — média móvel simples, ponderada e exponencial, mais ARIMA/SARIMA com banda de confiança e suporte por grupo, com métricas de acurácia MAE, RMSE e MAPE.</li><li><strong>Validação antes de executar</strong>, com checagem local instantânea e análise profunda no backend, apontando o card exato de cada problema.</li><li><strong>Exportação como código</strong> — qualquer pipeline vira script Python ou notebook Jupyter executável, gerado inteiramente no navegador.</li></ul><p>A exportação como código é a decisão de produto mais importante: a ferramenta não aprisiona o trabalho. O que foi montado no canvas sai como Python legível, que roda sem ela.</p>
+      </section>
+      <section class="caso-secao" id="integracao">
+        <h2>Capítulo atual: integração de demanda planejada</h2>
+        <p>A frente em desenvolvimento hoje conecta o Pipeline Builder a um sistema corporativo de planejamento, para que a previsão deixe de ser um exercício isolado e passe a alimentar a demanda planejada da operação.</p><p>É a transição que mais interessa no projeto: sair de ferramenta de análise, onde o resultado é um gráfico que alguém interpreta, para componente de sistema, onde o resultado é um número que outro processo consome — com o rigor de contrato de dados e reprodutibilidade que isso exige.</p>
+      </section>
+      <section class="caso-secao" id="resultado">
+        <h2>Resultado</h2>
+        <p>Análises que dependiam de um desenvolvedor disponível passaram a ser montadas por quem conhece a regra de negócio. E o pipeline montado no canvas não fica preso à ferramenta: sai como código.</p>
+      </section>
+      <section class="caso-secao" id="stack">
+        <h2>Stack</h2>
+        <ul class="caso-stack">
+          <li>Python</li>
+          <li>FastAPI</li>
+          <li>React</li>
+          <li>Pandas</li>
+          <li>statsmodels</li>
+          <li>SciPy</li>
+          <li>Recharts</li>
+        </ul>
+      </section>
+      <section class="caso-secao" id="documento">
+        <h2>Documento completo</h2>
+        <iframe src="../Projetos/LogiChain_Architect_Pro_Intelligent_Supply_Chain.pdf" class="caso-pdf" title="Supply Chain Pipeline Builder" loading="lazy"></iframe>
+        <p><a class="project-link" href="../Projetos/LogiChain_Architect_Pro_Intelligent_Supply_Chain.pdf" target="_blank" rel="noopener">
+          <span>Baixar o PDF completo</span> <i class="fas fa-download"></i>
+        </a></p>
+      </section>
+      <section class="caso-cta">
+        <h2>Precisa de algo parecido?</h2>
+        <p>Construo sistemas como este de ponta a ponta — arquitetura, implementação e entrega.</p>
+        <a class="project-link" href="../index.html#contact">
+          <span>Vamos conversar</span> <i class="fas fa-arrow-right"></i>
+        </a>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <p>© 2026 Thiago Seiki Kato</p>
+  </footer>
+</body>
+
+</html>

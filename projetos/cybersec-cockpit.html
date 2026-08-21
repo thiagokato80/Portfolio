@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Framework interno de pentest com agentes de IA: planejamento dinâmico, SAST, SCA, DAST e rede encadeados, revisão humana e escopo governado por autorização auditada.">
+  <meta name="author" content="Thiago Seiki Kato">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://thiagokato.github.io/Portfolio/projetos/cybersec-cockpit.html">
+  <meta property="og:title" content="CyberSec Cockpit — pentest agêntico com autorização auditada | Thiago Seiki Kato">
+  <meta property="og:description" content="Framework interno de pentest com agentes de IA: planejamento dinâmico, SAST, SCA, DAST e rede encadeados, revisão humana e escopo governado por autorização auditada.">
+  <meta property="og:image" content="https://thiagokato.github.io/Portfolio/Currículo/Foto.jpg">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="CyberSec Cockpit — pentest agêntico com autorização auditada | Thiago Seiki Kato">
+  <meta property="twitter:description" content="Framework interno de pentest com agentes de IA: planejamento dinâmico, SAST, SCA, DAST e rede encadeados, revisão humana e escopo governado por autorização auditada.">
+
+  <title>CyberSec Cockpit — pentest agêntico com autorização auditada | Thiago Seiki Kato</title>
+
+  <link rel="canonical" href="https://thiagokato.github.io/Portfolio/projetos/cybersec-cockpit.html">
+  <link rel="alternate" hreflang="pt-BR" href="https://thiagokato.github.io/Portfolio/projetos/cybersec-cockpit.html">
+  <link rel="alternate" hreflang="en" href="https://thiagokato.github.io/Portfolio/projetos/en/cybersec-cockpit.html">
+  <link rel="alternate" hreflang="x-default" href="https://thiagokato.github.io/Portfolio/projetos/cybersec-cockpit.html">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "CyberSec Cockpit",
+      "description": "Framework interno de pentest com agentes de IA: planejamento dinâmico, SAST, SCA, DAST e rede encadeados, revisão humana e escopo governado por autorização auditada.",
+      "applicationCategory": "BusinessApplication",
+      "url": "https://thiagokato.github.io/Portfolio/projetos/cybersec-cockpit.html",
+      "author": {
+        "@type": "Person",
+        "name": "Thiago Seiki Kato",
+        "url": "https://thiagokato.github.io/Portfolio/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Portfólio",
+          "item": "https://thiagokato.github.io/Portfolio/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "CyberSec Cockpit",
+          "item": "https://thiagokato.github.io/Portfolio/projetos/cybersec-cockpit.html"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <script>
+(function () {
+  try {
+    var tema = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', tema);
+  } catch (e) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+})();
+</script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="nav-container">
+        <a href="../index.html" class="logo">
+          <span class="logo-bracket">[</span>TSK<span class="logo-bracket">]</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="../index.html#projects">Voltar ao portfólio</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container caso">
+    <article>
+      <div class="caso-hero">
+        <div class="caso-hero-icone"><i class="fas fa-shield-halved"></i></div>
+        <span class="status-badge">Em desenvolvimento</span>
+        <h1>CyberSec Cockpit</h1>
+        <p class="caso-subtitulo">Orquestração de testes de segurança com autorização auditada por IA</p>
+        <p class="about-lead">Framework interno de pentest agêntico: agentes planejam o teste dinamicamente, encadeiam ferramentas de SAST, SCA, DAST e rede, e nenhuma varredura começa sem que o escopo autorizado tenha sido verificado.</p>
+        <div class="project-tags">
+          <span class="tag">Segurança</span>
+          <span class="tag">Agentes</span>
+          <span class="tag">Pipelines</span>
+        </div>
+      </div>
+
+      <div class="caso-numeros">
+        <div class="caso-numero">
+          <span class="caso-numero-valor">4</span>
+          <span class="caso-numero-rotulo">camadas: SAST, SCA, DAST e rede</span>
+        </div>
+        <div class="caso-numero">
+          <span class="caso-numero-valor">3</span>
+          <span class="caso-numero-rotulo">provedores de LLM roteados por custo</span>
+        </div>
+      </div>
+      <section class="caso-secao" id="problema">
+        <h2>O problema</h2>
+        <p>Teste de segurança tem duas dificuldades que não são técnicas. A primeira é de encadeamento: cada ferramenta fala uma língua, e correlacionar o achado da análise estática com o da varredura dinâmica é trabalho manual que se perde entre relatórios.</p><p>A segunda é mais séria — <strong>escopo</strong>. Varrer o que não foi autorizado não é um erro de configuração, é um problema legal. E o documento de autorização costuma ser um PDF que alguém leu uma vez.</p>
+      </section>
+      <section class="caso-secao" id="solucao">
+        <h2>A solução</h2>
+        <p>A regra que organiza o sistema inteiro é <em>authorization-first</em>: o documento de autorização é auditado por IA e o escopo extraído dele governa o que pode ser executado. Descoberta não-intrusiva alimenta os agentes, e só depois da validação de escopo um laboratório intrusivo pode ser acionado.</p><ul><li><strong>Planejamento dinâmico por agentes</strong>, com roteamento entre provedores de LLM por custo e adequação da tarefa.</li><li><strong>Revisão humana no meio do fluxo</strong> — triagem e validação antes da geração do relatório. A IA acelera, o especialista decide.</li><li><strong>Integração encadeada</strong> de análise estática, de dependências, dinâmica e de rede numa cadeia só.</li><li><strong>Pipelines assíncronos</strong> em Celery e Redis, com status em tempo real por WebSocket.</li></ul>
+      </section>
+      <section class="caso-secao" id="resultado">
+        <h2>Resultado</h2>
+        <p>A rastreabilidade deixou de depender de disciplina do operador e passou a ser propriedade do sistema: toda execução se liga a uma autorização verificada. E o encadeamento entre ferramentas virou pipeline, não um trabalho de correlacionar relatórios à mão.</p>
+      </section>
+      <section class="caso-secao" id="stack">
+        <h2>Stack</h2>
+        <ul class="caso-stack">
+          <li>Python 3.12</li>
+          <li>FastAPI 0.115</li>
+          <li>React 18</li>
+          <li>TypeScript</li>
+          <li>TailwindCSS 3</li>
+          <li>Celery</li>
+          <li>Redis</li>
+          <li>PostgreSQL</li>
+          <li>WebSockets</li>
+          <li>Gemini</li>
+          <li>Anthropic</li>
+          <li>OpenAI</li>
+        </ul>
+      </section>
+
+      <section class="caso-cta">
+        <h2>Precisa de algo parecido?</h2>
+        <p>Construo sistemas como este de ponta a ponta — arquitetura, implementação e entrega.</p>
+        <a class="project-link" href="../index.html#contact">
+          <span>Vamos conversar</span> <i class="fas fa-arrow-right"></i>
+        </a>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <p>© 2026 Thiago Seiki Kato</p>
+  </footer>
+</body>
+
+</html>

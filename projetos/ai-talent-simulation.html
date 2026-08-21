@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Plataforma gamificada de avaliação de talentos: o candidato interroga personas de IA para resolver um caso, medindo engenharia de prompt, dedução e controle sob pressão.">
+  <meta name="author" content="Thiago Seiki Kato">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://thiagokato.github.io/Portfolio/projetos/ai-talent-simulation.html">
+  <meta property="og:title" content="Detective AI — avaliação de engenharia de prompt por simulação | Thiago Seiki Kato">
+  <meta property="og:description" content="Plataforma gamificada de avaliação de talentos: o candidato interroga personas de IA para resolver um caso, medindo engenharia de prompt, dedução e controle sob pressão.">
+  <meta property="og:image" content="https://thiagokato.github.io/Portfolio/Currículo/Foto.jpg">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="Detective AI — avaliação de engenharia de prompt por simulação | Thiago Seiki Kato">
+  <meta property="twitter:description" content="Plataforma gamificada de avaliação de talentos: o candidato interroga personas de IA para resolver um caso, medindo engenharia de prompt, dedução e controle sob pressão.">
+
+  <title>Detective AI — avaliação de engenharia de prompt por simulação | Thiago Seiki Kato</title>
+
+  <link rel="canonical" href="https://thiagokato.github.io/Portfolio/projetos/ai-talent-simulation.html">
+  <link rel="alternate" hreflang="pt-BR" href="https://thiagokato.github.io/Portfolio/projetos/ai-talent-simulation.html">
+  <link rel="alternate" hreflang="en" href="https://thiagokato.github.io/Portfolio/projetos/en/ai-talent-simulation.html">
+  <link rel="alternate" hreflang="x-default" href="https://thiagokato.github.io/Portfolio/projetos/ai-talent-simulation.html">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Detective AI",
+      "description": "Plataforma gamificada de avaliação de talentos: o candidato interroga personas de IA para resolver um caso, medindo engenharia de prompt, dedução e controle sob pressão.",
+      "applicationCategory": "BusinessApplication",
+      "url": "https://thiagokato.github.io/Portfolio/projetos/ai-talent-simulation.html",
+      "author": {
+        "@type": "Person",
+        "name": "Thiago Seiki Kato",
+        "url": "https://thiagokato.github.io/Portfolio/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Portfólio",
+          "item": "https://thiagokato.github.io/Portfolio/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Detective AI",
+          "item": "https://thiagokato.github.io/Portfolio/projetos/ai-talent-simulation.html"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <script>
+(function () {
+  try {
+    var tema = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', tema);
+  } catch (e) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+})();
+</script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="nav-container">
+        <a href="../index.html" class="logo">
+          <span class="logo-bracket">[</span>TSK<span class="logo-bracket">]</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="../index.html#projects">Voltar ao portfólio</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container caso">
+    <article>
+      <div class="caso-hero">
+        <div class="caso-hero-icone"><i class="fas fa-users-cog"></i></div>
+        <span class="status-badge">Protótipo funcional</span>
+        <h1>Detective AI</h1>
+        <p class="caso-subtitulo">Avaliação de competências em IA por simulação investigativa</p>
+        <p class="about-lead">Plataforma gamificada onde o candidato investiga um caso interrogando suspeitos que são personas de IA. O que se avalia não é a resposta certa, e sim como a pessoa conduz o interrogatório — engenharia de prompt, raciocínio dedutivo e controle emocional sob pressão.</p>
+        <div class="project-tags">
+          <span class="tag">Avaliação</span>
+          <span class="tag">Gamificação</span>
+          <span class="tag">BYOK</span>
+        </div>
+      </div>
+
+      <div class="caso-numeros">
+        <div class="caso-numero">
+          <span class="caso-numero-valor">4</span>
+          <span class="caso-numero-rotulo">provedores de LLM intercambiáveis</span>
+        </div>
+        <div class="caso-numero">
+          <span class="caso-numero-valor">2</span>
+          <span class="caso-numero-rotulo">níveis de isolamento de dados</span>
+        </div>
+      </div>
+      <section class="caso-secao" id="problema">
+        <h2>O problema</h2>
+        <p>Currículo lista "engenharia de prompt" e "pensamento crítico". Não existe forma honesta de validar isso num teste de múltipla escolha — a nuance de negociar com um modelo evasivo não cabe em alternativas.</p><p>E treinar gente nova direto no sistema de produção, com dado real, troca um risco por outro.</p>
+      </section>
+      <section class="caso-secao" id="solucao">
+        <h2>A solução</h2>
+        <p>Um caso de investigação como ambiente de avaliação. O candidato interroga suspeitos movidos por LLM, que respondem em tempo real conforme personalidade e contexto — não por script fixo — e que <strong>lembram do que foi dito, podem mentir e podem se contradizer</strong>.</p><ul><li><strong>Engenharia de prompt sob avaliação real</strong> — contornar álibi exige estruturar comandos que exponham falhas lógicas; uma IA prolixa exige persistência.</li><li><strong>Medidor de estresse por persona</strong>: acusar sem prova aumenta a resistência. Saber quando pressionar e quando acalmar é parte da nota.</li><li><strong>Raciocínio forense</strong> — escolher a ferramenta certa para cada evidência e cruzar fatos, não só perguntar.</li><li><strong>Tela de acusação final</strong>, exigindo síntese de motivo e método a partir do que foi coletado.</li><li><strong>Casos personalizados em JSON</strong>, incluindo pistas marcadas como falsas — a empresa cria o próprio mistério, como um vazamento interno para treinar compliance.</li></ul><p>A arquitetura é <em>bring your own key</em>, em dois níveis: chave corporativa com garantia de não-treinamento, ou execução totalmente local via Ollama, sem nenhum dado saindo da infraestrutura. Trocar de provedor também permite comparar como a mesma pessoa lida com modelos de raciocínio diferentes.</p>
+      </section>
+      <section class="caso-secao" id="resultado">
+        <h2>Resultado</h2>
+        <p>A avaliação passou a se basear em comportamento observado sob pressão, e não em declaração de currículo. Como sandbox de treino, errar o prompt deixou de custar um cliente.</p><p>O detector de mentiras e o retorno visual de estresse funcionam como mentoria imediata: a pessoa vê o efeito da própria abordagem no momento em que ela acontece.</p>
+      </section>
+      <section class="caso-secao" id="stack">
+        <h2>Stack</h2>
+        <ul class="caso-stack">
+          <li>Flutter</li>
+          <li>Python</li>
+          <li>FastAPI</li>
+          <li>Docker</li>
+          <li>OpenAI</li>
+          <li>Anthropic</li>
+          <li>Gemini</li>
+          <li>Ollama</li>
+        </ul>
+      </section>
+      <section class="caso-secao" id="documento">
+        <h2>Documento completo</h2>
+        <iframe src="../Projetos/AI_Talent_Simulation.pdf" class="caso-pdf" title="Detective AI" loading="lazy"></iframe>
+        <p><a class="project-link" href="../Projetos/AI_Talent_Simulation.pdf" target="_blank" rel="noopener">
+          <span>Baixar o PDF completo</span> <i class="fas fa-download"></i>
+        </a></p>
+      </section>
+      <section class="caso-cta">
+        <h2>Precisa de algo parecido?</h2>
+        <p>Construo sistemas como este de ponta a ponta — arquitetura, implementação e entrega.</p>
+        <a class="project-link" href="../index.html#contact">
+          <span>Vamos conversar</span> <i class="fas fa-arrow-right"></i>
+        </a>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <p>© 2026 Thiago Seiki Kato</p>
+  </footer>
+</body>
+
+</html>

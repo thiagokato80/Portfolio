@@ -791,12 +791,6 @@ section {
         0 0 40px var(--accent-dim);
 }
 
-.project-card.featured {
-    grid-column: span 2;
-    display: grid;
-    grid-template-columns: 300px 1fr;
-}
-
 .project-image {
     background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
     display: flex;
@@ -902,22 +896,6 @@ section {
 
 .project-link:hover {
     gap: 12px;
-}
-
-/* Non-featured cards */
-.project-card:not(.featured) {
-    display: flex;
-    flex-direction: column;
-}
-
-.project-card:not(.featured) .project-image {
-    min-height: 160px;
-}
-
-.project-card:not(.featured) .project-icon {
-    width: 80px;
-    height: 80px;
-    font-size: 2rem;
 }
 
 /* =========================================
@@ -1162,11 +1140,6 @@ section {
     }
 
     .projects-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .project-card.featured {
-        grid-column: span 1;
         grid-template-columns: 1fr;
     }
 
@@ -1650,6 +1623,7 @@ section {
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-auto-flow: dense;
     gap: 24px;
     align-items: stretch;
 }
@@ -1670,8 +1644,11 @@ section {
     background: var(--bg-card-hover);
 }
 
+/* Destaque por enfase, nao por largura: cards de 2 colunas ao lado de cards
+   de 1 herdavam a altura do estreito e sobravam ~280px de vazio. Medido. */
 .projects-grid .project-card.featured {
-    grid-column: span 2;
+    border-color: var(--border-accent);
+    box-shadow: 0 0 0 1px var(--accent-dim);
 }
 
 /* O painel de ícone deixa de ser uma coluna morta */
@@ -1707,26 +1684,26 @@ section {
     margin-bottom: 12px;
 }
 
+/* O .project-link original ja tem margin-top:auto; repetir aqui partia a
+   folga vertical em dois vaos. A folga deve se juntar antes do link. */
 .projects-grid .project-features {
-    margin-top: auto;
-    padding-top: 16px;
+    margin-top: 16px;
+    margin-bottom: 0;
+}
+
+.projects-grid .project-link {
+    padding-top: 18px;
 }
 
 @media (max-width: 1024px) {
     .projects-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    .projects-grid .project-card.featured {
-        grid-column: span 2;
-    }
 }
 
 @media (max-width: 768px) {
     .projects-grid {
         grid-template-columns: 1fr;
-    }
-    .projects-grid .project-card.featured {
-        grid-column: span 1;
     }
 }
 

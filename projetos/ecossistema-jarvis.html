@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ecossistema multi-agente com JARVIS, Alfred, Lucius e Portaria: processos independentes que se comunicam por A2A, com identidade compartilhada e 751 testes automatizados.">
+  <meta name="author" content="Thiago Seiki Kato">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://thiagokato.github.io/Portfolio/projetos/ecossistema-jarvis.html">
+  <meta property="og:title" content="Ecossistema JARVIS — quatro agentes de IA comunicando por protocolo A2A | Thiago Seiki Kato">
+  <meta property="og:description" content="Ecossistema multi-agente com JARVIS, Alfred, Lucius e Portaria: processos independentes que se comunicam por A2A, com identidade compartilhada e 751 testes automatizados.">
+  <meta property="og:image" content="https://thiagokato.github.io/Portfolio/Currículo/Foto.jpg">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="Ecossistema JARVIS — quatro agentes de IA comunicando por protocolo A2A | Thiago Seiki Kato">
+  <meta property="twitter:description" content="Ecossistema multi-agente com JARVIS, Alfred, Lucius e Portaria: processos independentes que se comunicam por A2A, com identidade compartilhada e 751 testes automatizados.">
+
+  <title>Ecossistema JARVIS — quatro agentes de IA comunicando por protocolo A2A | Thiago Seiki Kato</title>
+
+  <link rel="canonical" href="https://thiagokato.github.io/Portfolio/projetos/ecossistema-jarvis.html">
+  <link rel="alternate" hreflang="pt-BR" href="https://thiagokato.github.io/Portfolio/projetos/ecossistema-jarvis.html">
+  <link rel="alternate" hreflang="en" href="https://thiagokato.github.io/Portfolio/projetos/en/ecossistema-jarvis.html">
+  <link rel="alternate" hreflang="x-default" href="https://thiagokato.github.io/Portfolio/projetos/ecossistema-jarvis.html">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Ecossistema JARVIS",
+      "description": "Ecossistema multi-agente com JARVIS, Alfred, Lucius e Portaria: processos independentes que se comunicam por A2A, com identidade compartilhada e 751 testes automatizados.",
+      "applicationCategory": "BusinessApplication",
+      "url": "https://thiagokato.github.io/Portfolio/projetos/ecossistema-jarvis.html",
+      "author": {
+        "@type": "Person",
+        "name": "Thiago Seiki Kato",
+        "url": "https://thiagokato.github.io/Portfolio/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Portfólio",
+          "item": "https://thiagokato.github.io/Portfolio/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Ecossistema JARVIS",
+          "item": "https://thiagokato.github.io/Portfolio/projetos/ecossistema-jarvis.html"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <script>
+(function () {
+  try {
+    var tema = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', tema);
+  } catch (e) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+})();
+</script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="nav-container">
+        <a href="../index.html" class="logo">
+          <span class="logo-bracket">[</span>TSK<span class="logo-bracket">]</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="../index.html#projects">Voltar ao portfólio</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container caso">
+    <article>
+      <div class="caso-hero">
+        <div class="caso-hero-icone"><i class="fas fa-diagram-project"></i></div>
+        <span class="status-badge">Fio vivo em operação</span>
+        <h1>Ecossistema JARVIS</h1>
+        <p class="caso-subtitulo">Quatro agentes que conversam por protocolo, não por biblioteca compartilhada</p>
+        <p class="about-lead">Ecossistema de agentes de IA para o dia a dia: JARVIS orquestra e entende o pedido, Alfred guarda a memória da casa, Lucius cuida das finanças com painel próprio, e a Portaria dá identidade e sessão comuns aos dois. Processos separados, falando por A2A.</p>
+        <div class="project-tags">
+          <span class="tag">A2A</span>
+          <span class="tag">Multi-agente</span>
+          <span class="tag">Gemini</span>
+        </div>
+      </div>
+
+      <div class="caso-numeros">
+        <div class="caso-numero">
+          <span class="caso-numero-valor">751</span>
+          <span class="caso-numero-rotulo">testes automatizados nos quatro repositórios</span>
+        </div>
+        <div class="caso-numero">
+          <span class="caso-numero-valor">4</span>
+          <span class="caso-numero-rotulo">processos independentes</span>
+        </div>
+        <div class="caso-numero">
+          <span class="caso-numero-valor">7</span>
+          <span class="caso-numero-rotulo">rotas de leitura no painel financeiro</span>
+        </div>
+      </div>
+      <section class="caso-secao" id="problema">
+        <h2>O problema</h2>
+        <p>A maneira fácil de construir vários agentes é colocar todos no mesmo processo, compartilhando objetos em memória. Funciona na demonstração e falha como arquitetura: os agentes deixam de ser autônomos e viram funções de um monólito, e nada do que se aprende ali se transfere para um sistema real, onde as partes rodam separadas e podem cair de forma independente.</p><p>Eu queria testar a pergunta que importa antes de propor esse tipo de arquitetura em ambiente corporativo: <strong>o que quebra quando agentes de verdade precisam se comunicar por protocolo?</strong></p>
+      </section>
+      <section class="caso-secao" id="solucao">
+        <h2>A solução</h2>
+        <p>Quatro repositórios, quatro processos, comunicação por protocolo A2A sobre HTTP. Nenhum deles alcança o banco do outro.</p><ul><li><strong>JARVIS</strong> — o orquestrador. Entende o pedido em linguagem natural, decide a quem perguntar e compõe a resposta.</li><li><strong>Alfred</strong> — a memória da casa. Registra manutenções, fornecedores e histórico, e responde consultas com o dado exato, incluindo o verbatim quando é isso que foi pedido.</li><li><strong>Lucius</strong> — as finanças. Importa lançamentos, categoriza, calcula por dois eixos de data, projeta e sustenta um painel web próprio, para consulta sem passar pelo agente.</li><li><strong>Portaria</strong> — identidade e sessão. Nasceu de uma extração: o login saiu do JARVIS e virou pacote instalável pelos dois, para que a mesma senha e a mesma sessão sirvam às duas telas.</li></ul><p>Duas decisões de projeto que valeram mais do que o código: o painel do Lucius separa <strong>fato de previsão em coleções distintas</strong> no JSON, para que nenhum consumidor some as duas por engano; e toda consulta expõe o <em>drill-down</em> das linhas que formaram cada número, além de declarar o que ficou de fora da soma e quanto isso representa.</p>
+      </section>
+      <section class="caso-secao" id="resultado">
+        <h2>Resultado</h2>
+        <p>O fio completo foi executado com o modelo real em agosto de 2026, com dois agentes no ar simultaneamente — não com dublês. Isso provou o que teste automatizado não prova: que o nome do modelo é chamável e que a API honra o esquema de resposta estruturada.</p><p>Os testes automatizados, por decisão explícita, substituem as três pontas de LLM por dublês determinísticos. Um teste não pode depender de chave de API nem de uma resposta que varia.</p><p>O aprendizado que interessa para ambiente corporativo é sobre custo de integração: agentes separados por protocolo custam mais para construir e devolvem autonomia real, incluindo a capacidade de um cair sem derrubar os outros.</p>
+      </section>
+      <section class="caso-secao" id="stack">
+        <h2>Stack</h2>
+        <ul class="caso-stack">
+          <li>Python 3.12</li>
+          <li>FastAPI</li>
+          <li>Gemini</li>
+          <li>Pydantic</li>
+          <li>SQLAlchemy</li>
+          <li>Alembic</li>
+          <li>PostgreSQL</li>
+          <li>argon2</li>
+          <li>pytest</li>
+        </ul>
+      </section>
+
+      <section class="caso-cta">
+        <h2>Precisa de algo parecido?</h2>
+        <p>Construo sistemas como este de ponta a ponta — arquitetura, implementação e entrega.</p>
+        <a class="project-link" href="../index.html#contact">
+          <span>Vamos conversar</span> <i class="fas fa-arrow-right"></i>
+        </a>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <p>© 2026 Thiago Seiki Kato</p>
+  </footer>
+</body>
+
+</html>

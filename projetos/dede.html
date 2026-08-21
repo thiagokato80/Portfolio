@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="App de estudo adaptativo infantil: questões geradas por IA, dificuldade ajustada em tempo real, modo treino e simulado, e relatório de domínio por tópico para o responsável.">
+  <meta name="author" content="Thiago Seiki Kato">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://thiagokato.github.io/Portfolio/projetos/dede.html">
+  <meta property="og:title" content="Dedé — plataforma de estudo adaptativo com IA para crianças | Thiago Seiki Kato">
+  <meta property="og:description" content="App de estudo adaptativo infantil: questões geradas por IA, dificuldade ajustada em tempo real, modo treino e simulado, e relatório de domínio por tópico para o responsável.">
+  <meta property="og:image" content="https://thiagokato.github.io/Portfolio/Currículo/Foto.jpg">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="Dedé — plataforma de estudo adaptativo com IA para crianças | Thiago Seiki Kato">
+  <meta property="twitter:description" content="App de estudo adaptativo infantil: questões geradas por IA, dificuldade ajustada em tempo real, modo treino e simulado, e relatório de domínio por tópico para o responsável.">
+
+  <title>Dedé — plataforma de estudo adaptativo com IA para crianças | Thiago Seiki Kato</title>
+
+  <link rel="canonical" href="https://thiagokato.github.io/Portfolio/projetos/dede.html">
+  <link rel="alternate" hreflang="pt-BR" href="https://thiagokato.github.io/Portfolio/projetos/dede.html">
+  <link rel="alternate" hreflang="en" href="https://thiagokato.github.io/Portfolio/projetos/en/dede.html">
+  <link rel="alternate" hreflang="x-default" href="https://thiagokato.github.io/Portfolio/projetos/dede.html">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Dedé",
+      "description": "App de estudo adaptativo infantil: questões geradas por IA, dificuldade ajustada em tempo real, modo treino e simulado, e relatório de domínio por tópico para o responsável.",
+      "applicationCategory": "BusinessApplication",
+      "url": "https://thiagokato.github.io/Portfolio/projetos/dede.html",
+      "author": {
+        "@type": "Person",
+        "name": "Thiago Seiki Kato",
+        "url": "https://thiagokato.github.io/Portfolio/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Portfólio",
+          "item": "https://thiagokato.github.io/Portfolio/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Dedé",
+          "item": "https://thiagokato.github.io/Portfolio/projetos/dede.html"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <script>
+(function () {
+  try {
+    var tema = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', tema);
+  } catch (e) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+})();
+</script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="nav-container">
+        <a href="../index.html" class="logo">
+          <span class="logo-bracket">[</span>TSK<span class="logo-bracket">]</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="../index.html#projects">Voltar ao portfólio</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container caso">
+    <article>
+      <div class="caso-hero">
+        <div class="caso-hero-icone"><i class="fas fa-graduation-cap"></i></div>
+        <span class="status-badge">v1</span>
+        <h1>Dedé</h1>
+        <p class="caso-subtitulo">Estudo adaptativo para crianças, com relatório para o responsável</p>
+        <p class="about-lead">Aplicativo de estudo que gera questões por IA e ajusta a dificuldade em tempo real conforme o aluno acerta ou erra, com modo de treino e modo de simulado, e um relatório de domínio por tópico para quem acompanha.</p>
+        <div class="project-tags">
+          <span class="tag">Educação</span>
+          <span class="tag">Adaptativo</span>
+          <span class="tag">Firebase</span>
+        </div>
+      </div>
+
+      <div class="caso-numeros">
+        <div class="caso-numero">
+          <span class="caso-numero-valor">3</span>
+          <span class="caso-numero-rotulo">agentes pedagógicos</span>
+        </div>
+        <div class="caso-numero">
+          <span class="caso-numero-valor">2</span>
+          <span class="caso-numero-rotulo">modos: treinar e simular</span>
+        </div>
+        <div class="caso-numero">
+          <span class="caso-numero-valor">0</span>
+          <span class="caso-numero-rotulo">redeploys para trocar de modelo</span>
+        </div>
+      </div>
+      <section class="caso-secao" id="problema">
+        <h2>O problema</h2>
+        <p>Material de estudo impresso tem uma dificuldade só. A criança que já domina o tópico repete o que sabe, e a que não domina trava no mesmo ponto sem quem explique de outro jeito. Quem acompanha, por sua vez, enxerga a nota — não onde está o buraco.</p>
+      </section>
+      <section class="caso-secao" id="solucao">
+        <h2>A solução</h2>
+        <p>Três agentes com papéis distintos, e a lógica adaptativa deliberadamente <strong>fora do LLM</strong>.</p><ul><li><strong>Engenheiro pedagógico</strong> — gera a questão contextualizada no perfil do aluno, em múltipla escolha ou texto livre.</li><li><strong>Corretor pedagógico</strong> — avalia a resposta em dois modos: tutor, com condução socrática, ou avaliador, com nota.</li><li><strong>Sintetizador de relatório</strong> — escreve o resumo em linguagem natural para o responsável, com cache para não repetir chamada.</li></ul><p>O domínio de cada tópico é uma média móvel exponencial ponderada pela dificuldade, em código comum e testável. A adaptação também: dois acertos seguidos aumentam a dificuldade, um erro reduz, e o próximo tópico é sempre o de menor domínio. Deixar isso fora do modelo torna o comportamento previsível e auditável — e barato.</p><p>O provedor de IA e o modelo são configurados por um painel administrativo, guardados numa coleção com acesso negado ao cliente. Trocar de Gemini para Claude não exige redeploy.</p>
+      </section>
+      <section class="caso-secao" id="resultado">
+        <h2>Resultado</h2>
+        <p>O responsável deixou de ver só a nota e passou a ver domínio por tópico, com sessão de revisão montada a partir do que está mais fraco. E a troca de modelo virou configuração, o que transformou o app num banco de comparação prático entre provedores.</p>
+      </section>
+      <section class="caso-secao" id="stack">
+        <h2>Stack</h2>
+        <ul class="caso-stack">
+          <li>React</li>
+          <li>Vite</li>
+          <li>Firebase Auth</li>
+          <li>Firebase Hosting</li>
+          <li>Cloud Functions v2</li>
+          <li>Firestore</li>
+          <li>Gemini</li>
+          <li>Claude</li>
+        </ul>
+      </section>
+
+      <section class="caso-cta">
+        <h2>Precisa de algo parecido?</h2>
+        <p>Construo sistemas como este de ponta a ponta — arquitetura, implementação e entrega.</p>
+        <a class="project-link" href="../index.html#contact">
+          <span>Vamos conversar</span> <i class="fas fa-arrow-right"></i>
+        </a>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <p>© 2026 Thiago Seiki Kato</p>
+  </footer>
+</body>
+
+</html>

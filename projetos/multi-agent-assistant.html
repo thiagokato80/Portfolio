@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Assistente multi-agente que unifica ERP, nuvem e e-mail e responde em linguagem natural no Microsoft Teams, com orquestração de planejar e agir para tarefas de múltiplos passos.">
+  <meta name="author" content="Thiago Seiki Kato">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://thiagokato.github.io/Portfolio/projetos/multi-agent-assistant.html">
+  <meta property="og:title" content="Multi-Agent Assistant — copiloto de operações sobre ERP e Teams | Thiago Seiki Kato">
+  <meta property="og:description" content="Assistente multi-agente que unifica ERP, nuvem e e-mail e responde em linguagem natural no Microsoft Teams, com orquestração de planejar e agir para tarefas de múltiplos passos.">
+  <meta property="og:image" content="https://thiagokato.github.io/Portfolio/Currículo/Foto.jpg">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="Multi-Agent Assistant — copiloto de operações sobre ERP e Teams | Thiago Seiki Kato">
+  <meta property="twitter:description" content="Assistente multi-agente que unifica ERP, nuvem e e-mail e responde em linguagem natural no Microsoft Teams, com orquestração de planejar e agir para tarefas de múltiplos passos.">
+
+  <title>Multi-Agent Assistant — copiloto de operações sobre ERP e Teams | Thiago Seiki Kato</title>
+
+  <link rel="canonical" href="https://thiagokato.github.io/Portfolio/projetos/multi-agent-assistant.html">
+  <link rel="alternate" hreflang="pt-BR" href="https://thiagokato.github.io/Portfolio/projetos/multi-agent-assistant.html">
+  <link rel="alternate" hreflang="en" href="https://thiagokato.github.io/Portfolio/projetos/en/multi-agent-assistant.html">
+  <link rel="alternate" hreflang="x-default" href="https://thiagokato.github.io/Portfolio/projetos/multi-agent-assistant.html">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Multi-Agent Assistant",
+      "description": "Assistente multi-agente que unifica ERP, nuvem e e-mail e responde em linguagem natural no Microsoft Teams, com orquestração de planejar e agir para tarefas de múltiplos passos.",
+      "applicationCategory": "BusinessApplication",
+      "url": "https://thiagokato.github.io/Portfolio/projetos/multi-agent-assistant.html",
+      "author": {
+        "@type": "Person",
+        "name": "Thiago Seiki Kato",
+        "url": "https://thiagokato.github.io/Portfolio/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Portfólio",
+          "item": "https://thiagokato.github.io/Portfolio/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Multi-Agent Assistant",
+          "item": "https://thiagokato.github.io/Portfolio/projetos/multi-agent-assistant.html"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <script>
+(function () {
+  try {
+    var tema = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', tema);
+  } catch (e) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+})();
+</script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="nav-container">
+        <a href="../index.html" class="logo">
+          <span class="logo-bracket">[</span>TSK<span class="logo-bracket">]</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="../index.html#projects">Voltar ao portfólio</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container caso">
+    <article>
+      <div class="caso-hero">
+        <div class="caso-hero-icone"><i class="fas fa-robot"></i></div>
+        <span class="status-badge">Em operação</span>
+        <h1>Multi-Agent Assistant</h1>
+        <p class="caso-subtitulo">Copiloto de operações sobre ERP, e-mail e Microsoft Teams</p>
+        <p class="about-lead">Assistente multi-agente que unifica fontes de dados dispersas — ERP, armazenamento em nuvem e e-mail — e responde em linguagem natural dentro do Teams, com um ciclo de planejar e agir que resolve tarefas de múltiplos passos.</p>
+        <div class="project-tags">
+          <span class="tag">Agentes</span>
+          <span class="tag">RAG</span>
+          <span class="tag">Integração</span>
+        </div>
+      </div>
+
+      <div class="caso-numeros">
+        <div class="caso-numero">
+          <span class="caso-numero-valor">3</span>
+          <span class="caso-numero-rotulo">domínios: CRM, PMO e Help Desk</span>
+        </div>
+        <div class="caso-numero">
+          <span class="caso-numero-valor">1</span>
+          <span class="caso-numero-rotulo">interface: linguagem natural</span>
+        </div>
+      </div>
+      <section class="caso-secao" id="problema">
+        <h2>O problema</h2>
+        <p>A informação que responde uma pergunta de gestão quase nunca mora em um sistema só. O pedido está no ERP, o anexo está no armazenamento em nuvem, o combinado está num e-mail, e a decisão precisa sair agora — no Teams, onde a equipe já está.</p><p>O custo disso não é o tempo de abrir três telas: é a quebra de raciocínio. Quem precisa trocar de sistema para completar um pensamento acaba não completando.</p>
+      </section>
+      <section class="caso-secao" id="solucao">
+        <h2>A solução</h2>
+        <p>Um assistente que conversa em linguagem natural dentro do Teams e busca o dado onde ele estiver, sem exigir que o usuário saiba de onde veio.</p><ul><li><strong>Agentes especialistas por domínio</strong> — CRM, projetos e suporte — cada um com o vocabulário e as regras da própria área.</li><li><strong>Ciclo de planejar e agir</strong>: para uma pergunta que exige vários passos, o orquestrador monta o plano antes de executar, em vez de tentar responder de uma vez.</li><li><strong>Leitura direta do ERP por API</strong>, em tempo real, e não sobre uma cópia desatualizada.</li><li><strong>Recuperação sobre documentos</strong> (RAG) para o que não é dado estruturado.</li></ul>
+      </section>
+      <section class="caso-secao" id="resultado">
+        <h2>Resultado</h2>
+        <p>Perguntas que antes exigiam abrir três sistemas passaram a ser respondidas na conversa onde a equipe já estava. O assistente virou a primeira parada para consulta operacional.</p><p>O uso real também expôs com clareza o limite da arquitetura de agentes especialistas: profundidade por área, mas silos de análise entre elas — perguntas que cruzam domínios exigem uma camada de federação de dados, que é a evolução mapeada para o projeto.</p>
+      </section>
+      <section class="caso-secao" id="stack">
+        <h2>Stack</h2>
+        <ul class="caso-stack">
+          <li>Python</li>
+          <li>LLM</li>
+          <li>Odoo ERP</li>
+          <li>Microsoft Teams</li>
+          <li>Azure</li>
+          <li>RAG</li>
+        </ul>
+      </section>
+      <section class="caso-secao" id="documento">
+        <h2>Documento completo</h2>
+        <iframe src="../Projetos/SAM_Multi_Agent_Assistant.pdf" class="caso-pdf" title="Multi-Agent Assistant" loading="lazy"></iframe>
+        <p><a class="project-link" href="../Projetos/SAM_Multi_Agent_Assistant.pdf" target="_blank" rel="noopener">
+          <span>Baixar o PDF completo</span> <i class="fas fa-download"></i>
+        </a></p>
+      </section>
+      <section class="caso-cta">
+        <h2>Precisa de algo parecido?</h2>
+        <p>Construo sistemas como este de ponta a ponta — arquitetura, implementação e entrega.</p>
+        <a class="project-link" href="../index.html#contact">
+          <span>Vamos conversar</span> <i class="fas fa-arrow-right"></i>
+        </a>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <p>© 2026 Thiago Seiki Kato</p>
+  </footer>
+</body>
+
+</html>

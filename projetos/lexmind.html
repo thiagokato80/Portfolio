@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Plataforma multi-tenant de agentes jurídicos para a Lei 14.133/2021: análise de edital, redação de peças e busca híbrida com citação resolvida contra a fonte.">
+  <meta name="author" content="Thiago Seiki Kato">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://thiagokato.github.io/Portfolio/projetos/lexmind.html">
+  <meta property="og:title" content="LexMind — agentes jurídicos com RAG citável para licitações | Thiago Seiki Kato">
+  <meta property="og:description" content="Plataforma multi-tenant de agentes jurídicos para a Lei 14.133/2021: análise de edital, redação de peças e busca híbrida com citação resolvida contra a fonte.">
+  <meta property="og:image" content="https://thiagokato.github.io/Portfolio/Currículo/Foto.jpg">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="LexMind — agentes jurídicos com RAG citável para licitações | Thiago Seiki Kato">
+  <meta property="twitter:description" content="Plataforma multi-tenant de agentes jurídicos para a Lei 14.133/2021: análise de edital, redação de peças e busca híbrida com citação resolvida contra a fonte.">
+
+  <title>LexMind — agentes jurídicos com RAG citável para licitações | Thiago Seiki Kato</title>
+
+  <link rel="canonical" href="https://thiagokato.github.io/Portfolio/projetos/lexmind.html">
+  <link rel="alternate" hreflang="pt-BR" href="https://thiagokato.github.io/Portfolio/projetos/lexmind.html">
+  <link rel="alternate" hreflang="en" href="https://thiagokato.github.io/Portfolio/projetos/en/lexmind.html">
+  <link rel="alternate" hreflang="x-default" href="https://thiagokato.github.io/Portfolio/projetos/lexmind.html">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "LexMind",
+      "description": "Plataforma multi-tenant de agentes jurídicos para a Lei 14.133/2021: análise de edital, redação de peças e busca híbrida com citação resolvida contra a fonte.",
+      "applicationCategory": "BusinessApplication",
+      "url": "https://thiagokato.github.io/Portfolio/projetos/lexmind.html",
+      "author": {
+        "@type": "Person",
+        "name": "Thiago Seiki Kato",
+        "url": "https://thiagokato.github.io/Portfolio/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Portfólio",
+          "item": "https://thiagokato.github.io/Portfolio/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "LexMind",
+          "item": "https://thiagokato.github.io/Portfolio/projetos/lexmind.html"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <script>
+(function () {
+  try {
+    var tema = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', tema);
+  } catch (e) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+})();
+</script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="nav-container">
+        <a href="../index.html" class="logo">
+          <span class="logo-bracket">[</span>TSK<span class="logo-bracket">]</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="../index.html#projects">Voltar ao portfólio</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container caso">
+    <article>
+      <div class="caso-hero">
+        <div class="caso-hero-icone"><i class="fas fa-scale-balanced"></i></div>
+        <span class="status-badge">Primeira vertical em desenvolvimento</span>
+        <h1>LexMind</h1>
+        <p class="caso-subtitulo">Agentes jurídicos para licitações e contratações públicas</p>
+        <p class="about-lead">Plataforma multi-tenant de agentes jurídicos que pesquisam, analisam editais e redigem peças — sempre ancorados em fonte real e vigência verificada, com a citação resolvida contra o documento no momento da resposta.</p>
+        <div class="project-tags">
+          <span class="tag">RAG</span>
+          <span class="tag">pgvector</span>
+          <span class="tag">Multi-tenant</span>
+        </div>
+      </div>
+
+      <div class="caso-numeros">
+        <div class="caso-numero">
+          <span class="caso-numero-valor">768</span>
+          <span class="caso-numero-rotulo">dimensões por embedding</span>
+        </div>
+        <div class="caso-numero">
+          <span class="caso-numero-valor">2</span>
+          <span class="caso-numero-rotulo">modelos, um por tarefa</span>
+        </div>
+        <div class="caso-numero">
+          <span class="caso-numero-valor">3</span>
+          <span class="caso-numero-rotulo">camadas de teste: unit, RLS e E2E</span>
+        </div>
+      </div>
+      <section class="caso-secao" id="problema">
+        <h2>O problema</h2>
+        <p>Assistente jurídico que inventa jurisprudência é pior do que assistente nenhum: o erro chega com a aparência de resposta pronta, e o custo de descobrir isso é alto. Em licitações, onde a Lei 14.133/2021 convive com normas que mudam, a checagem de vigência é parte do trabalho — não um detalhe.</p><p>Há ainda o problema do que já foi feito: peças, teses e análises de editais anteriores ficam espalhadas em pastas, e o conhecimento do escritório não é consultável.</p>
+      </section>
+      <section class="caso-secao" id="solucao">
+        <h2>A solução</h2>
+        <p>A plataforma foi desenhada em torno de três garantias explícitas, e a arquitetura existe para sustentá-las.</p><ul><li><strong>Não alucina</strong> — toda afirmação do copiloto vem com <code>[fonte:chunk_id]</code>, resolvido em tempo real contra documentos verificados. Sem fonte, não há afirmação.</li><li><strong>Não esquece</strong> — peças, teses e editais viram memória institucional consultável, isolada por escritório.</li><li><strong>Não dorme</strong> — o agente analista lê o edital inteiro e entrega diagnóstico estruturado (habilitação, prazos, cláusulas restritivas, contradições) antes de o advogado abrir o arquivo.</li></ul><p>A busca é híbrida — vetorial mais <em>full-text</em>, combinadas por RRF — porque termo jurídico exato e similaridade semântica falham em situações opostas. Dois modelos dividem o trabalho por afinidade: Claude Sonnet para redação e copiloto, Gemini 2.5 Pro para análise de edital e OCR.</p><p>O isolamento entre escritórios é testado como código: há uma camada de testes dedicada às políticas de Row Level Security.</p>
+      </section>
+      <section class="caso-secao" id="resultado">
+        <h2>Resultado</h2>
+        <p>A leitura de edital deixou de ser o primeiro trabalho do advogado e passou a ser a revisão de um diagnóstico já estruturado. E cada resposta do copiloto pode ser conferida na fonte em um clique — o que muda a relação de confiança com a ferramenta.</p>
+      </section>
+      <section class="caso-secao" id="stack">
+        <h2>Stack</h2>
+        <ul class="caso-stack">
+          <li>Next.js 16</li>
+          <li>Supabase</li>
+          <li>PostgreSQL 17</li>
+          <li>pgvector</li>
+          <li>Claude Sonnet</li>
+          <li>Gemini 2.5 Pro</li>
+          <li>Vercel AI SDK</li>
+          <li>Tailwind CSS 4</li>
+          <li>Vitest</li>
+          <li>Playwright</li>
+        </ul>
+      </section>
+
+      <section class="caso-cta">
+        <h2>Precisa de algo parecido?</h2>
+        <p>Construo sistemas como este de ponta a ponta — arquitetura, implementação e entrega.</p>
+        <a class="project-link" href="../index.html#contact">
+          <span>Vamos conversar</span> <i class="fas fa-arrow-right"></i>
+        </a>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <p>© 2026 Thiago Seiki Kato</p>
+  </footer>
+</body>
+
+</html>

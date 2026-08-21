@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Simulador tributário para precificação interestadual: ICMS-ST, DIFAL, FCP, IPI e PIS/COFINS com memória de cálculo auditável e fórmulas cadastráveis sem deploy.">
+  <meta name="author" content="Thiago Seiki Kato">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://thiagokato.github.io/Portfolio/projetos/tax-hub.html">
+  <meta property="og:title" content="Tax-Hub — simulação de ICMS-ST, DIFAL e FCP com fórmulas configuráveis | Thiago Seiki Kato">
+  <meta property="og:description" content="Simulador tributário para precificação interestadual: ICMS-ST, DIFAL, FCP, IPI e PIS/COFINS com memória de cálculo auditável e fórmulas cadastráveis sem deploy.">
+  <meta property="og:image" content="https://thiagokato.github.io/Portfolio/Currículo/Foto.jpg">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="Tax-Hub — simulação de ICMS-ST, DIFAL e FCP com fórmulas configuráveis | Thiago Seiki Kato">
+  <meta property="twitter:description" content="Simulador tributário para precificação interestadual: ICMS-ST, DIFAL, FCP, IPI e PIS/COFINS com memória de cálculo auditável e fórmulas cadastráveis sem deploy.">
+
+  <title>Tax-Hub — simulação de ICMS-ST, DIFAL e FCP com fórmulas configuráveis | Thiago Seiki Kato</title>
+
+  <link rel="canonical" href="https://thiagokato.github.io/Portfolio/projetos/tax-hub.html">
+  <link rel="alternate" hreflang="pt-BR" href="https://thiagokato.github.io/Portfolio/projetos/tax-hub.html">
+  <link rel="alternate" hreflang="en" href="https://thiagokato.github.io/Portfolio/projetos/en/tax-hub.html">
+  <link rel="alternate" hreflang="x-default" href="https://thiagokato.github.io/Portfolio/projetos/tax-hub.html">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Tax-Hub",
+      "description": "Simulador tributário para precificação interestadual: ICMS-ST, DIFAL, FCP, IPI e PIS/COFINS com memória de cálculo auditável e fórmulas cadastráveis sem deploy.",
+      "applicationCategory": "BusinessApplication",
+      "url": "https://thiagokato.github.io/Portfolio/projetos/tax-hub.html",
+      "author": {
+        "@type": "Person",
+        "name": "Thiago Seiki Kato",
+        "url": "https://thiagokato.github.io/Portfolio/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Portfólio",
+          "item": "https://thiagokato.github.io/Portfolio/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Tax-Hub",
+          "item": "https://thiagokato.github.io/Portfolio/projetos/tax-hub.html"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <script>
+(function () {
+  try {
+    var tema = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', tema);
+  } catch (e) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+})();
+</script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="nav-container">
+        <a href="../index.html" class="logo">
+          <span class="logo-bracket">[</span>TSK<span class="logo-bracket">]</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="../index.html#projects">Voltar ao portfólio</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container caso">
+    <article>
+      <div class="caso-hero">
+        <div class="caso-hero-icone"><i class="fas fa-file-invoice-dollar"></i></div>
+        <span class="status-badge">MVP completo</span>
+        <h1>Tax-Hub</h1>
+        <p class="caso-subtitulo">Simulação tributária para precificação interestadual</p>
+        <p class="about-lead">Simulador que precifica operações entre estados aplicando ICMS-ST, DIFAL, FCP, IPI e PIS/COFINS, com memória de cálculo auditável e fórmulas que o próprio analista fiscal cadastra — sem passar por deploy.</p>
+        <div class="project-tags">
+          <span class="tag">Fiscal</span>
+          <span class="tag">Monorepo</span>
+          <span class="tag">Supabase</span>
+        </div>
+      </div>
+
+      <div class="caso-numeros">
+        <div class="caso-numero">
+          <span class="caso-numero-valor">171</span>
+          <span class="caso-numero-rotulo">testes automatizados</span>
+        </div>
+        <div class="caso-numero">
+          <span class="caso-numero-valor">5</span>
+          <span class="caso-numero-rotulo">tributos no pipeline</span>
+        </div>
+        <div class="caso-numero">
+          <span class="caso-numero-valor">4</span>
+          <span class="caso-numero-rotulo">modos de simulação</span>
+        </div>
+      </div>
+      <section class="caso-secao" id="problema">
+        <h2>O problema</h2>
+        <p>Precificar uma venda entre dois estados brasileiros não é uma conta — é uma combinação de regras que muda por rota, por NCM e por regime fiscal das partes. ICMS-ST, DIFAL, FCP, IPI e PIS/COFINS interagem, e a ordem em que entram no cálculo altera o resultado.</p><p>O agravante não é a complexidade: é a <strong>velocidade de mudança</strong>. Regra nova de um estado significa fórmula nova. Quando a fórmula vive no código, cada alteração legislativa vira uma tarefa de desenvolvimento, e o analista fiscal — que é quem sabe a regra — fica dependente de uma fila de deploy.</p>
+      </section>
+      <section class="caso-secao" id="solucao">
+        <h2>A solução</h2>
+        <p>A decisão que moldou a arquitetura foi tirar a fórmula do código: <strong>novas fórmulas, com novas variáveis, são cadastradas dentro da aplicação</strong>. O analista registra a fórmula, testa contra <em>golden cases</em> conhecidos e publica — sem desenvolvedor no meio.</p><ul><li><strong>Motor de cálculo puro</strong> em TypeScript, sem I/O e sem dependência de framework. Matemática com precisão decimal via <code>decimal.js</code>.</li><li><strong>Linguagem de expressão própria</strong> — tokenizer, parser e avaliador escritos à mão, sem <code>eval</code>. Fórmula cadastrada por usuário nunca vira código executado às cegas.</li><li><strong>Memória de cálculo</strong> passo a passo, exportável para Excel com <em>fórmulas vivas</em> — não valores estáticos — ou impressa como documento de auditoria.</li><li><strong>Solver reverso</strong> por bisseção, para os modos de preço-alvo e margem-alvo.</li><li><strong>Resolvedor de regras fiscais</strong> por escopo, especificidade e janela de vigência.</li></ul><p>O front conversa direto com o Supabase pelo navegador, com Row Level Security no banco. Não há servidor de backend próprio — uma escolha deliberada, documentada na arquitetura.</p>
+      </section>
+      <section class="caso-secao" id="resultado">
+        <h2>Resultado</h2>
+        <p>Mudança de regra fiscal deixou de ser demanda de engenharia. Quem entende de tributo passou a alterar o sistema diretamente, com rede de proteção: os <em>golden cases</em> falham antes da publicação se a fórmula nova quebra um caso conhecido.</p><p>Toda simulação carrega o próprio rastro de auditoria — o número nunca aparece sozinho, sempre com a conta que o produziu.</p>
+      </section>
+      <section class="caso-secao" id="stack">
+        <h2>Stack</h2>
+        <ul class="caso-stack">
+          <li>TypeScript</li>
+          <li>React 19</li>
+          <li>Vite</li>
+          <li>Tailwind CSS 4</li>
+          <li>Supabase</li>
+          <li>PostgreSQL</li>
+          <li>decimal.js</li>
+          <li>Row Level Security</li>
+        </ul>
+      </section>
+
+      <section class="caso-cta">
+        <h2>Precisa de algo parecido?</h2>
+        <p>Construo sistemas como este de ponta a ponta — arquitetura, implementação e entrega.</p>
+        <a class="project-link" href="../index.html#contact">
+          <span>Vamos conversar</span> <i class="fas fa-arrow-right"></i>
+        </a>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <p>© 2026 Thiago Seiki Kato</p>
+  </footer>
+</body>
+
+</html>
