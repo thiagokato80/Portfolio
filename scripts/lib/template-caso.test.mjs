@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { paginaCaso } from './template-caso.mjs';
+import { SITE } from './site.mjs';
 
 const projeto = {
   slug: 'match-hub',
@@ -31,9 +32,9 @@ test('usa os campos de seo no title e na description', () => {
   assert.match(html, /<meta name="description" content="Descrição SEO">/);
 });
 
-test('inclui canonical absoluto', () => {
+test('inclui canonical absoluto no host do site', () => {
   const html = paginaCaso(projeto);
-  assert.match(html, /<link rel="canonical" href="https:\/\/thiagokato\.github\.io\/Portfolio\/projetos\/match-hub\.html">/);
+  assert.ok(html.includes(`<link rel="canonical" href="${SITE}/projetos/match-hub.html">`));
 });
 
 test('não escapa o corpo das seções', () => {

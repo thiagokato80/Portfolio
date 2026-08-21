@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { paginaArtigo, tempoDeLeitura } from './template-artigo.mjs';
+import { SITE } from './site.mjs';
 
 const artigo = {
   slug: 'a_revolucao_silenciosa',
@@ -30,8 +31,9 @@ test('usa os campos de seo', () => {
   assert.match(html, /<meta name="description" content="Descrição SEO">/);
 });
 
-test('canonical aponta para Artigos com A maiúsculo', () => {
-  assert.match(paginaArtigo(artigo), /canonical" href="https:\/\/thiagokato\.github\.io\/Portfolio\/Artigos\/a_revolucao_silenciosa\.html"/);
+test('canonical aponta para Artigos com A maiúsculo, no host do site', () => {
+  const html = paginaArtigo(artigo);
+  assert.ok(html.includes(`<link rel="canonical" href="${SITE}/Artigos/a_revolucao_silenciosa.html">`));
 });
 
 test('não escapa o corpo das seções', () => {
