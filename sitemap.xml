@@ -84,4 +84,40 @@
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://thiagokato.github.io/Portfolio/Artigos/saas_repatriation.html</loc>
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://thiagokato.github.io/Portfolio/Artigos/metodologia_de_auditoria_saas_sprawl.html</loc>
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://thiagokato.github.io/Portfolio/Artigos/o_paradoxo_cognitivo_da_ia.html</loc>
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://thiagokato.github.io/Portfolio/Artigos/a_produtividade_do_vibe_coding_e_o_rigor_da_engenharia.html</loc>
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://thiagokato.github.io/Portfolio/Artigos/a_revolucao_silenciosa.html</loc>
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://thiagokato.github.io/Portfolio/Artigos/analise_de_outlier.html</loc>
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>

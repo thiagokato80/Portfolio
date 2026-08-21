@@ -1,45 +1,363 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="dark">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Métodos estatísticos como Z-score, IQR e DBSCAN para identificar outliers e garantir a integridade de modelos de Machine Learning.">
-    <title>Análise de Outlier | Data Science & Estatística</title>
-    <link rel="stylesheet" href="../styles.css">
-    <link rel="icon" type="image/png" href="../favicon.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Oito técnicas para detectar valores atípicos — Grubbs, Z-score, Z-score robusto, IQR, winsorização, DBSCAN, Isolation Forest e visualização — e quatro formas de tratá-los.">
+  <meta name="author" content="Thiago Seiki Kato">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://thiagokato.github.io/Portfolio/Artigos/analise_de_outlier.html">
+  <meta property="og:title" content="Análise de Outlier: Z-score, IQR, DBSCAN e Isolation Forest em Python | Thiago Seiki Kato">
+  <meta property="og:description" content="Oito técnicas para detectar valores atípicos — Grubbs, Z-score, Z-score robusto, IQR, winsorização, DBSCAN, Isolation Forest e visualização — e quatro formas de tratá-los.">
+  <meta property="og:image" content="https://thiagokato.github.io/Portfolio/Currículo/Foto.jpg">
+  <meta property="article:published_time" content="2024-07-17">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="Análise de Outlier: Z-score, IQR, DBSCAN e Isolation Forest em Python | Thiago Seiki Kato">
+  <meta property="twitter:description" content="Oito técnicas para detectar valores atípicos — Grubbs, Z-score, Z-score robusto, IQR, winsorização, DBSCAN, Isolation Forest e visualização — e quatro formas de tratá-los.">
+
+  <title>Análise de Outlier: Z-score, IQR, DBSCAN e Isolation Forest em Python | Thiago Seiki Kato</title>
+
+  <link rel="canonical" href="https://thiagokato.github.io/Portfolio/Artigos/analise_de_outlier.html">
+  <link rel="alternate" hreflang="pt-BR" href="https://thiagokato.github.io/Portfolio/Artigos/analise_de_outlier.html">
+  <link rel="alternate" hreflang="en" href="https://thiagokato.github.io/Portfolio/Artigos/en/analise_de_outlier.html">
+  <link rel="alternate" hreflang="x-default" href="https://thiagokato.github.io/Portfolio/Artigos/analise_de_outlier.html">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Análise de Outlier: oito técnicas para detectar e tratar valores atípicos",
+      "description": "Oito técnicas para detectar valores atípicos — Grubbs, Z-score, Z-score robusto, IQR, winsorização, DBSCAN, Isolation Forest e visualização — e quatro formas de tratá-los.",
+      "datePublished": "2024-07-17",
+      "dateModified": "2024-07-17",
+      "url": "https://thiagokato.github.io/Portfolio/Artigos/analise_de_outlier.html",
+      "inLanguage": "pt-BR",
+      "author": {
+        "@type": "Person",
+        "name": "Thiago Seiki Kato",
+        "url": "https://thiagokato.github.io/Portfolio/"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Thiago Seiki Kato"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://thiagokato.github.io/Portfolio/Artigos/analise_de_outlier.html"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Portfólio",
+          "item": "https://thiagokato.github.io/Portfolio/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Análise de Outlier: oito técnicas para detectar e tratar valores atípicos",
+          "item": "https://thiagokato.github.io/Portfolio/Artigos/analise_de_outlier.html"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <script>
+(function () {
+  try {
+    var tema = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', tema);
+  } catch (e) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+})();
+</script>
 </head>
 
 <body>
-    <header>
-        <nav>
-            <div class="nav-container">
-                <a href="../index.html" class="logo">
-                    <span class="logo-bracket">[</span>TSK<span class="logo-bracket">]</span>
-                </a>
-                <ul class="nav-links">
-                    <li><a href="../index.html">Voltar ao Portfólio</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-    <main class="container" style="margin-top: 100px;">
-        <section>
-            <div class="section-header">
-                <span class="section-tag">Artigo</span>
-                <h1>Análise de Outlier</h1>
-                <div class="section-line"></div>
-            </div>
-            <p class="about-lead" style="margin-bottom: 30px;">
-                Outliers podem causar estimativas erradas se não tratados. Apresento métodos estatísticos como Z-score, IQR
-                e DBSCAN para identificá-los e garantir a integridade dos modelos de ML.
-            </p>
-            <iframe src="Analise de Outlier.pdf" width="100%" height="900px"
-                style="border:none; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);"></iframe>
-        </section>
-    </main>
-    <footer>
-        <p>© 2026 Meu Portfólio</p>
-    </footer>
+  <header>
+    <nav>
+      <div class="nav-container">
+        <a href="../index.html" class="logo">
+          <span class="logo-bracket">[</span>TSK<span class="logo-bracket">]</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="../index.html#articles">Voltar ao portfólio</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container artigo">
+    <article>
+      <div class="artigo-hero">
+        <span class="article-tag">Data Science</span>
+        <h1>Análise de Outlier: oito técnicas para detectar e tratar valores atípicos</h1>
+        <p class="artigo-lead">Um único valor discrepante levou uma média de 3,14 para 59,71. Este guia percorre oito métodos de detecção — do teste de Grubbs ao Isolation Forest — e as quatro estratégias de tratamento, com código Python executável.</p>
+        <p class="artigo-meta">
+          <time datetime="2024-07-17">17 de julho de 2024</time>
+          <span class="artigo-sep">·</span>
+          <span>11 min de leitura</span>
+        </p>
+      </div>
+
+      <nav class="artigo-sumario" aria-label="Neste artigo">
+        <h2>Neste artigo</h2>
+        <ul>
+          <li><a href="#o-que-e">O que é um outlier</a></li>
+          <li><a href="#origem">Origem dos outliers</a></li>
+          <li><a href="#identificando">Identificando outliers: oito técnicas</a></li>
+          <li><a href="#grubbs">1. Teste de Grubbs</a></li>
+          <li><a href="#zscore">2. Método Z-score</a></li>
+          <li><a href="#zscore-robusto">3. Z-score robusto</a></li>
+          <li><a href="#iqr">4. Método IQR</a></li>
+          <li><a href="#winsorizacao">5. Winsorização (limite de percentil)</a></li>
+          <li><a href="#dbscan">6. DBSCAN</a></li>
+          <li><a href="#isolation-forest">7. Isolation Forest</a></li>
+          <li><a href="#visualizacao">8. Visualização de dados</a></li>
+          <li><a href="#tratamento">Tratamento: o que fazer depois de detectar</a></li>
+          <li><a href="#referencias">Referências</a></li>
+        </ul>
+      </nav>
+      <section class="artigo-secao" id="o-que-e">
+        <h2>O que é um outlier</h2>
+        <p>Um outlier — também conhecido como valor atípico, ponto fora da curva ou dado discrepante — é uma observação que se desvia significativamente dos demais valores de um conjunto. Essa discrepância pode ser causada por erros de medição, eventos raros ou características únicas daquela observação.</p><p>O efeito é mais violento do que a intuição sugere:</p><table><thead><tr><th>Medida</th><th>Dados sem outlier<br>1, 2, 3, 3, 4, 5, 4</th><th>Dados com outlier<br>1, 2, 3, 3, 4, 5, <strong>400</strong></th></tr></thead><tbody><tr><td>Média</td><td>3,14</td><td><strong>59,714</strong></td></tr><tr><td>Mediana</td><td>3</td><td>3</td></tr><tr><td>Desvio padrão</td><td>1,345</td><td><strong>150,057</strong></td></tr></tbody></table><p>Um único valor mudou a média de 3,14 para 59,71 — e a estimativa inteira junto. A mediana, note, não se moveu.</p><h3>Um exemplo do mundo real</h3><p>Em uma empresa de 50 funcionários, 45 pessoas ganham R$ 6.000 mensais e 5 profissionais seniores ganham R$ 100.000 cada. O salário médio da empresa é de <strong>R$ 15.400</strong> — um número que leva à conclusão errada, já que a maioria absoluta ganha muito menos que isso.</p><p>A mediana, por sua vez, é R$ 6.000: bem mais representativa do que a média. Por essa razão, diante de outliers, a mediana costuma ser a medida mais apropriada.</p><p>Outlier é terminologia comum entre analistas e cientistas de dados justamente porque exige muita atenção — caso contrário, resulta em estimativas totalmente erradas.</p>
+      </section>
+      <section class="artigo-secao" id="origem">
+        <h2>Origem dos outliers</h2>
+        <ul><li><strong>Erros no input de dados:</strong> erros humanos durante a coleta, gravação ou digitação.</li><li><strong>Erro de medição:</strong> a fonte mais comum. Causado quando o instrumento de medição utilizado apresenta defeito.</li><li><strong>Outlier natural:</strong> quando o valor atípico não é artificial, isto é, não decorre de erro. A maioria dos dados do mundo real pertence a esta categoria.</li></ul>
+      </section>
+      <section class="artigo-secao" id="identificando">
+        <h2>Identificando outliers: oito técnicas</h2>
+        <p>Existem diversos métodos para identificar outliers, cada um com vantagens e desvantagens. Os mais comuns caem em três famílias: análise visual, testes estatísticos e algoritmos de detecção.</p><ol><li>Teste de hipótese (teste de Grubbs)</li><li>Método Z-score</li><li>Z-score robusto</li><li>Método IQR</li><li>Winsorização (limite de percentil)</li><li>Categorização DBSCAN</li><li>Isolation Forest</li><li>Visualização de dados</li></ol>
+      </section>
+      <section class="artigo-secao" id="grubbs">
+        <h2>1. Teste de Grubbs</h2>
+        <p>O teste de Grubbs, também conhecido como teste de Dixon unilateral, é um método estatístico para detectar outliers em conjuntos de dados unidimensionais. Destaca-se por simplicidade, eficiência e robustez, sendo usado em análise de dados científicos, controle de qualidade, análise financeira e análise de pesquisas.</p><p>O teste é definido para as hipóteses:</p><ul><li><strong>H₀:</strong> não há outliers no conjunto de dados.</li><li><strong>H₁:</strong> há exatamente um outlier no conjunto de dados.</li></ul><p>A estatística é <code>G = max|Xᵢ − X̄| / SD</code>, onde X̄ e SD são a média e o desvio padrão da amostra. Se o valor calculado for maior que o crítico, rejeita-se a hipótese nula.</p><pre><code>import numpy as np
+import scipy.stats as stats
+
+x = np.array([12, 13, 14, 19, 21, 23])
+y = np.array([12, 13, 14, 19, 21, 23, 45])
+
+def grubbs_test(x):
+    n = len(x)
+    mean_x = np.mean(x)
+    sd_x = np.std(x)
+    numerator = max(abs(x - mean_x))
+    g_calculated = numerator / sd_x
+    print("Valor calculado do Grubbs:", g_calculated)
+    t_value = stats.t.ppf(1 - 0.05 / (2 * n), n - 2)
+    g_critical = ((n - 1) * np.sqrt(np.square(t_value))) / (np.sqrt(n) * np.sqrt(n - 2 + np.square(t_value)))
+    print("Valor crítico do Grubbs:", g_critical)
+    if g_critical &gt; g_calculated:
+        print("Calculado menor que o crítico: aceitamos H0, não existe outlier")
+    else:
+        print("Calculado maior que o crítico: rejeitamos H0, existe um outlier")
+
+grubbs_test(x)
+grubbs_test(y)</code></pre><p>Para <code>x</code>: calculado 1,427 contra crítico 1,887 — aceita-se H₀, não há outlier. Para <code>y</code>: calculado 2,277 contra crítico 2,020 — rejeita-se H₀, existe um outlier.</p>
+      </section>
+      <section class="artigo-secao" id="zscore">
+        <h2>2. Método Z-score</h2>
+        <p>Com o Z-score identificamos dados que estão a X desvios padrão de distância da média. Sob a curva normal:</p><ul><li>68% dos pontos estão entre −1 e +1 desvio padrão;</li><li>95% entre −2 e +2 desvios padrão;</li><li>99,7% entre −3 e +3 desvios padrão.</li></ul><p>A fórmula é <code>Z = (X − média) / desvio padrão</code>. Se o Z-score de um dado for superior a 3 — fora dos 99,7% —, o valor é bastante diferente dos demais e pode ser considerado outlier.</p><pre><code>import pandas as pd
+import numpy as np
+
+train = pd.read_csv('dataset/train.csv')
+out = []
+
+def Zscore_outlier(df):
+    m = np.mean(df)
+    sd = np.std(df)
+    for i in df:
+        z = (i - m) / sd
+        if np.abs(z) &gt; 3:
+            out.append(i)
+    print("Outliers:", out)
+
+Zscore_outlier(train['LotArea'])</code></pre>
+      </section>
+      <section class="artigo-secao" id="zscore-robusto">
+        <h2>3. Z-score robusto</h2>
+        <p>Também chamado de método do desvio absoluto da mediana. É semelhante ao Z-score, com uma mudança importante nos parâmetros: como média e desvio padrão são <em>fortemente influenciados por outliers</em>, trocamos ambos por mediana e desvio absoluto da mediana.</p><p>A fórmula é <code>R.Z = 0,6745 × (Xᵢ − mediana) / MAD</code>, onde <code>MAD = mediana(|X − mediana|)</code>.</p><p>A constante 0,6745 aparece porque, se X segue uma distribuição normal padrão, o MAD converge para a mediana da meia distribuição normal — o percentil 75%, que vale aproximadamente 0,6745.</p><pre><code>import pandas as pd
+import numpy as np
+import scipy.stats as stats
+
+train = pd.read_csv('dataset/train.csv')
+out = []
+
+def ZRscore_outlier(df):
+    med = np.median(df)
+    ma = stats.median_abs_deviation(df)
+    for i in df:
+        z = (0.6745 * (i - med)) / np.median(ma)
+        if np.abs(z) &gt; 3:
+            out.append(i)
+    print("Outliers:", out)
+
+ZRscore_outlier(train['LotArea'])</code></pre><p>Note que o método robusto detecta muito mais outliers que o Z-score simples no mesmo conjunto — exatamente porque a média e o desvio padrão do primeiro já haviam sido contaminados pelos valores extremos.</p>
+      </section>
+      <section class="artigo-secao" id="iqr">
+        <h2>4. Método IQR</h2>
+        <p>Aqui detectamos outliers usando quartis. O intervalo interquartil informa a variação do conjunto: qualquer valor fora do intervalo de −1,5 × IQR a +1,5 × IQR é tratado como discrepante.</p><ul><li><strong>Q1</strong> representa o primeiro quartil, 25% dos dados.</li><li><strong>Q2</strong> representa o segundo quartil, a mediana, 50% dos dados.</li><li><strong>Q3</strong> representa o terceiro quartil, 75% dos dados.</li><li><strong>Q1 − 1,5 × IQR</strong> e <strong>Q3 + 1,5 × IQR</strong> delimitam os valores aceitáveis.</li></ul><pre><code>import pandas as pd
+import numpy as np
+
+train = pd.read_csv('dataset/train.csv')
+out = []
+
+def iqr_outliers(df):
+    q1 = df.quantile(0.25)
+    q3 = df.quantile(0.75)
+    iqr = q3 - q1
+    lower_tail = q1 - 1.5 * iqr
+    upper_tail = q3 + 1.5 * iqr
+    for i in df:
+        if i &gt; upper_tail or i &lt; lower_tail:
+            out.append(i)
+    print("Outliers:", out)
+
+iqr_outliers(train['LotArea'])</code></pre>
+      </section>
+      <section class="artigo-secao" id="winsorizacao">
+        <h2>5. Winsorização (limite de percentil)</h2>
+        <p>A winsorização, também conhecida como transformação de Tukey, substitui os outliers por valores mais próximos da mediana, preservando a forma geral da distribuição e reduzindo o impacto dos extremos nas análises.</p><p>O método é semelhante ao IQR. Aqui, por exemplo, identificamos como outliers os valores fora da faixa entre o percentil 1 e o percentil 99.</p><pre><code>import pandas as pd
+import numpy as np
+
+train = pd.read_csv('dataset/train.csv')
+out = []
+
+def Winsorization_outliers(df):
+    q1 = np.percentile(df, 1)
+    q3 = np.percentile(df, 99)
+    for i in df:
+        if i &gt; q3 or i &lt; q1:
+            out.append(i)
+    print("Outliers:", out)
+
+Winsorization_outliers(train['Fare'])</code></pre>
+      </section>
+      <section class="artigo-secao" id="dbscan">
+        <h2>6. DBSCAN</h2>
+        <p>O DBSCAN (<em>Density-Based Spatial Clustering of Applications with Noise</em>) é um algoritmo de agrupamento baseado em densidade. Destaca-se por duas capacidades:</p><ul><li><strong>Encontrar clusters de formas e tamanhos diversos:</strong> ao contrário de métodos que assumem formas predefinidas, o DBSCAN detecta clusters irregulares, adaptando-se aos dados.</li><li><strong>Lidar com ruído:</strong> identifica e separa pontos que não pertencem a nenhum cluster, o que o torna ideal para conjuntos com outliers.</li></ul><p>O algoritmo opera com dois parâmetros: <code>eps</code>, a distância máxima entre pontos de um mesmo cluster, e <code>MinPts</code>, o número mínimo de pontos para formar um cluster. O cluster <code>-1</code> é o que contém os valores discrepantes.</p><h3>Como funciona</h3><p><strong>Pontos centrais e de borda:</strong> o DBSCAN começa identificando pontos centrais — os que possuem ao menos <code>MinPts</code> vizinhos dentro de um raio <code>eps</code>. Pontos de borda estão na vizinhança de um ponto central, mas não têm vizinhança própria suficiente.</p><p><strong>Expansão:</strong> cada ponto central forma um cluster inicial, expandido iterativamente ao agregar pontos de borda.</p><p><strong>Ruído:</strong> pontos que não podem ser agregados a nenhum cluster são classificados como ruído.</p><p>O DBSCAN fornece o melhor resultado para detecção de outliers multivariados.</p><pre><code>from sklearn.cluster import DBSCAN
+import pandas as pd
+
+train = pd.read_csv('dataset/train.csv')
+
+def DB_outliers(df):
+    outlier_detection = DBSCAN(eps=2, metric='euclidean', min_samples=5)
+    clusters = outlier_detection.fit_predict(df.values.reshape(-1, 1))
+    data = pd.DataFrame()
+    data['cluster'] = clusters
+    print(data['cluster'].value_counts())
+
+DB_outliers(train['Fare'])</code></pre><p>No conjunto de 891 registros, o cluster <code>-1</code> reuniu 32 pontos — os discrepantes.</p>
+      </section>
+      <section class="artigo-secao" id="isolation-forest">
+        <h2>7. Isolation Forest</h2>
+        <p>É um algoritmo de aprendizado de máquina não supervisionado para detectar anomalias. Aplica-se a detecção de fraude, detecção de intrusão, manutenção preditiva, análise de imagens e detecção de anomalias médicas.</p><h3>Como funciona</h3><p><strong>Construção de árvores aleatórias:</strong> o algoritmo constrói um conjunto de árvores de decisão de forma aleatória, dividindo os dados a cada nó, com recurso e valor de divisão escolhidos ao acaso.</p><p><strong>Isolamento de anomalias:</strong> o Isolation Forest isola anomalias mais rapidamente do que observações normais. Pontos isolados em níveis mais rasos da árvore são mais propensos a ser anomalias.</p><p><strong>Pontuação:</strong> cada ponto recebe uma pontuação com base no comprimento médio do caminho percorrido para isolá-lo em todas as árvores.</p><p>No modelo abaixo, resultado <code>-1</code> significa que o ponto é discrepante; <code>1</code>, que não é.</p><pre><code>from sklearn.ensemble import IsolationForest
+import numpy as np
+import pandas as pd
+
+train = pd.read_csv('dataset/train.csv')
+train['Fare'].fillna(train[train.Pclass == 3]['Fare'].median(), inplace=True)
+
+def Iso_outliers(df):
+    iso = IsolationForest(random_state=1, contamination='auto')
+    preds = iso.fit_predict(df.values.reshape(-1, 1))
+    data = pd.DataFrame()
+    data['cluster'] = preds
+    print(data['cluster'].value_counts().sort_values(ascending=False))
+
+Iso_outliers(train['Fare'])</code></pre><p>Resultado: 706 pontos normais contra 185 discrepantes.</p>
+      </section>
+      <section class="artigo-secao" id="visualizacao">
+        <h2>8. Visualização de dados</h2>
+        <p>A visualização é útil para limpeza, exploração, detecção de discrepantes e grupos incomuns, e identificação de tendências e clusters. Os gráficos mais usados para detectar outliers são o box plot, o gráfico de dispersão, o histograma, o gráfico de distribuição e o QQ plot.</p><pre><code>import pandas as pd
+import seaborn as sns
+from matplotlib import pyplot as plt
+from statsmodels.graphics.gofplots import qqplot
+
+train = pd.read_csv('dataset/train.csv')
+
+def box_plots(df):
+    plt.figure(figsize=(10, 4))
+    plt.title("Box Plot")
+    sns.boxplot(df)
+    plt.show()
+
+def hist_plots(df):
+    plt.figure(figsize=(10, 4))
+    plt.hist(df)
+    plt.title("Histograma")
+    plt.show()
+
+def scatter_plots(df1, df2):
+    fig, ax = plt.subplots(figsize=(10, 4))
+    ax.scatter(df1, df2)
+    ax.set_xlabel('Age')
+    ax.set_ylabel('Fare')
+    plt.title("Gráfico de dispersão")
+    plt.show()
+
+def qq_plots(df):
+    plt.figure(figsize=(10, 4))
+    qqplot(df, line='s')
+    plt.title("Normal QQ Plot")
+    plt.show()</code></pre>
+      </section>
+      <section class="artigo-secao" id="tratamento">
+        <h2>Tratamento: o que fazer depois de detectar</h2>
+        <p>A presença de outliers pode <strong>distorcer a média e outras medidas de tendência central</strong>, <strong>aumentar a variância e outras medidas de dispersão</strong> — fazendo os dados parecerem mais dispersos do que são — e <strong>afetar a significância estatística dos testes</strong>, levando a conclusões errôneas.</p><p>A maioria dos algoritmos de aprendizado de máquina não funciona bem na presença de valores discrepantes. Há quatro técnicas para lidar com eles.</p><h3>1. Exclusão</h3><p>Excluímos outliers quando decorrem de erro de entrada, erro de processamento, ou quando são muito poucos. Também é possível usar o corte em ambas as extremidades. Mas excluir observações não é boa ideia em conjuntos de dados pequenos — e é importante remover apenas os outliers genuínos, não dados válidos.</p><pre><code>def drop_outliers(df, field_name):
+    iqr = 1.5 * (np.percentile(df[field_name], 75) - np.percentile(df[field_name], 25))
+    df.drop(df[df[field_name] &gt; (iqr + np.percentile(df[field_name], 75))].index, inplace=True)
+    df.drop(df[df[field_name] &lt; (np.percentile(df[field_name], 25) - iqr)].index, inplace=True)</code></pre><h3>2. Transformação</h3><p>Transformar variáveis também elimina valores discrepantes, reduzindo a variação causada pelos extremos. As opções são dimensionamento, transformação logarítmica, raiz cúbica e transformação Box-Cox.</p><p>Essas técnicas convertem valores do conjunto em valores menores e ajudam a normalizar dados com muitos extremos ou distorcidos. <strong>Não há perda de dados.</strong> Nem sempre oferecem os melhores resultados — mas, entre elas, a transformação Box-Cox costuma dar o melhor.</p><pre><code># Box-Cox
+import scipy
+
+train['Rent Index'], fitted_lambda = scipy.stats.boxcox(train['Rent Index'], lmbda=None)</code></pre><h3>3. Substituição</h3><p>Podemos substituir os valores discrepantes por média, mediana ou zero. Como estamos substituindo, não há perda de dados — e a mediana costuma ser apropriada porque não é afetada por valores discrepantes.</p><p>A prática, também conhecida como imputação, exige cautela. Os impactos:</p><ul><li><strong>Redução do efeito dos outliers:</strong> minimiza distorções na média, mediana e desvio padrão, que por sua vez influenciam o treinamento.</li><li><strong>Melhoria da previsão:</strong> o modelo se concentra nos padrões da maioria dos dados.</li><li><strong>Estabilidade do treinamento:</strong> evita que o modelo se ajuste excessivamente a valores atípicos, melhorando a generalização.</li><li><strong>Mascaramento de informação:</strong> se os outliers forem relevantes para a análise, substituí-los pode levar a conclusões errôneas ou à perda de insights.</li><li><strong>Dificuldade de interpretação:</strong> os valores originais deixam de estar presentes nos dados de treino, o que torna crucial documentar a estratégia de imputação.</li></ul><pre><code># imputação pela mediana
+q1 = train['Age'].quantile(0.25)
+q3 = train['Age'].quantile(0.75)
+iqr = q3 - q1
+lower_tail = q1 - 1.5 * iqr
+upper_tail = q3 + 1.5 * iqr
+med = np.median(train['Age'])
+
+for i in train['Age']:
+    if i &gt; upper_tail or i &lt; lower_tail:
+        train['Age'] = train['Age'].replace(i, med)</code></pre><h3>4. Tratamento separado</h3><p>Se houver um número significativo de outliers e o conjunto for pequeno, trate-os separadamente no modelo estatístico: construa modelos individuais para cada grupo e combine os resultados depois. A técnica é trabalhosa em conjuntos grandes.</p><p>Nem todas as técnicas mencionadas dão sempre o melhor resultado. Tenha cuidado ao detectar e substituir valores discrepantes.</p>
+      </section>
+      <section class="artigo-secao" id="referencias">
+        <h2>Referências</h2>
+        <ol><li><a href="https://medium.com/datadriveninvestor/finding-outliers-in-dataset-using-python-efc3fce6ce32" target="_blank" rel="noopener">Finding outliers in dataset using Python</a></li><li><a href="http://www.askanalytics.in/p/outlier-treatment.html" target="_blank" rel="noopener">Outlier Detection — Basics</a></li><li><a href="https://towardsdatascience.com/ways-to-detect-and-remove-the-outliers-404d16608dba" target="_blank" rel="noopener">Ways to Detect and Remove the Outliers</a></li><li><a href="https://www.kdnuggets.com/2018/12/four-techniques-outlier-detection.html" target="_blank" rel="noopener">Four Techniques for Outlier Detection — KDnuggets</a></li><li><a href="https://www.kaggle.com/code/nareshbhat/outlier-the-silent-killer/notebook" target="_blank" rel="noopener">Outlier! The Silent Killer — Kaggle</a></li></ol>
+      </section>
+
+      <p class="artigo-pdf"><a class="article-link" href="../Artigos/Analise de Outlier.pdf" target="_blank" rel="noopener">
+        <span>Baixar o PDF original</span> <i class="fas fa-download"></i>
+      </a></p>
+      <section class="caso-cta">
+        <h2>Quer conversar sobre isso?</h2>
+        <p>Trabalho com supply chain, IA e sistemas sob medida — do diagnóstico à entrega.</p>
+        <a class="project-link" href="../index.html#contact">
+          <span>Vamos conversar</span> <i class="fas fa-arrow-right"></i>
+        </a>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <p>© 2026 Thiago Seiki Kato</p>
+  </footer>
 </body>
+
 </html>

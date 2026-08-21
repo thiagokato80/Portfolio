@@ -1,42 +1,152 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="dark">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Uma reflexão sobre a produtividade do Vibe Coding versus o rigor da engenharia. Onde a IA ajuda e onde a soberania humana é essencial.">
-    <title>A Produtividade do Vibe Coding e o Rigor da Engenharia</title>
-    <link rel="stylesheet" href="../styles.css">
-    <link rel="icon" type="image/png" href="../favicon.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Onde ferramentas de IA aceleram o desenvolvimento e onde elas falham: arquitetura e debugging de sistemas complexos continuam dependendo do engenheiro.">
+  <meta name="author" content="Thiago Seiki Kato">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://thiagokato.github.io/Portfolio/Artigos/a_produtividade_do_vibe_coding_e_o_rigor_da_engenharia.html">
+  <meta property="og:title" content="A produtividade do Vibe Coding e o rigor da engenharia | Thiago Seiki Kato">
+  <meta property="og:description" content="Onde ferramentas de IA aceleram o desenvolvimento e onde elas falham: arquitetura e debugging de sistemas complexos continuam dependendo do engenheiro.">
+  <meta property="og:image" content="https://thiagokato.github.io/Portfolio/Currículo/Foto.jpg">
+  <meta property="article:published_time" content="2025-10-15">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="A produtividade do Vibe Coding e o rigor da engenharia | Thiago Seiki Kato">
+  <meta property="twitter:description" content="Onde ferramentas de IA aceleram o desenvolvimento e onde elas falham: arquitetura e debugging de sistemas complexos continuam dependendo do engenheiro.">
+
+  <title>A produtividade do Vibe Coding e o rigor da engenharia | Thiago Seiki Kato</title>
+
+  <link rel="canonical" href="https://thiagokato.github.io/Portfolio/Artigos/a_produtividade_do_vibe_coding_e_o_rigor_da_engenharia.html">
+  <link rel="alternate" hreflang="pt-BR" href="https://thiagokato.github.io/Portfolio/Artigos/a_produtividade_do_vibe_coding_e_o_rigor_da_engenharia.html">
+  <link rel="alternate" hreflang="en" href="https://thiagokato.github.io/Portfolio/Artigos/en/a_produtividade_do_vibe_coding_e_o_rigor_da_engenharia.html">
+  <link rel="alternate" hreflang="x-default" href="https://thiagokato.github.io/Portfolio/Artigos/a_produtividade_do_vibe_coding_e_o_rigor_da_engenharia.html">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "A Produtividade do \"Vibe Coding\" e o Rigor da Engenharia: onde a IA acelera (e onde ela falha)",
+      "description": "Onde ferramentas de IA aceleram o desenvolvimento e onde elas falham: arquitetura e debugging de sistemas complexos continuam dependendo do engenheiro.",
+      "datePublished": "2025-10-15",
+      "dateModified": "2025-10-15",
+      "url": "https://thiagokato.github.io/Portfolio/Artigos/a_produtividade_do_vibe_coding_e_o_rigor_da_engenharia.html",
+      "inLanguage": "pt-BR",
+      "author": {
+        "@type": "Person",
+        "name": "Thiago Seiki Kato",
+        "url": "https://thiagokato.github.io/Portfolio/"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Thiago Seiki Kato"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://thiagokato.github.io/Portfolio/Artigos/a_produtividade_do_vibe_coding_e_o_rigor_da_engenharia.html"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Portfólio",
+          "item": "https://thiagokato.github.io/Portfolio/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "A Produtividade do \"Vibe Coding\" e o Rigor da Engenharia: onde a IA acelera (e onde ela falha)",
+          "item": "https://thiagokato.github.io/Portfolio/Artigos/a_produtividade_do_vibe_coding_e_o_rigor_da_engenharia.html"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <script>
+(function () {
+  try {
+    var tema = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', tema);
+  } catch (e) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+})();
+</script>
 </head>
+
 <body>
-    <header>
-        <nav>
-            <div class="nav-container">
-                <a href="../index.html" class="logo">
-                    <span class="logo-bracket">[</span>TSK<span class="logo-bracket">]</span>
-                </a>
-                <ul class="nav-links">
-                    <li><a href="../index.html">Voltar ao Portfólio</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-    <main class="container" style="margin-top: 100px;">
-        <section>
-            <div class="section-header">
-                <span class="section-tag">Artigo</span>
-                <h1>A Produtividade do Vibe Coding e o Rigor da Engenharia</h1>
-                <div class="section-line"></div>
-            </div>
-            <p class="about-lead" style="margin-bottom: 30px;">
-                Ferramentas de IA aceleram a execução técnica e códigos repetitivos, mas falham em arquitetura e debugging complexo. O engenheiro deve manter soberania sobre o design da solução.
-            </p>
-            <iframe src="A Produtividade do _Vibe Coding_ e o Rigor da Engenharia.pdf" width="100%" height="900px" style="border:none; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);"></iframe>
-        </section>
-    </main>
-    <footer>
-        <p>© 2026 Meu Portfólio</p>
-    </footer>
+  <header>
+    <nav>
+      <div class="nav-container">
+        <a href="../index.html" class="logo">
+          <span class="logo-bracket">[</span>TSK<span class="logo-bracket">]</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="../index.html#articles">Voltar ao portfólio</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container artigo">
+    <article>
+      <div class="artigo-hero">
+        <span class="article-tag">IA &amp; Engenharia</span>
+        <h1>A Produtividade do &quot;Vibe Coding&quot; e o Rigor da Engenharia: onde a IA acelera (e onde ela falha)</h1>
+        <p class="artigo-lead">Ferramentas de IA quadruplicam a sensação de produtividade e são aceleradores reais de execução. Mas arquitetura e debugging continuam devolvendo a soberania ao engenheiro — e é isso que separa o &quot;vibe coder&quot; do engenheiro de produção.</p>
+        <p class="artigo-meta">
+          <time datetime="2025-10-15">15 de outubro de 2025</time>
+          <span class="artigo-sep">·</span>
+          <span>4 min de leitura</span>
+        </p>
+      </div>
+
+      <section class="artigo-secao" id="acordo">
+        <h2>O novo acordo entre o engenheiro e a IA</h2>
+        <p>O advento das extensões de código baseadas em LLMs, como as ferramentas do Gemini e do Copilot, inaugurou uma era que chamo de "Vibe Coding". A experiência é inegavelmente empolgante: o código flui, a sintaxe se materializa, e a sensação de produtividade quadruplica. Essas ferramentas são aceleradores massivos para o desenvolvimento, tornando o trabalho de codificação menos tedioso.</p><p>No meu recente projeto de arquitetura de um Agente Geral de IA em Python, utilizei ativamente essas ferramentas. O que aprendi, no entanto, é que <strong>a IA é um assistente de execução brilhante, mas um arquiteto falho</strong>. A verdadeira maestria da engenharia se manifesta justamente nos pontos cegos da máquina.</p>
+      </section>
+      <section class="artigo-secao" id="aceleracao">
+        <h2>O salto de produtividade: a IA como acelerador de execução</h2>
+        <p>Minha produtividade disparou em tarefas que antes consumiam uma energia cognitiva desnecessária:</p><ul><li><strong>Codificação boilerplate e sintaxe:</strong> a IA transformou a criação de stubs de classes, métodos e a sintaxe repetitiva do Python em um processo quase instantâneo. Em um sistema multi-agente, onde a arquitetura é complexa mas a sintaxe para conectar módulos pode ser monótona, a IA me liberou.</li><li><strong>Manuseio de dados com Pandas e SQL:</strong> em vez de pausar para lembrar a função exata de um <code>groupby</code> complexo ou de um <code>merge</code> específico, a IA traduz meu prompt em Python funcional em segundos. Isso me permitiu gastar tempo onde o valor é real: na lógica de segurança e na orquestração de alto nível.</li></ul><p>A IA, nesse sentido, é uma mestra em tradução de código. Ela acelera o ritmo, permitindo que o engenheiro sênior dedique 80% do seu tempo à arquitetura de alto nível, e não à execução de baixo nível.</p>
+      </section>
+      <section class="artigo-secao" id="falhas">
+        <h2>Onde a IA falha: a soberania do engenheiro</h2>
+        <p>Apesar dessa facilidade, o uso contínuo das ferramentas reforçou uma verdade crucial: a solução e o rigor técnico sempre dependem do engenheiro. As ferramentas falharam para mim em dois pontos críticos.</p><h3>1. A inovação arquitetônica e o design da solução</h3><p>O agente exigia uma solução não-trivial: um sistema de orquestração distribuído, com agentes especialistas e um mecanismo de análise de dados <em>metadata-driven</em> para impor segurança e escalabilidade.</p><p><strong>Nenhuma ferramenta de IA me sugeriu essa arquitetura.</strong> A ideia, a decomposição do problema e o design da solução vieram integralmente de mim. A IA só começa a ser útil depois que o engenheiro define o <em>que</em> e o <em>porquê</em> de algo ser construído.</p><h3>2. O calvário do debugging em sistemas complexos</h3><p>O momento de maior frustração, mas também de maior aprendizado, ocorre no debugging. Em sistemas integrados — Python conversando com um ERP, um LLM e o Teams, por exemplo — bugs sutis de lógica ou falhas de integração são inevitáveis.</p><p>Nessas horas, as sugestões de correção da ferramenta se mostram, na maioria das vezes, incorretas, superficiais, genéricas e muitas vezes repetitivas — com a IA tentando por diversas vezes a mesma solução que antes não havia funcionado.</p><p>A solução exige o rigor da engenharia tradicional: rastrear a falha na stack, pesquisar documentação específica e, muitas vezes, chegar a uma correção fundamentalmente diferente da que a IA aconselhou.</p><p>O debugging é o teste de fogo que separa o "vibe coder" do engenheiro de produção. <strong>O bug devolve a soberania ao ser humano</strong>, exigindo conhecimento profundo do sistema e da linguagem.</p>
+      </section>
+      <section class="artigo-secao" id="aumentada">
+        <h2>De &quot;vibe coding&quot; a engenharia aumentada</h2>
+        <p>As ferramentas de IA transformaram a codificação, mas não a engenharia. Elas são excelentes para a sintaxe e a execução, mas a responsabilidade pelo rigor, segurança e arquitetura de um sistema de produção continua sendo inteiramente do engenheiro.</p><p>O uso da IA nos ensina uma lição de foco: dedique sua energia e seu conhecimento de domínio para pensar na solução e garantir o rigor na entrega. Deixe que a IA faça o trabalho pesado de digitação. É assim que alcançamos a <strong>engenharia aumentada</strong>: a união da velocidade da máquina com a inteligência e a responsabilidade do ser humano.</p>
+      </section>
+
+      <p class="artigo-pdf"><a class="article-link" href="../Artigos/A Produtividade do _Vibe Coding_ e o Rigor da Engenharia.pdf" target="_blank" rel="noopener">
+        <span>Baixar o PDF original</span> <i class="fas fa-download"></i>
+      </a></p>
+      <section class="caso-cta">
+        <h2>Quer conversar sobre isso?</h2>
+        <p>Trabalho com supply chain, IA e sistemas sob medida — do diagnóstico à entrega.</p>
+        <a class="project-link" href="../index.html#contact">
+          <span>Vamos conversar</span> <i class="fas fa-arrow-right"></i>
+        </a>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <p>© 2026 Thiago Seiki Kato</p>
+  </footer>
 </body>
+
 </html>
