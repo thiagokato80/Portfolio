@@ -1,6 +1,5 @@
 import { t, escapar, temTraducao } from './texto.mjs';
-
-const SITE_PADRAO = 'https://thiagokato.github.io/Portfolio';
+import { SITE as SITE_PADRAO } from './site.mjs';
 
 const SCRIPT_TEMA = `<script>
 (function () {

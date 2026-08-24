@@ -13,10 +13,11 @@ import { injetar, MARCA_ARTIGOS_INICIO, MARCA_ARTIGOS_FIM } from './lib/indice.m
 import { sitemap } from './lib/sitemap.mjs';
 import { fichas } from './lib/ficha.mjs';
 import { traducoesCards, arquivoTraducoes } from './lib/i18n-cards.mjs';
+import { SITE } from './lib/site.mjs';
 import { temTraducao } from './lib/texto.mjs';
 
 const RAIZ = join(dirname(fileURLToPath(import.meta.url)), '..');
-const SITE = 'https://thiagokato.github.io/Portfolio';
+
 
 function hoje() {
   return new Date().toISOString().slice(0, 10);

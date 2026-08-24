@@ -1,6 +1,5 @@
 import { t, escapar, temTraducao } from './texto.mjs';
-
-const SITE_PADRAO = 'https://thiagokato.github.io/Portfolio';
+import { SITE as SITE_PADRAO } from './site.mjs';
 const PALAVRAS_POR_MINUTO = 200;
 const MIN_SECOES_PARA_SUMARIO = 5;
 

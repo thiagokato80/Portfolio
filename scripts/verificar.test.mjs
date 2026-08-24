@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { checar } from './verificar.mjs';
 
-const SITE = 'https://thiagokato.github.io/Portfolio';
+import { SITE } from './lib/site.mjs';
 
 function projeto(slug) {
   return {

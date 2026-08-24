@@ -92,10 +92,26 @@ export function checar(raiz) {
   const titles = new Map();
   const descricoes = new Map();
 
+  // O index e escrito a mao e linka arquivos que ninguem gera — currículo,
+  // favicon, foto. Um arquivo renomeado ou removido nao aparecia em lugar
+  // nenhum ate alguem clicar.
+  const problemasIndex = [];
+  const indexHtml = texto(join(raiz, 'index.html'));
+  for (const m of indexHtml.matchAll(/(?:href|src)="([^"]+)"/g)) {
+    const alvo = m[1];
+    if (/^(https?:|mailto:|tel:|#|data:)/.test(alvo)) continue;
+    const semAncora = alvo.split('#')[0];
+    if (!semAncora) continue;
+    if (!existsSync(resolve(raiz, decodeURIComponent(semAncora)))) {
+      problemasIndex.push(`index.html: link quebrado — ${alvo}`);
+    }
+  }
+
   const projetosEn = dados.projetos.filter(temTraducao).map((p) => p.slug);
   const artigosEn = artigos.filter(temTraducao).map((a) => a.slug);
 
   return [
+    ...problemasIndex,
     ...checarDiretorio(raiz, 'projetos', dados.projetos.map((p) => p.slug), xml, titles, descricoes),
     ...checarDiretorio(raiz, 'Artigos', artigos.map((a) => a.slug), xml, titles, descricoes),
     ...checarDiretorio(raiz, 'projetos/en', projetosEn, xml, titles, descricoes),
