@@ -111,6 +111,7 @@
       "slug": "saas_repatriation",
       "icone": "fa-money-bill",
       "data": "2026-03-30",
+      "ordem": 1,
       "tag": {
         "pt": "Soberania Digital",
         "en": "Digital Sovereignty"

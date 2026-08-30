@@ -26,6 +26,22 @@ test('ordena do mais recente para o mais antigo', () => {
   assert.ok(html.indexOf('O Vale da Morte') < html.indexOf('SaaS Repatriation'));
 });
 
+test('ordem rebaixa o artigo sem alterar a data', () => {
+  const rebaixado = [{ ...artigos[0], ordem: 1 }, artigos[1]];
+  const html = blocoCardsArtigos(rebaixado);
+  assert.ok(html.indexOf('O Vale da Morte') < html.indexOf('SaaS Repatriation'));
+
+  // o mais antigo sobe quando o mais recente é rebaixado — prova que o campo manda
+  const invertido = [artigos[0], { ...artigos[1], ordem: 1 }];
+  const html2 = blocoCardsArtigos(invertido);
+  assert.ok(html2.indexOf('SaaS Repatriation') < html2.indexOf('O Vale da Morte'));
+});
+
+test('artigos sem ordem seguem empatados em 0 e caem na data', () => {
+  const html = blocoCardsArtigos(artigos.map((a) => ({ ...a, ordem: 5 })));
+  assert.ok(html.indexOf('O Vale da Morte') < html.indexOf('SaaS Repatriation'));
+});
+
 test('link aponta para a página em Artigos', () => {
   assert.match(blocoCardsArtigos(artigos), /href="Artigos\/o_vale_da_morte\.html"/);
 });

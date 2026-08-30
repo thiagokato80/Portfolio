@@ -21,9 +21,19 @@ function card(artigo, lang) {
                     </article>`;
 }
 
-/** Gera o HTML interno do bloco de artigos do index, do mais recente ao mais antigo. */
+/**
+ * Gera o HTML interno do bloco de artigos do index.
+ *
+ * A ordem é por data, do mais recente ao mais antigo. O campo opcional `ordem`
+ * permite rebaixar um artigo sem mexer na data de publicação — a data é registro
+ * público e não se altera para efeito de vitrine. Quem não declara `ordem` vale 0,
+ * então omitir o campo em todos preserva exatamente a ordenação por data.
+ */
 export function blocoCardsArtigos(artigos, lang = 'pt') {
-  const ordenados = [...artigos].sort((a, b) => b.data.localeCompare(a.data));
+  const ordem = (a) => (typeof a.ordem === 'number' ? a.ordem : 0);
+  const ordenados = [...artigos].sort(
+    (a, b) => ordem(a) - ordem(b) || b.data.localeCompare(a.data)
+  );
   return `                <div class="articles-grid">
 ${ordenados.map((a) => card(a, lang)).join('\n')}
                 </div>`;

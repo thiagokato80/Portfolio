@@ -135,6 +135,11 @@ export function validarArtigos(dados) {
       erros.push(`${slug}: campo "data" precisa estar no formato AAAA-MM-DD`);
     }
 
+    // "ordem" é opcional e só rebaixa na vitrine do index — a data segue sendo o registro.
+    if (a.ordem !== undefined && !Number.isFinite(a.ordem)) {
+      erros.push(`${slug}: campo "ordem" precisa ser número quando presente`);
+    }
+
     for (const nome of ['titulo', 'lead', 'tag']) {
       const e = erroCampoTexto(a[nome], nome, slug);
       if (e) erros.push(e);
